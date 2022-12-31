@@ -1,0 +1,30 @@
+{
+  "name": "react-app-by-akshay",
+  "version": "1.0.0",
+  "description": "Learning react from akshay",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XenonSingh/React-app-by-akshay.git"
+  },
+  "author": "Harshneet singh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/XenonSingh/React-app-by-akshay/issues"
+  },
+  "homepage": "https://github.com/XenonSingh/React-app-by-akshay#readme",
+  "devDependencies": {
+    "parcel": "^2.8.2",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
+}

@@ -1,3 +1,5 @@
+import React from "react";
+import  ReactDOM from "react-dom/client";
 const header1 = React.createElement(
     "h2",// HTML elementTAG
     null,// PROPS you need to send like class and all
