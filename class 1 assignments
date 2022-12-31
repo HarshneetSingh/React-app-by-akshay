@@ -1,0 +1,21 @@
+What is Emmet? Emmet is a plugin for text editors, used to improve the speed of coding in HTML. There are lot of shortcuts to get the suggestions while we are writing the code. Example: By typing ! you will see suggestion of index template.
+
+Difference between a Library and Framework? The main difference is Inversion of control
+
+Library: We can simply say library consists of set of functions and that being used repeatedly which are written by us, those functions are controlled by us.
+
+Framework: Where as framework consists of lot of libraries, the control is reversed, which means that the framework tells the developer where code needs to be provided and calls it as it requires.
+
+What is CDN? Why do we use it? CDN is a Content Delivery Network, The network servers that distributes the content from an origin server throughout the world by edge POPs nodes mechanism, when ever the user visits the website then immediately scripts are downloaded and cached in browser, if same user visits another website that is being used same CDN files then it won't make any new request, it directly uses the cached data. The main reason to use CDN is user experience by rendering the web pages fastly and caching the data.
+
+Why is React known as React? Name itself react will gets reacted when there is a change in data, in simple terms when the data in react components changes then react will automatically re-render the component to make it look up-to-date.
+
+What is crossorigin in script tag? When we make a request from one origin (Requestor) to another origin (Sender) then network will blocks the request, to make it work we need to enable crossorigin then only resource is fetched to the origin(requestor).
+
+What is diference between React and ReactDOM? React is a meant resposible to creating views where as ReactDOM will helps to render the UI and manipulate the DOM.
+
+What is difference between react.development.js and react.development.js files via CDN? react.development.js CDN are development dependencies which are not being used in PRODUCTION react.development.js CDN is minified version of developement CDN which are suitable for production use.
+
+What is async and defer? async - Name itself async will downloads the scripts asynchronously or parallely along with HTML parsing, when scripts are available, parsing gets paused and scripts are executed then HTML parsing resumes.
+
+defer - Here also scripts are downloaded parallelly but execution starts only after completion of HTML parsing.
