@@ -37,6 +37,9 @@ Answer - The .parcel-cache directory is used by the Parcel bundler to store inte
           are used to improve the performance of the bundler by allowing it to reuse previously generated files rather than regenerating them each time you build 
           your application.
           
+          This folder is a space created by Parcel, where it stores our files in binary format. When we reload or build our app it takes only milli seconds 
+          because parcel already cached the program files using this folder
+          
 ● - What is `npx` ?
 Answer - Node Package Execute,npx is a command-line tool that is included with npm, the package manager for JavaScript.It allows you to run Node.js packages and 
          commands from the command line You can also use npx to run scripts defined in the "scripts" field of your package.json file. For example, if you have a 
@@ -84,5 +87,118 @@ Answer - Tree shaking is a term used in the context of modern JavaScript module 
          with Parcel, the bundler will analyze the code and determine which parts are not being used, and then exclude those parts from the final bundle.
          This can help to reduce the size of the bundle and improve the performance of the application.
          
+● - What is Hot Module Replacement?
+Answer - Hot Module Reloading (HMR) is a feature in React that allows you to change the code of your application and see the changes in the browser without having 
+         to manually refresh the page. When you make a change to your code, HMR will automatically update the application with the new code. This can be a useful tool for 
+         quickly testing changes to your application and speeding up the development process.
+         
+         In the context of React, HMR can be implemented using a tool called Parcel. Parcel is a web application bundler that is used to build and package 
+         JavaScript applications for the web. It includes support for HMR, which allows you to make changes to your code and see the updates in the browser
+         without having to manually refresh the page. When you make a change to your code while using Parcel, HMR will automatically update the application
+         with the new code, allowing you to see the changes in real-time
+         
+         To use HMR in your React application with Parcel, you will need to enable the HMR feature in your Parcel configuration. You can do this by adding
+         the --hmr flag when starting the Parcel development server. You will also need to wrap your root component in the HotModuleReplacementContainer 
+         provided by the react-hot-loader library to enable HMR in your React application.
+         
+         Hot Module Replacement is a technique used by modern bundlers(web pack / parcel) for updating code without fully refreshing the page in your browser
+         . HMR updates a code by replacing an old code with a new code.
+         
+         HMR improves the development experience by updating modules in the browser at runtime without needing a whole page refresh.
+         
+         -File watcher algorithm-
+         
+         A file watcher is an algorithm that is used to monitor the changes made to a set of files and trigger an action when a change is detected.
+         In the case of HMR in React, a file watcher algorithm is used to detect when a change has been made to the code of the application. 
+         When a change is detected, the file watcher algorithm will trigger the HMR process, which updates the application with the new code and 
+         applies the changes to the currently running application.
+
+         The specific implementation of the file watcher algorithm used for HMR in React will depend on the tools and libraries being used to build 
+         and bundle the application. For example, the webpack bundler includes a file watcher algorithm as part of its HMR implementation. Similarly,
+         the Parcel bundler also includes a file watcher algorithm for its HMR implementation.
+         
+         In Parcel, the HMR process and file watcher algorithm work together to enable hot reloading in your React application. When you start
+         the Parcel development server with the --hmr flag, Parcel will enable the HMR feature and start the file watcher algorithm.
+         The file watcher algorithm will then monitor the files in your application for changes and trigger the HMR process whenever a change is detected.
+
+         The HMR process in Parcel works by intercepting the changes you make to your code, updating the application with the new code, and then applying those 
+         changes to the currently running application. This allows you to see the changes in your application without having to refresh the page or lose any
+         of your application state.
+         
+● - List down your favourite 5 superpowers of Parcel and describe any 3 of them in your
+own words.!
+
+
+Answer -
+Zero configuration:
+One of the most powerful features of Parcel is its ability to work with zero configuration. This means that you can start
+building and bundling your application without having to spend time setting up configuration files or installing additional dependencies.
+
+Fast performance:
+Parcel is designed to be fast and efficient, with a focus on minimizing build times and optimizing performance. 
+It uses a variety of techniques, such as parallel processing and caching, to ensure that your application builds and runs as quickly as possible.
+
+Automatic code splitting: 
+Parcel includes automatic code splitting, which means that it can automatically split your code into separate chunks that 
+can be loaded on demand. This can help improve the performance and load times of your application.
+
+Support for a wide range of languages and frameworks: 
+Parcel supports a wide range of languages and frameworks, including JavaScript, TypeScript,
+HTML, CSS, and more. This means that you can use Parcel to build and bundle applications 
+written in a variety of different languages and frameworks.
+
+Hot Module Reloading (HMR):
+Parcel includes support for HMR, which allows you to make changes to your code and see the updates in the browser 
+without having to manually refresh the page. This can be a useful tool for quickly testing changes to your 
+application and speeding up the development process
+                           
+Source maps:
+Parcel can generate source maps for your code, which can be helpful for debugging and understanding the structure of your application.
+
+Asset bundling:
+Parcel can bundle a variety of different assets, including images, fonts, and more, making it easy to include these assets in your application.
+
+Bundler for different environments: 
+Parcel can be used to build applications for different environments, including the web, Node.js, and more.
+
+Plugins and transforms: 
+Parcel supports the use of plugins and transforms, which can be used to extend its functionality and customize the build process.
+
+Integration with other tools: 
+Parcel can be integrated with other tools, such as test runners and linters, to provide a complete development workflow.
+
+Development server:
+Parcel includes a development server that can be used to serve your application during development. The development server
+supports features such as HMR and automatic reloading, making it easy to test and iterate on your application.
+
+Production builds: 
+Parcel can create optimized production builds of your application, which can be deployed to a web server or other hosting 
+environment. Production builds are optimized for performance and include features such as minification and tree shaking to
+reduce the size of the bundle.
+
+Cache management:
+Parcel includes a caching system that can be used to improve the performance of the build process. The cache is used to 
+ store compiled assets and can be used to avoid rebuilding unchanged files, resulting in faster build times.
+
+Tree shaking:
+Parcel can perform tree shaking, which is a technique used to remove unused code from the final bundle. This can help 
+reduce the size of the bundle and improve the performance of the application.   
+
+
+● - What is `.gitignore`? What should we add and not add into it?
+Answer - 
+
+● - What is the difference between `package.json` and `package-lock.json`
+Answer - 
+
+● - Why should I not modify `package-lock.json`?
+Answer - 
+
+● - What is `node_modules` ? Is it a good idea to push that on git?
+Answer - 
+
 ● - What is the `dist` folder?
+Answer - 
+
+● - What is `browserlists`?
 Answer - 
