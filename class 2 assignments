@@ -184,21 +184,100 @@ Tree shaking:
 Parcel can perform tree shaking, which is a technique used to remove unused code from the final bundle. This can help 
 reduce the size of the bundle and improve the performance of the application.   
 
+image optimization 
+
+making https to http 
+
+getting the prot number 
+
 
 ● - What is `.gitignore`? What should we add and not add into it?
-Answer - 
+Answer - The . gitignore file tells Git which files to ignore when committing your project to the GitHub repository.
+         
+         The types of files you should consider adding to a . gitignore file are any files that do not need to get
+         committed. You may not want to commit them for security reasons or because they are local to you and therefore 
+         unnecessary for other developers working on the same project as you.
+         
+         those files you want to push to git can not to be written in .gitignore
 
 ● - What is the difference between `package.json` and `package-lock.json`
 Answer - 
+         <> package.json:
+
+         Lists the packages and dependencies that your project requires in order to run
+         
+         Specifies the version of each package that your project is compatible with, usually using semantic versioning (e.g. ^1.2.3)
+         
+         Contains scripts that can be run in your project, such as start, test, and build
+         
+         Can be used to configure other aspects of your project, such as the main entry point, the repository URL, and the author information
+         
+         Is intended to be kept under version control and committed to the repository, so that other developers working on the project have access 
+         to the same information
+         
+         <> package-lock.json:
+
+         Locks down the exact versions of packages and dependencies that are installed in your node_modules directory
+         
+         Specifies the exact version number of each package, including any transitive dependencies
+         
+         Is generated automatically by npm every time you run npm install or yarn, and is updated to reflect any changes to the packages and 
+         dependencies in your project
+         
+         Is intended to be kept under version control and committed to the repository, so that other developers working on the project have 
+         access to the exact same versions of the packages and dependencies
+         
+         Helps to ensure that the dependencies and packages installed in your project are consistent and reproducible across all development 
+         environments, making it easier to maintain and debug your code.
+         
+         In general, it is recommended to use both package.json and package-lock.json in your Node.js project, as they serve complementary purposes. 
+         The package.json file defines the dependencies that your project requires, while the package-lock.json file locks down the exact versions of 
+         those dependencies that are installed in your project
 
 ● - Why should I not modify `package-lock.json`?
-Answer - 
-
+Answer - The package-lock.json file should not be modified manually because it is generated automatically by the npm package manager. The file is used to lock down the
+         exact versions of the packages and dependencies that are installed in the node_modules directory, so that all developers working on the same project have a consistent 
+         and reproducible set of dependencies.
+         
+         Manually modifying the package-lock.json file can lead to inconsistencies in the versions of packages and dependencies installed in the node_modules directory, 
+         and can cause compatibility issues, build failures, and other problems.
+         
+         By keeping the package-lock.json file unmodified, you can ensure that the dependencies and packages installed in your project are consistent and reproducible 
+         across all development environments, making it easier to maintain and debug your code.
+         
 ● - What is `node_modules` ? Is it a good idea to push that on git?
-Answer - 
+Answer - node_modules is a directory in a Node.js project that contains all the packages and dependencies required 
+         by the project. It is created when you run the command npm install or yarn in your project directory.
+
+         The node_modules directory contains the packages and dependencies specified in the dependencies and devDependencies sections of 
+         the package.json file, as well as the dependencies of those dependencies, and so on. These packages and dependencies are used to 
+         add additional functionality and libraries to your project, making it easier to develop and maintain your code.
+         
+         It is not a good idea to push the node_modules directory to a Git repository, as it can make your repository large and slow to
+         clone and checkout. Additionally, the node_modules directory is typically generated automatically by running npm install or yarn, 
+         so there is no need to include it in version control.
+         
+         Instead, it is recommended to include the package.json and package-lock.json (or yarn.lock) files in your Git repository, and to
+         use a build step or a CI/CD pipeline to install the necessary dependencies and build the application. This way, when a developer 
+         clones the repository, they can run npm install or yarn to automatically install all the necessary dependencies and get started with development.
 
 ● - What is the `dist` folder?
-Answer - 
+Answer - The dist folder created by Parcel in a React project is the distribution folder that contains the optimized and bundled files that will be served to the client.
+
+         Parcel is a JavaScript bundler that packages your application source code into a set of smaller, more manageable files that can be efficiently loaded by a browser.
+         The dist folder is the output of Parcel's bundling process and contains the optimized and minified versions of your project's JavaScript, CSS, images, and other assets.
+
+         In a React project, the dist folder is typically generated when you run the command npm run build or yarn build, which triggers Parcel to perform its bundling 
+         and optimization process. The contents of the dist folder are the files that you would deploy to a production server to serve your React application to end users.
 
 ● - What is `browserlists`?
-Answer - 
+Answer - browserslist is a configuration field in the package.json file of a JavaScript project that specifies the target browsers for the project's code.
+         It is used by tools such as Babel, Autoprefixer, and PostCSS to determine the necessary JavaScript and CSS transformations to ensure compatibility 
+         with the specified browsers.
+
+For example, if a project specifies a browserslist of "> 0.5%, last 2 versions, Firefox ESR", it tells these tools to transpile the code to support browsers 
+that have at least 0.5% of global usage, the last 2 versions of each browser, and the latest Firefox ESR (Extended Support Release) version.
+
+Read about dif bundlers: vite, webpack, parcel
+● Read about: ^ - caret and ~ - tilda
+● Read about Script types in html (MDN Docs)
