@@ -1,0 +1,61 @@
+ What is JSX?
+  JSX stands for JavaScript XML. It's a syntax extension for JavaScript that allows you to write HTML-like code in your JavaScript files, which can then be
+  compiled into regular JavaScript code.
+  
+  with the help of babel jsx is turned into React code 
+  
+ Superpowers of JSX?
+  
+  READABILITY
+  
+  Declarative syntax: JSX provides a declarative syntax for defining the structure and appearance of UI components. You can write code that looks like HTML, 
+  but with the full power of JavaScript behind it. This makes it easier to reason about your code and understand how your UI components are structured.
+  
+  Type safety: JSX is statically typed, which means that you can catch errors at compile time instead of runtime. This makes it easier to catch bugs and
+  prevent them from happening in production. You can also use tools like TypeScript to add even more type safety to your JSX code.
+  
+  you've to write less code as campare you render react.createElement in react 
+  
+  developer friendly
+  
+  maintainability 
+  
+ Role of type attribute in script tag? What options can i use there?
+  
+  The type attribute in the <script> tag specifies the MIME type of the script being loaded. The MIME type is a way of identifying the type of content being 
+  served by the server, and it tells the browser how to interpret the contents of the script.
+
+  Here are some common options for the type attribute in the <script> tag:
+
+ // text/javascript: This is the default value for the type attribute if it's not specified. It tells the browser that the contents of the script are JavaScript code.
+
+ // text/typescript: This value specifies that the contents of the script are TypeScript code, which is a superset of JavaScript that adds optional static typing.
+
+ // application/javascript: This value is similar to text/javascript and tells the browser that the contents of the script are JavaScript code. However, it's more 
+  specific about the MIME type of the content.
+
+ // application/x-javascript: This value is similar to text/javascript and application/javascript, but it's an older MIME type that's no longer recommended for use.
+
+ // module: This value specifies that the script is an ES6 module, which allows you to use features like import and export to organize your code.
+
+  When using a modern web framework like React, you may see the type attribute set to "text/babel" or "text/jsx". This is because these frameworks often use 
+  transpilers to convert JSX syntax (which is not valid JavaScript) into regular JavaScript that can be interpreted by the browser. However, it's generally not recommended to use a transpiler in production code, so it's best to use a production build of the framework that generates standard JavaScript code.
+
+ {TitleComponent} VS {<TitleComponent/>} VS {<TitleComponent></TitleComponent>} in JSX
+ answer => In JSX (JavaScript XML), which is a syntax extension used by frameworks such as React, there are three ways to render a component:
+ 
+   Using curly braces: {TitleComponent} - this is used to render the component as a variable or a reference. This syntax is typically 
+      used when the component is passed as a prop to another component or when it is conditionally rendered based on some logic.
+ 
+   Self-closing syntax: <TitleComponent/> - this is used to render a component as a self-contained element, with no children. 
+      This syntax is commonly used for components like buttons, icons, or other UI elements that don't need any children.
+ 
+   Opening and closing tags: <TitleComponent></TitleComponent> - this syntax is used to render a component with children, i.e.,
+         nested elements that are contained within the component. This syntax is commonly used for components like containers, headers,
+            or other elements that wrap other elements.
+ 
+   All three syntaxes ultimately render the same component, but the choice of syntax depends on the context and the 
+  specific use case. In general, it's good practice to be consistent with the chosen syntax within a codebase to ensure 
+  readability and maintainability.
+  
+  
