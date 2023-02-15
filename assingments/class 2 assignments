@@ -1,72 +1,283 @@
 ● - What is `NPM`?
 
 Answer - NPM is a Node package manager ,it is a package manager for javascript programming langauge .it helps to install and manage packages to your project.
-it also provides a way to developer to share and distribute there own packages. you can use npm to install packages from npm registry which is a public collection
-of packages of open-source code. You can also use NPM to publish your own packages to the registry.
-particularly it has no full form.
-
+         it also provides a way to developer to share and distribute there own packages. you can use npm to install packages from npm registry which is a public collection
+         of packages of open-source code. You can also use NPM to publish your own packages to the registry.
+         particularly it has no full form. 
+         
 ● - What is `Parcel/Webpack`? Why do we need it?
 
-Answer - Parcel and Webpack are the open-source bundlers , it is a tool that takes your web application's source code and turns it into a deployable package that can
-be run in a web browser.It can be used to bundle JavaScript, HTML, CSS, and other types of assets that make up a web application. parcel is a web
-application bundler.Parcel is designed to be easy to use, it helps to make you web application run faster . It can perform tasks such as code-splitting,
-asset optimization, and dependency management
-
+Answer - Parcel and Webpack are the open-source bundlers , it is a tool that takes your web application's source code and turns it into a deployable package that can 
+          be run in a web browser.It can be used to bundle JavaScript, HTML, CSS, and other types of assets that make up a web application. parcel is a web 
+          application bundler.Parcel is designed to be easy to use, it helps to make you web application run faster . It can perform tasks such as code-splitting, 
+          asset optimization, and dependency management
+          
           NEED OF PARCEL / WEBPACK ..
-
+          
           Bundling: parcel and webpack bundles the required dependencies for the project into a single package that can be deployed and run on the server.
                     it increases the performance of the app as bundling the files , less network calls made and it make it run faster .
-
-          Code splitting: Both tools can automatically split your application's code into smaller, more manageable chunks. This can help improve
-                          performance by allowing you to only load the code that is needed for a particular page or feature, rather than loading
+                    
+          Code splitting: Both tools can automatically split your application's code into smaller, more manageable chunks. This can help improve 
+                          performance by allowing you to only load the code that is needed for a particular page or feature, rather than loading 
                           the entire application at once.
-
+                          
           Asset optimization: Both tools can automatically optimize your application's assets, such as minifying JavaScript and CSS, to help improve performance.
-
+          
           Dependency management: Both tools can automatically manage the dependencies of your application, making it easier to keep track of which
                                   packages your application depends on and ensuring that the correct versions are used.
-
-
-
+                                  
+                                  
+                                  
            Overall, tools like Parcel and Webpack can help make the process of building and deploying web applications more efficient and streamlined.
-
-
-
+           
+           
 ● - What is `.parcel-cache`?
 
 Answer - The .parcel-cache directory is used by the Parcel bundler to store intermediate files that are generated as it processes your application. These files
-are used to improve the performance of the bundler by allowing it to reuse previously generated files rather than regenerating them each time you build
-your application.
-
+          are used to improve the performance of the bundler by allowing it to reuse previously generated files rather than regenerating them each time you build 
+          your application.
+          
+          This folder is a space created by Parcel, where it stores our files in binary format. When we reload or build our app it takes only milli seconds 
+          because parcel already cached the program files using this folder
+          
 ● - What is `npx` ?
-Answer - Node Package Execute,npx is a command-line tool that is included with npm, the package manager for JavaScript.It allows you to run Node.js packages and commands from the
-command line You can also use npx to run scripts defined in the "scripts" field of your package.json file. For example, if you have a script called
-"start"n run defined in your package.json file, you ca it with the following command
-
+Answer - Node Package Execute,npx is a command-line tool that is included with npm, the package manager for JavaScript.It allows you to run Node.js packages and 
+         commands from the command line You can also use npx to run scripts defined in the "scripts" field of your package.json file. For example, if you have a 
+         script called "start"n run defined in your package.json file, you ca it with the following command
+          
           in brief,Why is NPX used?
             The command npm is used to download JavaScript packages from Node Package Manager, and npx is used to execute JavaScript packages downloaded this way.
            It is an npm package runner that can execute any package that you want from the npm registry without even installing that package.
-
-
+           
 ● - What is difference between `dependencies` vs `devDependencies`?
 Answer - A dependency is just a package that your project uses.When your project needs code from other projects in
-order to do its thing, those other projects are "dependencies"; your project depends on them to run. When you install third-party packages via npm
-install <package>, you're adding a dependency. Your project's package.json file includes a list of your project's dependencies.
-
+         order to do its thing, those other projects are "dependencies"; your project depends on them to run. When you install third-party packages via npm 
+         install <package>, you're adding a dependency. Your project's package.json file includes a list of your project's dependencies.
+         
          A devdependencies are the packages which your project needed to run and for production build. basically ,those packages you need only for project
          development purposes
-
-         dependencies tree
-
-         In the context of the Node.js package manager (npm), a dependencies tree is a graphical representation of the dependencies between different
+         
+        ● - dependencies tree
+         
+         In the context of the Node.js package manager (npm), a dependencies tree is a graphical representation of the dependencies between different 
          packages in a project. When you install a package using npm, it automatically installs any other packages that the first package depends on,
-
          and so on, creating a tree of dependencies.
 
          You can view the dependencies tree for your project by using the npm list command. This will show you a list of all the packages that are
          installed in your project, as well as their dependencies. The dependencies tree can help you understand the relationships between different
          packages in your project, and can be useful for identifying potential conflicts or problems with your dependencies.
+         
+         ● - transitive dependency
+         
+         A transitive dependency in Node.js is a dependency that is needed by one of your project's dependencies, rather than your project itself.
+         For example, imagine that you are building a Node.js project that depends on a package called A, which in turn depends on a package called B.
+         In this case, B is a transitive dependency of your project, because it is needed by A, which is a direct dependency of your project.
 
-    where does develeopment build created by parcel is kept?
+         Transitive dependencies can be important to understand because they can affect the behavior of your project. For example, if B has a bug that causes it to
+         crash, this could also cause A to crash, and in turn, your project could also crash. Understanding the full set of transitive dependencies that your project
+         has can help you to identify potential issues and ensure that your project is stable and reliable.
+         
+● - What is Tree Shaking?
+Answer - Tree shaking is a term used in the context of modern JavaScript module bundlers to describe the process of eliminating dead code from the final bundle.
+         The idea behind tree shaking is to make the bundled code as small as possible by only including the code that is actually used in the application. 
+         This is particularly useful for reducing the size of applications built with modern JavaScript libraries, which often include a large amount of code 
+         that may not be used in a given application.
 
-The development build created by Parcel is stored in a temporary directory, typically located in the project's root directory. By default, this directory is named .cache or .parcel-cache, and it contains all of the files and assets needed to run the development build of your project.
+         Parcel is a popular JavaScript bundler that uses tree shaking to eliminate dead code and reduce the size of the final bundle. When building an application 
+         with Parcel, the bundler will analyze the code and determine which parts are not being used, and then exclude those parts from the final bundle.
+         This can help to reduce the size of the bundle and improve the performance of the application.
+         
+● - What is Hot Module Replacement?
+Answer - Hot Module Reloading (HMR) is a feature in React that allows you to change the code of your application and see the changes in the browser without having 
+         to manually refresh the page. When you make a change to your code, HMR will automatically update the application with the new code. This can be a useful tool for 
+         quickly testing changes to your application and speeding up the development process.
+         
+         In the context of React, HMR can be implemented using a tool called Parcel. Parcel is a web application bundler that is used to build and package 
+         JavaScript applications for the web. It includes support for HMR, which allows you to make changes to your code and see the updates in the browser
+         without having to manually refresh the page. When you make a change to your code while using Parcel, HMR will automatically update the application
+         with the new code, allowing you to see the changes in real-time
+         
+         To use HMR in your React application with Parcel, you will need to enable the HMR feature in your Parcel configuration. You can do this by adding
+         the --hmr flag when starting the Parcel development server. You will also need to wrap your root component in the HotModuleReplacementContainer 
+         provided by the react-hot-loader library to enable HMR in your React application.
+         
+         Hot Module Replacement is a technique used by modern bundlers(web pack / parcel) for updating code without fully refreshing the page in your browser
+         . HMR updates a code by replacing an old code with a new code.
+         
+         HMR improves the development experience by updating modules in the browser at runtime without needing a whole page refresh.
+         
+         -File watcher algorithm-
+         
+         A file watcher is an algorithm that is used to monitor the changes made to a set of files and trigger an action when a change is detected.
+         In the case of HMR in React, a file watcher algorithm is used to detect when a change has been made to the code of the application. 
+         When a change is detected, the file watcher algorithm will trigger the HMR process, which updates the application with the new code and 
+         applies the changes to the currently running application.
+
+         The specific implementation of the file watcher algorithm used for HMR in React will depend on the tools and libraries being used to build 
+         and bundle the application. For example, the webpack bundler includes a file watcher algorithm as part of its HMR implementation. Similarly,
+         the Parcel bundler also includes a file watcher algorithm for its HMR implementation.
+         
+         In Parcel, the HMR process and file watcher algorithm work together to enable hot reloading in your React application. When you start
+         the Parcel development server with the --hmr flag, Parcel will enable the HMR feature and start the file watcher algorithm.
+         The file watcher algorithm will then monitor the files in your application for changes and trigger the HMR process whenever a change is detected.
+
+         The HMR process in Parcel works by intercepting the changes you make to your code, updating the application with the new code, and then applying those 
+         changes to the currently running application. This allows you to see the changes in your application without having to refresh the page or lose any
+         of your application state.
+         
+● - List down your favourite 5 superpowers of Parcel and describe any 3 of them in your
+own words.!
+
+
+Answer -
+Zero configuration:
+One of the most powerful features of Parcel is its ability to work with zero configuration. This means that you can start
+building and bundling your application without having to spend time setting up configuration files or installing additional dependencies.
+
+Fast performance:
+Parcel is designed to be fast and efficient, with a focus on minimizing build times and optimizing performance. 
+It uses a variety of techniques, such as parallel processing and caching, to ensure that your application builds and runs as quickly as possible.
+
+Automatic code splitting: 
+Parcel includes automatic code splitting, which means that it can automatically split your code into separate chunks that 
+can be loaded on demand. This can help improve the performance and load times of your application.
+
+Support for a wide range of languages and frameworks: 
+Parcel supports a wide range of languages and frameworks, including JavaScript, TypeScript,
+HTML, CSS, and more. This means that you can use Parcel to build and bundle applications 
+written in a variety of different languages and frameworks.
+
+Hot Module Reloading (HMR):
+Parcel includes support for HMR, which allows you to make changes to your code and see the updates in the browser 
+without having to manually refresh the page. This can be a useful tool for quickly testing changes to your 
+application and speeding up the development process
+                           
+Source maps:
+Parcel can generate source maps for your code, which can be helpful for debugging and understanding the structure of your application.
+
+Asset bundling:
+Parcel can bundle a variety of different assets, including images, fonts, and more, making it easy to include these assets in your application.
+
+Bundler for different environments: 
+Parcel can be used to build applications for different environments, including the web, Node.js, and more.
+
+Plugins and transforms: 
+Parcel supports the use of plugins and transforms, which can be used to extend its functionality and customize the build process.
+
+Integration with other tools: 
+Parcel can be integrated with other tools, such as test runners and linters, to provide a complete development workflow.
+
+Development server:
+Parcel includes a development server that can be used to serve your application during development. The development server
+supports features such as HMR and automatic reloading, making it easy to test and iterate on your application.
+
+Production builds: 
+Parcel can create optimized production builds of your application, which can be deployed to a web server or other hosting 
+environment. Production builds are optimized for performance and include features such as minification and tree shaking to
+reduce the size of the bundle.
+
+Cache management:
+Parcel includes a caching system that can be used to improve the performance of the build process. The cache is used to 
+ store compiled assets and can be used to avoid rebuilding unchanged files, resulting in faster build times.
+
+Tree shaking:
+Parcel can perform tree shaking, which is a technique used to remove unused code from the final bundle. This can help 
+reduce the size of the bundle and improve the performance of the application.   
+
+image optimization 
+
+making https to http 
+
+getting the prot number 
+
+
+● - What is `.gitignore`? What should we add and not add into it?
+Answer - The . gitignore file tells Git which files to ignore when committing your project to the GitHub repository.
+         
+         The types of files you should consider adding to a . gitignore file are any files that do not need to get
+         committed. You may not want to commit them for security reasons or because they are local to you and therefore 
+         unnecessary for other developers working on the same project as you.
+         
+         those files you want to push to git can not to be written in .gitignore
+
+● - What is the difference between `package.json` and `package-lock.json`
+Answer - 
+         <> package.json:
+
+         Lists the packages and dependencies that your project requires in order to run
+         
+         Specifies the version of each package that your project is compatible with, usually using semantic versioning (e.g. ^1.2.3)
+         
+         Contains scripts that can be run in your project, such as start, test, and build
+         
+         Can be used to configure other aspects of your project, such as the main entry point, the repository URL, and the author information
+         
+         Is intended to be kept under version control and committed to the repository, so that other developers working on the project have access 
+         to the same information
+         
+         <> package-lock.json:
+
+         Locks down the exact versions of packages and dependencies that are installed in your node_modules directory
+         
+         Specifies the exact version number of each package, including any transitive dependencies
+         
+         Is generated automatically by npm every time you run npm install or yarn, and is updated to reflect any changes to the packages and 
+         dependencies in your project
+         
+         Is intended to be kept under version control and committed to the repository, so that other developers working on the project have 
+         access to the exact same versions of the packages and dependencies
+         
+         Helps to ensure that the dependencies and packages installed in your project are consistent and reproducible across all development 
+         environments, making it easier to maintain and debug your code.
+         
+         In general, it is recommended to use both package.json and package-lock.json in your Node.js project, as they serve complementary purposes. 
+         The package.json file defines the dependencies that your project requires, while the package-lock.json file locks down the exact versions of 
+         those dependencies that are installed in your project
+
+● - Why should I not modify `package-lock.json`?
+Answer - The package-lock.json file should not be modified manually because it is generated automatically by the npm package manager. The file is used to lock down the
+         exact versions of the packages and dependencies that are installed in the node_modules directory, so that all developers working on the same project have a consistent 
+         and reproducible set of dependencies.
+         
+         Manually modifying the package-lock.json file can lead to inconsistencies in the versions of packages and dependencies installed in the node_modules directory, 
+         and can cause compatibility issues, build failures, and other problems.
+         
+         By keeping the package-lock.json file unmodified, you can ensure that the dependencies and packages installed in your project are consistent and reproducible 
+         across all development environments, making it easier to maintain and debug your code.
+         
+● - What is `node_modules` ? Is it a good idea to push that on git?
+Answer - node_modules is a directory in a Node.js project that contains all the packages and dependencies required 
+         by the project. It is created when you run the command npm install or yarn in your project directory.
+
+         The node_modules directory contains the packages and dependencies specified in the dependencies and devDependencies sections of 
+         the package.json file, as well as the dependencies of those dependencies, and so on. These packages and dependencies are used to 
+         add additional functionality and libraries to your project, making it easier to develop and maintain your code.
+         
+         It is not a good idea to push the node_modules directory to a Git repository, as it can make your repository large and slow to
+         clone and checkout. Additionally, the node_modules directory is typically generated automatically by running npm install or yarn, 
+         so there is no need to include it in version control.
+         
+         Instead, it is recommended to include the package.json and package-lock.json (or yarn.lock) files in your Git repository, and to
+         use a build step or a CI/CD pipeline to install the necessary dependencies and build the application. This way, when a developer 
+         clones the repository, they can run npm install or yarn to automatically install all the necessary dependencies and get started with development.
+
+● - What is the `dist` folder?
+Answer - The dist folder created by Parcel in a React project is the distribution folder that contains the optimized and bundled files that will be served to the client.
+
+         Parcel is a JavaScript bundler that packages your application source code into a set of smaller, more manageable files that can be efficiently loaded by a browser.
+         The dist folder is the output of Parcel's bundling process and contains the optimized and minified versions of your project's JavaScript, CSS, images, and other assets.
+
+         In a React project, the dist folder is typically generated when you run the command npm run build or yarn build, which triggers Parcel to perform its bundling 
+         and optimization process. The contents of the dist folder are the files that you would deploy to a production server to serve your React application to end users.
+
+● - What is `browserlists`?
+Answer - browserslist is a configuration field in the package.json file of a JavaScript project that specifies the target browsers for the project's code.
+         It is used by tools such as Babel, Autoprefixer, and PostCSS to determine the necessary JavaScript and CSS transformations to ensure compatibility 
+         with the specified browsers.
+
+For example, if a project specifies a browserslist of "> 0.5%, last 2 versions, Firefox ESR", it tells these tools to transpile the code to support browsers 
+that have at least 0.5% of global usage, the last 2 versions of each browser, and the latest Firefox ESR (Extended Support Release) version.
+
+Read about dif bundlers: vite, webpack, parcel
+● Read about: ^ - caret and ~ - tilda
+● Read about Script types in html (MDN Docs)
