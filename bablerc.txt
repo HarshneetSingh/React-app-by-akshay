@@ -1,0 +1,9 @@
+first turn this file into .babelrc 
+then 
+
+// {
+//     "plugins": [ ["transform-remove-console", { "exclude": [ "error", "warn"] }] ]
+//   }
+    
+put neeche vala into package.json
+    // "babel-plugin-transform-remove-console": "^6.9.4",
