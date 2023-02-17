@@ -1,0 +1,115 @@
+1 > Is JSX mandotary for React?
+
+answer =
+  JSX is not mandatory for building React applications, but it is highly recommended. JSX is a syntax extension that allows you to write HTML-like code in JavaScript. 
+  It makes it easier to define the structure and layout of your components, and it also provides a way to inject dynamic data into your views.
+
+  While JSX is not strictly required, it's difficult to build a complex React application without using it. Writing React components in plain JavaScript without JSX
+  can become quite verbose and hard to read, making it more difficult to maintain and develop.
+
+  JSX is also fully supported by the React ecosystem, and many popular tools and libraries assume you're using it. As a result, most React developers use JSX by default.
+
+2 > Is ES6 mandotary for React?
+
+answer = 
+  S6 (ECMAScript 2015) is not mandatory for building React applications, but it is highly recommended. ES6 introduces many new features and improvements to JavaScript 
+  that can make your code more concise, efficient, and easier to read and maintain.
+
+  React itself does not require ES6, but many of its features and APIs are written in ES6. Additionally, many popular React tools and libraries assume that you are 
+  using ES6, so using ES6 will make it easier to integrate these tools and libraries into your project.
+
+  Some of the new features introduced in ES6 that are particularly useful for React development include arrow functions, template literals, destructuring, spread 
+  syntax, classes, and modules.
+
+  In summary, while ES6 is not strictly required for React, using it will make your code more modern, efficient, and easier to maintain. It will also make it easier 
+  to use and integrate with other modern tools and libraries in the React ecosystem.
+
+3 > How can i write comments in JSX?
+
+answer =
+  In JSX, you can write comments using the standard JavaScript comment syntax, which is using /* ... */ for multi-line comments and // for single-line comments.
+  
+  Here are some examples:
+
+  Single-line comment in JSX:
+  
+  <div>
+  {/* This is a single-line comment in JSX */}
+  <h1>Hello World!</h1>
+  </div>
+  
+  Multi-line comment in JSX:
+  
+  <div>
+  {/* 
+    This is a 
+    multi-line comment 
+    in JSX 
+  */}
+  <p>Welcome to my app!</p>
+  </div>
+  
+  It's important to note that JSX comments are different from HTML comments. If you write an HTML-style comment in JSX, it will be treated as a string and
+  will be rendered as part of your component's output.
+
+  Here's an example of an HTML-style comment in JSX that will be rendered as part of the output:
+  
+  <div>
+  <!-- This is an HTML-style comment in JSX -->
+  <p>Hello World!</p>
+  </div>
+  
+  So be sure to use the standard JavaScript comment syntax to write comments in your JSX code.
+
+4 > What is <React.Fragment> </React.Fragment> and <></> 
+
+answer =
+
+ In a functional component in React, you should return a single parent element that contains all the other elements you want to render.
+ This is because React components are supposed to return a single element, which represents the root of the component's DOM tree.
+ 
+ that is why react fragment is introduces 
+ In React, React.Fragment and <> (short syntax for React.Fragment) are used to group multiple elements together without adding an additional element to the DOM.
+ This is useful when you need to return multiple elements from a component's render method, but you don't want to wrap them in an extra element, such as a <div>.
+
+  Using React.Fragment, you can write:
+
+
+  <React.Fragment>
+    <p>Hello</p>
+    <p>World</p>
+  </React.Fragment>
+  
+  Or, using the shorthand syntax, you can write:
+
+
+    <>
+      <p>Hello</p>
+      <p>World</p>
+    </>
+    
+  Both of these will render the same output as:
+  
+  <p>Hello</p>
+  <p>World</p>
+  
+  Using React.Fragment or <> instead of a <div> can help keep your HTML structure clean and semantic. This is especially useful when rendering lists or tables, 
+  where you don't want to add extra elements just for grouping purposes.
+  
+  In addition to being more concise and semantically cleaner, using React.Fragment or <> can also provide performance benefits in certain situations, as it 
+  can reduce the number of nodes in the DOM.
+  
+5 > what is Virtual DOM?
+answer = 
+6 > What is reconciliation in React?
+answer = 
+7 > What is React Fiber?
+answer = 
+8 > Why we need keys in React ? When do we need keys in React ?
+answer = 
+9 > Can we use index as keys in React?
+answer = 
+10 > what is props in React?ways to
+answer = 
+11 > What is a Config Driven UI?
+answer = 
