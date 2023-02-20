@@ -113,3 +113,137 @@ answer =
 answer = 
 11 > What is a Config Driven UI?
 answer = 
+
+
+  random ques 
+  
+  {
+  how comparing works with the help of heuristic?
+    
+   answer=
+    When you use React, at a single point in time you can think of the render() function as creating a tree of React elements. On the next state or 
+    props update, that render() function will return a different tree of React elements. React then needs to figure out how to efficiently update the UI to match 
+    the most recent tree.
+
+    There are some generic solutions to this algorithmic problem of generating the minimum number of operations to transform one tree into another. However, the state
+    of the art algorithms have a complexity in the order of O(n3) where n is the number of elements in the tree.
+    
+       > 
+       ques: you know why there are transforming one tree to another tree have a complexity of O(n^3) problem?
+
+          answer:
+          Transforming one tree to another can have a complexity of O(n^3) depending on the algorithm 
+
+          One example of a tree transformation that can have a complexity of O(n^3) is the problem of finding the edit distance between two trees, also known as the 
+          tree edit distance problem. 
+
+          the tree edit distance problem is a well-known problem in computer science that involves finding the minimum number of edit operations required to transform 
+          one tree into another. The edit operations that are typically considered are:
+
+          Inserting a node
+          Deleting a node
+          Updating a node's label
+
+       <
+    
+    If we used this in React, displaying 1000 elements would require in the order of one billion comparisons. This is far too expensive. Instead, React implements a 
+    heuristic O(n) algorithm
+      
+       >
+        ques: what does React implements a heuristic O(n) algorithm mean?
+          
+          answer: 
+           
+           React is a JavaScript library that is commonly used for building user interfaces. It is designed to efficiently update the user interface in response to
+           changes in data, using a technique called the virtual DOM. One aspect of the virtual DOM is that it employs a heuristic O(n) algorithm to optimize updates.
+           
+           In simple terms, a heuristic O(n) algorithm is an approach that attempts to solve a problem by making a "good enough" guess, rather than exhaustively 
+           searching for the optimal solution. This approach can be more efficient in many cases, because it can avoid the high computational costs of searching for 
+           the exact solution.
+  
+           In the context of the virtual DOM, React uses a heuristic algorithm to determine which parts of the user interface need to be updated after a change in the
+           underlying data. Instead of examining the entire virtual DOM tree to identify all the changes, React makes a "good enough" guess by comparing only the parts 
+           of the tree that are likely to have changed(which has a update in it). This can reduce the number of operations required to update the user interface,
+            making the application more responsive and efficient.
+  
+           It's worth noting that the O(n) algorithm used by React is not guaranteed to be optimal in all cases, and there may be scenarios where the algorithm can 
+           produce suboptimal results(best possible results). However, in practice, it has proven to be an effective approach for optimizing the performance of user 
+           interfaces in React applications.
+           
+      
+      <
+    React implements a heuristic O(n) algorithm based on two assumptions:
+
+    Two elements of different types will produce different trees.
+    
+    The developer can hint at which child elements may be stable across different renders with a key prop.
+      >
+      
+      answer:
+        These assumptions mean the following:
+
+           Two elements of different types will produce different trees:
+            
+            React assumes that two components of different types will produce a different tree structure. For example, if you have two components, one of type "Button"
+            and one of type "Checkbox", React assumes that the tree structure for the "Button" component will be different from the tree structure for the "Checkbox"
+            component. This is because different types of components will typically have different rendering logic and produce different sets of child components.
+            
+            By making this assumption, React can avoid comparing the entire tree structure of a component when it is updated, which can be an expensive operation. 
+            Instead, React can simply replace the entire subtree of the component in the DOM when it is updated.
+            
+           The developer can hint at which child elements may be stable across different renders with a key prop:
+            
+            In React, a "key" prop can be added to child components when they are rendered. The key prop is a hint to React that the corresponding component is stable
+            across different renders. This means that if the component is not changed between renders, React can avoid reconciling the subtree under that component 
+            and reusing the existing subtree.
+            
+            By using this hint, React can avoid re-rendering components unnecessarily and reduce the amount of work needed to update the UI. This is especially useful 
+            in cases where the child components have expensive rendering logic, such as when rendering large lists or tables.
+            
+      <
+      
+  
+  }
+  
+  
+  {
+   when comparing two trees, which root element is compared of two trees?
+    
+   answer=
+    
+    When comparing two trees in React, the first step is to compare the root elements of the two trees. Specifically, React compares the top-level element or component 
+    in each tree to determine whether they are the same or different.
+  
+    If the root elements are the same type (e.g., two div elements or two instances of the same custom component), React will compare their attributes and children to 
+    determine whether any updates are needed. If the root elements are different types, React will unmount the old tree and mount the new tree in its place.
+    
+    Once React has compared the root elements, it will recursively compare the children of the elements or components, continuing down the tree until it has compared 
+    all of the elements in both trees. This is known as the "diffing" or "reconciliation" process, and it is used to determine what has changed between the previous 
+    and current state of the application, and which parts of the UI need to be updated.
+    
+    When the root elements are components of the same type (e.g., two instances of a custom component), React will call the shouldComponentUpdate() method to determine 
+    if the component needs to be updated. If shouldComponentUpdate() returns true, React will update the component and follow the same diffing process recursively for 
+    its children. If shouldComponentUpdate() returns false, React will skip the update for that component and its children.
+  
+  }
+  
+  
+ {
+  ques: does react use heuristic approach ?
+  
+    answer:
+     React is a library for building user interfaces in JavaScript. While React does not use a heuristic approach in the strict sense of the term, it does make use
+     of heuristics to optimize the performance of rendering components.
+    
+    When a component's state or props change, React will rerender the component and its children. However, rerendering can be expensive, especially for large or 
+    complex components. To optimize performance, React uses a heuristic called "reconciliation" to determine which parts of the component tree need to be updated.
+    
+    Reconciliation is a process in which React compares the new tree of components with the old tree of components and determines which parts have changed. It uses a
+    number of heuristics to minimize the number of updates that need to be made. For example, if a component has a unique key, React can use that key to quickly
+    identify which elements have changed or been added.
+    
+    So while React itself doesn't use a heuristic approach in the sense of making educated guesses, it does use heuristics to optimize the performance of rendering
+    components.
+ 
+ }
+ 
