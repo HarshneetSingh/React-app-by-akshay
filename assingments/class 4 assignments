@@ -1,3 +1,5 @@
+React was developed by Jordan Walke, a software engineer at Facebook
+
 1 > Is JSX mandotary for React?
 
 answer =
@@ -101,20 +103,309 @@ answer =
   
 5 > what is Virtual DOM?
 answer = 
+  The Virtual DOM, or Virtual Document Object Model, is a programming concept used in web development to improve the performance of user interfaces (UI). It is a
+  virtual representation of the actual Document Object Model (DOM) of a web page, which is a hierarchical structure that represents the content and properties of 
+  a web page.
+  
+  The Virtual DOM works by creating a lightweight copy of the actual DOM, which is stored in memory(js runtime environment memory) and updated when changes occur 
+  in the UI. When a change occurs in the UI, the Virtual DOM compares the new state of the UI to the previous state and identifies the differences between the two.
+  It then updates only the parts  of the Virtual DOM that have changed and synchronizes those changes with the actual DOM. This process is much faster than updating
+  the entire actual DOM, which can be slow and resource-intensive.
+  
+  Using a Virtual DOM can improve the performance and speed of web applications by reducing the number of DOM manipulations needed to update the UI. This can lead to 
+  a better user experience and smoother application performance. The Virtual DOM is used in many popular JavaScript frameworks and libraries, such as React, Vue.js, 
+  and Angular.
+  
 6 > What is reconciliation in React?
 answer = 
+         Reconciliation is the process by which React compares the previous Virtual DOM tree with the new Virtual DOM tree, determines the differences between them,
+         and generates a minimal set of changes that need to be made to the actual Browser DOM to update the UI.
+         
+         When a component's state changes, React creates a new Virtual DOM tree that reflects the updated state of the application. React then compares the new 
+         Virtual DOM tree with the previous one to determine what has changed. This process is known as the "diffing" or "reconciliation" process.
+
+         During reconciliation, React examines each element in the Virtual DOM tree and determines whether it has changed or not. If an element has changed, React 
+         generates a "diff" or "diff list" that describes the changes that need to be made to the Browser DOM. The diff list is then used to update the Browser DOM
+         in an efficient and optimized manner, with the least number of changes possible.
+
+         Reconciliation is a critical process in React because it ensures that the UI stays in sync with the application state. By minimizing the number of changes 
+         that need to be made to the Browser DOM, React achieves high performance and fast updates, which is one of the reasons why it is widely used in building 
+         complex and high-traffic web applications.
+         
+         >
+         ques : React updates the actual DOM in a batched manner, which means that it updates multiple components at once, rather than updating them individually.explain 
+         
+          answer: 
+            
+            When React updates the actual DOM in a batched manner, it means that instead of updating the DOM immediately after each change to the Virtual DOM, it 
+            waits until all changes have been identified before updating the actual DOM. This helps to reduce the number of times that the DOM is modified, which 
+            can improve the performance of the application.
+
+            The process of updating the actual DOM in a batched manner involves several steps. When a component updates its state, React creates a new Virtual DOM, 
+            which is compared to the previous version of the Virtual DOM to identify the changes that need to be made to the actual DOM. Rather than updating the DOM 
+            immediately after each change is identified, React batches the changes together and schedules an update to the actual DOM at the end of the current event
+            loop.
+
+            Once the batched updates have been scheduled, React updates the actual DOM by performing the minimum number of changes required to bring it in sync with 
+            the new Virtual DOM. This process is called "reconciliation". React performs reconciliation in a top-down manner, starting at the root of the component
+            tree and working its way down to the leaves.
+
+            By updating the actual DOM in a batched manner, React can reduce the number of times that the browser needs to repaint the screen, which can improve the 
+            performance of the application. Additionally, by performing updates in batches, React can reduce the number of unnecessary updates to the DOM, which can 
+            further improve performance.
+         <
+         
 7 > What is React Fiber?
 answer = 
-8 > Why we need keys in React ? When do we need keys in React ?
-answer = 
+8 > Why we need keys in React ? 
+answer = answer is in notes 
 9 > Can we use index as keys in React?
 answer = 
-10 > what is props in React?ways to
-answer = 
+      While it is possible to use the index of an element as a key in React, it is generally not recommended unless you can guarantee that the order of the elements 
+      in the list will not change.
+
+      The reason for this is that the index of an element can change if elements are added, removed, or reordered in the list. When this happens, React may not be 
+      able to correctly identify which elements have changed and may end up re-rendering more components than necessary.
+      
+      Using a unique, stable identifier as a key (such as an ID) is generally a better approach, because it ensures that React can correctly identify which elements 
+      have changed and which have not, even if the order of the elements changes.
+      
+      That being said, there may be cases where using the index as a key is acceptable, such as when rendering a static list of items that will never change. In 
+      general, though, it is a good idea to use a unique identifier as a key whenever possible.
+      
+      example 
+          
+          {
+          Sure, here's an example of using the index as a key in React:
+          
+   code       const MyComponent = ({ items }) => {
+            return (
+                 <ul>
+                     {items.map((item, index) => (
+                    <li key={index}>{item}</li>
+                 ))}
+                </ul>
+                  );
+          };
+          
+          
+          In this example, we're rendering a list of items using the map method. For each item, we're using the index of the item in the array as the key. While this
+          will work in some cases, it is not recommended because the index can change if items are added, removed, or reordered in the array.
+
+          To illustrate this, let's say we start with the following array of items:
+           
+ code          const items = ["apple", "banana", "orange"];
+
+          
+          If we render this array using the MyComponent component, the resulting HTML will look something like this:
+ code       
+          <ul>
+          <li key="0">apple</li>
+          <li key="1">banana</li>
+          <li key="2">orange</li>
+          </ul>
+          
+          Now let's say we remove the second item from the array:
+          
+ code         const items = ["apple", "orange"];
+ 
+ 
+          If we render this updated array using the same MyComponent component, the resulting HTML will look like this:
+          
+          <ul>
+            <li key="0">apple</li>
+            <li key="1">orange</li>
+          </ul>
+
+          Notice that the index of the second item has changed from 1 to 0. If we were using the index as the key, React would not be able to correctly identify which
+          item has changed, and may end up re-rendering both items unnecessarily.
+
+          Instead, if we used a unique identifier as the key (such as an ID), React would be able to correctly identify which item has changed and only re-render that
+          item.
+          }
+          
+10 > what is props in React?
+answer = React Props are like function arguments in JavaScript and attributes in HTML.
+
+        props are the propertise, and it is a way to pass data from a parent component to a child component.
+        
+        In a React component, props are passed as an object to the component's function or class constructor. The props object contains any data that needs to be 
+        passed to the component, such as values, functions, or other data.
+        
 11 > What is a Config Driven UI?
 answer = 
 
+    Logical starting point was to put together the config driven UI first to understand what kind of configuration is required to be generated ( and ofcourse to 
+    showcase to the customer their dashboard, which is of higher business value).
+    
+    Config driven UI is a system design concept which tells us to configure the backend to send api responses in such a way that the response object has all the
+    configuration to design frontend application. This ensures component reusability, effective conditional rendering and control over the application.
+    
+    Config-driven UI (User Interface) is an approach to building software interfaces that emphasizes the use of configuration files to define and customize the
+    behavior and appearance of the interface. In a config-driven UI, the software developer creates a set of predefined configuration options that the user can 
+    choose from to customize their interface, rather than hard-coding the interface behavior.
 
+    By using a configuration-driven approach, developers can make it easier for users to customize the interface without requiring advanced technical knowledge. 
+     This approach can also enable developers to make changes to the interface more quickly, without needing to rewrite or recompile the underlying code.
+
+  Examples of config-driven UI can be found in many types of software, such as content management systems, e-commerce platforms, and web applications. In these cases, 
+  the configuration files are typically stored in a database or file system and can be edited by administrators or end-users to change the behavior and appearance of
+  the software.
+
+12 > what is diffing algorithm ?
+answer=
+        The diffing algorithm is responsible for efficiently comparing the previous Virtual DOM tree with the new one and generating a "diff list" that describes 
+        the changes that need to be made to the actual Browser DOM to update the UI. The diff list contains only the minimal set of changes that need to be made, 
+        and it is optimized for performance, so that the updates can be made quickly and efficiently.
+        
+        >
+         ques: what is diff list ?
+         
+              The list of changes created by React during the reconciliation process is called the "diff" or "diff list." The diff list is a JavaScript object that 
+              contains information about the changes that need to be made to the DOM.
+              
+              The diff list typically consists of an array of update operations, each of which represents a change that needs to be made to the DOM. These operations 
+              can include adding, removing, or updating elements, attributes, and text content.
+
+              For example, if a component's state changes and a new element needs to be added to the DOM, the diff list might include an "insert" operation that 
+              specifies the position of the new element, its type, and any attributes or text content that need to be added.
+
+              The diff list is created by comparing the previous Virtual DOM tree with the updated Virtual DOM tree. React uses a diffing algorithm to efficiently 
+              identify the differences between the two trees and generate the diff list. By minimizing the number of changes that need to be made to the DOM, React 
+              is able to achieve high performance and fast updates.
+        <
+        
+        The diffing algorithm is a subset of the overall reconciliation process, which also includes other tasks such as updating the state and props of components, 
+        calling lifecycle methods, and rendering new elements.
+        
+        >
+          ques: what types of diffing algorithm includes between old and new virtual dom?
+            
+            answer : 
+            
+              -: Elements Of Different Types
+              
+               <div>                       <span>
+                 <Counter />    ------>       <Counter />
+               </div>                      </span>
+              
+                When comparing two React elements of different types, React considers them to be different trees and will unmount the old tree and mount the new tree. 
+                This means that all of the old component instances will be unmounted and destroyed, and new component instances will be created for the new tree.
+
+                When a component is unmounted, React will call its componentWillUnmount() lifecycle method, allowing it to perform any necessary cleanup, such as 
+                removing event listeners or clearing timers. The old component instances will be removed from the DOM, and any associated state or props will be 
+                destroyed.
+
+                Once the old tree has been unmounted, React will create the new tree and mount it in the same location as the old tree. This process involves 
+                creating new component instances for each element in the new tree and attaching them to the DOM.
+
+                If the new tree contains any components with state, React will call their componentDidMount() lifecycle method after they have been mounted,
+                allowing them to perform any necessary initialization. If the new tree contains any components with props that have changed, React will call 
+                their componentDidUpdate() lifecycle method to allow them to perform any necessary updates.
+
+                Because elements of different types are treated as entirely different trees, this can be a costly operation in terms of performance, especially
+                if the trees are large or deeply nested. In general, it is best to avoid changing the types of elements whenever possible and instead use props
+                to control their behavior and appearance. 
+            
+            
+              -:  DOM elements of the same type 
+              
+              <div className="before" title="stuff" />
+                          |
+                          |
+                          V
+              <div className="after" title="stuff" />             
+              
+              
+               When comparing two React DOM elements of the same type, React will compare their attributes to determine whether they are the same element or not. 
+               If the attributes are the same, React will leave the element in place and update any changed properties or styles.
+
+              If the attributes are different, React will update the element with the new attributes and any changed properties or styles. If the element has any 
+              child elements or text content, React will also update those as necessary.
+              
+              
+              -:Component Elements Of The Same Type
+              
+                When comparing two React component elements of the same type, React will also perform a shallow comparison of the element's props and children. 
+                The process is similar to comparing React DOM elements, but with a few additional steps to account for the component's internal state and lifecycle
+                methods.
+
+                Here's how the comparison process works:
+
+                React first checks the type of the components. If they are not the same type, React will unmount the old component and mount the new one.
+
+                If the types are the same, React will check if the component has a shouldComponentUpdate(nextProps, nextState) method defined. If the method is
+                defined, React will call it with the new props and state and compare its return value to determine if the component should update. If the method
+                returns false, React will skip the remaining steps and not update the component.
+
+                If the component should update, React will update the component's state to reflect the new props and re-run the render() method to generate the
+                updated UI. If the new UI is the same as the previous UI, React will skip the remaining steps and not update the component.
+
+                If the UI has changed, React will call the componentDidUpdate(prevProps, prevState, snapshot) lifecycle method (if defined) to handle any post-update
+                actions. This method can access both the previous and current props and state of the component.
+
+                React will then perform a shallow comparison of the children of the components, as it does for React DOM elements. If the children have changed,
+                React will update the corresponding parts of the UI to reflect the new children. If the children have not changed, React will skip this step.
+
+                If the old component has any event listeners attached, React will remove them before unmounting the old component. Similarly, if the new component
+                has any event listeners attached, React will attach them after mounting the new component.
+
+                By performing a shallow comparison of the props and children and calling the shouldComponentUpdate() method, React can determine whether an update
+                is necessary without having to traverse the entire tree of components. This helps to improve performance, especially for large and complex UIs.
+
+                It's important to note that the shouldComponentUpdate() method is an optimization and not a requirement. If a component does not define a 
+                shouldComponentUpdate() method, React will assume that the component should always update when its props or state change. Similarly, if the 
+                shouldComponentUpdate() method returns true, React will update the component even if the UI has not changed. Therefore, it's important to use
+                this method judiciously and to carefully consider the performance implications of each component's update behavior.
+                
+                >
+                  ques : does shouldComponentUpdate() runs even after not defining in the component?
+                      
+                    answer :
+                    yes, shouldComponentUpdate() runs even if it is not defined in a component. When a component does not define its own shouldComponentUpdate() method
+                    , React will inherit the method from its base class, React.Component. The default implementation of shouldComponentUpdate() in React.Component 
+                    returns true, which means that the component will always re-render whenever its props or state change.
+
+                    So if you do not define a shouldComponentUpdate() method in your component, React will still check whether the component's props or state have
+                    changed and trigger a re-render if they have. However, because the default implementation always returns true, this can lead to unnecessary 
+                    re-renders and decreased performance, especially for large and complex components.
+                    
+                    Defining a custom shouldComponentUpdate() method can be a powerful optimization tool for preventing unnecessary re-renders and improving the 
+                    performance of your React application. By carefully controlling when a component should update and when it should skip updates, you can ensure 
+                    that your application runs smoothly and efficiently, even as its complexity grows.
+                <
+                
+                
+              -: Recursing On Children
+                ` By default, when recursing on the children of a DOM node, React just iterates over both lists of children at the same time and generates a mutation 
+                whenever there’s a difference.`
+                
+                When React is updating the children of a component, it uses a diffing algorithm that iterates over both the old and new lists of children at the same 
+                time, comparing the elements in each list and generating mutations whenever there's a difference.
+
+                The exact mutations that React generates will depend on the type of difference that it detects. Here are some examples of the types of mutations that
+                React can generate:
+                
+                If a new child is added, React will create a new DOM element or component instance and insert it into the correct position in the parent's list of
+                children.
+                
+                If a child is removed, React will remove the corresponding DOM element or component instance from the parent's list of children.
+                
+                If a child is moved, React will update the position of the corresponding DOM element or component instance in the parent's list of children.
+                
+                If the props or state of a child have changed, React will update the corresponding DOM element or component instance with the new values.
+                
+                To perform these mutations, React uses a combination of low-level DOM manipulation and higher-level component lifecycle methods. For example, when 
+                a new child is added, React will call the createElement() function to create a new DOM element, and then use the appendChild() method to insert it
+                into the correct position in the parent node's list of children. Similarly, when a child's props or state have changed, React will call the child 
+                component's componentDidUpdate() lifecycle method to allow it to perform any necessary updates.
+                
+                By generating mutations in this way, React is able to update the UI in an efficient and performant manner, without having to re-render the entire 
+                component tree every time a change occurs. This is an important part of React's design philosophy, which emphasizes modularity, reusability, and
+                performance.
+        <
+        
+        
   random ques 
   
   {
@@ -247,3 +538,58 @@ answer =
  
  }
  
+ {
+  ques : Updating the Virtual DOM is much faster than the real DOM ? explain
+  
+    answer :
+      Updating the Virtual DOM is generally faster than updating the actual DOM because the Virtual DOM is an in-memory representation of the actual DOM, and 
+      therefore does not require the browser to perform any layout or paint operations. or  since the browser doesn’t need to show a visualization of it.
+      
+      When a change is made to the UI, React creates a new Virtual DOM and compares it to the previous version of the Virtual DOM to identify the changes that 
+      need to be made. This comparison process is typically very fast because the Virtual DOM is a lightweight, JavaScript-based representation of the actual DOM.
+
+      Once the changes have been identified, React updates the Virtual DOM by modifying the JavaScript objects that represent the Virtual DOM, rather than updating 
+      the actual DOM directly. This allows React to perform updates in memory, without triggering the layout or paint operations that would be required if the actual 
+      DOM were being modified.
+      
+      By updating the Virtual DOM in memory first, React can reduce the number of times that the actual DOM needs to be updated, which can improve the performance 
+      of the application. Additionally, by performing updates in memory, React can perform additional optimizations, such as batching updates together and skipping
+      updates that are unnecessary, which can further improve performance.
+ }
+ 
+ {
+  ques: difference between reconciliation and diffing ?
+  
+    answer :
+      econciliation and diffing are related concepts in React, but they are not the same thing.
+
+        Reconciliation is the overall process by which React updates the UI to reflect changes in the application state. It involves several steps, including updating 
+        state and props, creating new elements, deleting old elements, reordering elements, and updating styles and attributes.
+   
+        Diffing, on the other hand, is a specific step in the reconciliation process. It refers to the algorithm that React uses to compare the previous Virtual DOM 
+        tree with the new one, and to generate a "diff list" that describes the minimal set of changes that need to be made to the actual Browser DOM to update the 
+        UI. The diffing algorithm is designed to be fast and efficient, and to avoid making unnecessary changes to the DOM.
+        
+        In other words, reconciliation is the larger process of updating the UI, while diffing is a specific part of that process that helps to optimize it. The 
+        diffing algorithm is just one of the techniques that React uses to achieve high performance and fast updates. Other techniques include batching updates,
+        reusing components, and minimizing the amount of work that needs to be done during each update.
+        
+ }
+
+{
+  ques: batching updates meaning?
+  
+    answers :
+    
+      Batching updates is a technique that React uses to improve performance by minimizing the number of updates that are made to the UI.
+
+      In React, when a component updates its state or receives new props, it triggers a re-rendering of the component and its children. This can potentially result 
+      in a large number of updates being made to the UI, which can be slow and inefficient.
+
+      To avoid this problem, React uses batching to group together multiple updates and process them all at once, instead of updating the UI after each individual
+      update. When updates are batched, React only needs to calculate the minimal set of changes needed to update the UI, and then apply those changes all at once, 
+      which is much more efficient.
+
+      The batched updates are typically processed at the end of the current event loop, using a mechanism called "async rendering". This means that the UI may not 
+      update immediately after each individual update, but instead updates all at once after the batch of updates is complete.
+}
