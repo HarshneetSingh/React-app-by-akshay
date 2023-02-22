@@ -103,6 +103,10 @@ answer =
   
 5 > what is Virtual DOM?
 answer = 
+
+  The virtual DOM (VDOM) is a programming concept where an ideal, or “virtual”, representation of a UI is kept in memory and synced with the “real” DOM by a library 
+  such as ReactDOM. This process is called reconciliation.
+  
   The Virtual DOM, or Virtual Document Object Model, is a programming concept used in web development to improve the performance of user interfaces (UI). It is a
   virtual representation of the actual Document Object Model (DOM) of a web page, which is a hierarchical structure that represents the content and properties of 
   a web page.
@@ -155,8 +159,22 @@ answer =
             further improve performance.
          <
          
-7 > What is React Fiber?
+7 > What is React Fiber? discuss it 
 answer = 
+
+      We're about to discuss the heart of React Fiber's architecture. Fibers are a much lower-level abstraction than application developers typically think about.
+      
+      We've established that a primary goal of Fiber is to enable React to take advantage of scheduling. Specifically, we need to be able to
+
+        pause work and come back to it later.
+        assign priority to different types of work.
+        reuse previously completed work.
+        abort work if it's no longer needed.
+        
+     Fibers are used by React to keep track of the state and props of each component, as well as the relationships between components in the component tree. They 
+     allow React to pause, interrupt, and resume the rendering process as needed, which helps improve performance and avoid blocking the UI thread.
+     
+     
 8 > Why we need keys in React ? 
 answer = answer is in notes 
 9 > Can we use index as keys in React?
@@ -592,4 +610,33 @@ answer=
 
       The batched updates are typically processed at the end of the current event loop, using a mechanism called "async rendering". This means that the UI may not 
       update immediately after each individual update, but instead updates all at once after the batch of updates is complete.
+}
+
+{
+  ques :  Reconciliation versus rendering
+  
+      answer :
+            
+          The DOM is just one of the rendering environments React can render to, the other major targets being native iOS and Android views via React Native. 
+          (This is why "virtual DOM" is a bit of a misnomer.(wrong name))
+
+          The reason it can support so many targets is because React is designed so that reconciliation and rendering are separate phases. The reconciler does 
+          the work of computing which parts of a tree have changed; the renderer then uses that information to actually update the rendered app.
+
+          This separation means that React DOM and React Native can use their own renderers while sharing the same reconciler, provided by React core.
+          
+          Fiber reimplements the reconciler. It is not principally concerned with rendering, though renderers will need to change to support (and take advantage of) 
+          the new architecture.
+         >
+          The statement means that Fiber is a reimplementation of the reconciler in React, and its primary goal is to improve the efficiency and flexibility of the 
+          reconciler. While the reconciler is responsible for updating the component tree and scheduling the rendering process, Fiber focuses on optimizing this process,
+          making it more efficient and allowing for better handling of complex component trees.
+
+          Fiber is not directly concerned with rendering components, but rather with the way components are updated and scheduled for rendering. Renderers, which are 
+          responsible for actually rendering components to the screen, will need to be modified to support the new Fiber architecture and take advantage of its 
+          benefits.
+
+          In summary, Fiber is a reimplementation of the reconciler in React that focuses on improving the efficiency and flexibility of the component updating and 
+          rendering process. While renderers will need to change to support the new architecture, Fiber itself is not directly concerned with rendering components.
+         <
 }
