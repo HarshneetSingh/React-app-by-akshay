@@ -164,6 +164,14 @@ answer =
 
       We're about to discuss the heart of React Fiber's architecture. Fibers are a much lower-level abstraction than application developers typically think about.
       
+      React Fiber is an internal engine change geared to make React faster and smarter
+      
+      React Fiber is a reconciliation algorithm that was introduced in React version 16. It's a complete rewrite of the old reconciliation algorithm and provides 
+      better performance and more flexibility in how updates are processed. React Fiber allows React to handle large and complex UIs more efficiently by providing a
+      priority-based scheduling system and better control over how resources are allocated. It's a lightweight thread-like entity that allows for concurrent updates
+      and can be paused and resumed as needed. In summary, React Fiber is an important part of React's architecture that enables it to provide a better user 
+      experience and handle complex UIs more efficiently.
+      
       We've established that a primary goal of Fiber is to enable React to take advantage of scheduling. Specifically, we need to be able to
 
         pause work and come back to it later.
@@ -174,7 +182,21 @@ answer =
      Fibers are used by React to keep track of the state and props of each component, as well as the relationships between components in the component tree. They 
      allow React to pause, interrupt, and resume the rendering process as needed, which helps improve performance and avoid blocking the UI thread.
      
+     React Fiber is used for various features in React, including Error Boundaries, Fragments, and Portals.
      
+     Error Boundaries: Error Boundaries are a feature in React that allow developers to handle errors that occur during the rendering process. Error Boundaries use 
+     the Fiber data structure to capture and handle errors that occur during rendering, without crashing the entire application. This helps to ensure a better user 
+     experience and improves the reliability of React applications.
+     
+     Fragments: Fragments are another feature in React that use the Fiber data structure to optimize rendering performance. Fragments allow developers to group a 
+     list of child elements together without creating an additional wrapper element in the Virtual DOM. This reduces the overall size of the Virtual DOM and
+     improves rendering performance.
+     
+     Portals: Portals are a feature in React that allow developers to render content into a different part of the DOM tree than where the component is rendered. 
+     Portals use the Fiber data structure to manage the rendering of the content in a separate part of the DOM, while still maintaining the state and props of the 
+     original component.
+     
+     Overall, React Fiber is a key part of the React framework, and it is used to optimize rendering performance and improve the reliability of React applications.
 8 > Why we need keys in React ? 
 answer = answer is in notes 
 9 > Can we use index as keys in React?
@@ -639,4 +661,69 @@ answer=
           In summary, Fiber is a reimplementation of the reconciler in React that focuses on improving the efficiency and flexibility of the component updating and 
           rendering process. While renderers will need to change to support the new architecture, Fiber itself is not directly concerned with rendering components.
          <
+}
+
+{ 
+    ques : every render creates a new virtual dom and every virtual dom has it fiber tree ?
+    
+      answer :
+          
+          Yes, that's correct. Every time a component's state or props change in React, a new Virtual DOM is created, and it has its corresponding Fiber tree.
+
+          When a component is first rendered, React creates a Virtual DOM that represents the initial state of the component tree. This Virtual DOM is then used to 
+          \create the corresponding Fiber tree that tracks the progress of the rendering process and manages state updates.
+          
+          Whenever a component's state or props change, React triggers a re-render of the component tree, which creates a new Virtual DOM that reflects the updated 
+          state of the tree. This new Virtual DOM is then used to create a new Fiber tree that tracks the progress of the rendering process and manages state updates
+          for the current rendering cycle.
+          
+          As React updates the component tree, it updates the Virtual DOM and the Fiber tree to reflect the changes in the tree. Once the rendering process is 
+          complete, the final state of the Virtual DOM and the Fiber tree is used to update the actual DOM.
+          
+          So, in summary, every render in React creates a new Virtual DOM and a corresponding Fiber tree that tracks the progress of the rendering process and
+          manages state updates for the current rendering cycle.
+  
+}
+
+{
+    ques : A fiber corresponds to a stack frame, but it also corresponds to an instance of a component.
+    
+      answer :
+      In React Fiber, a fiber corresponds to a stack frame, but it also corresponds to an instance of a component. This means that a fiber represents a unit of work 
+      to be performed, and it contains information about the component being rendered, its state, and props.
+      
+      When a component is mounted, React creates an instance of the component and associates it with a fiber. This fiber contains information about the component's 
+      state, props, and the work that needs to be done to render the component.
+      
+      As the component tree is updated, React uses the fiber data structure to keep track of the progress of the rendering process, and to manage the state and props 
+      of the component. Each fiber represents a unit of work that needs to be performed, and it corresponds to a particular instance of a component.
+      
+      At the same time, each fiber also corresponds to a stack frame(When a component is rendered, a new fiber is created for that component, and it is associated 
+      with a new stack frame on the call stack.), which is a data structure used by the JavaScript runtime to keep track of the call stack. When  a fiber is created
+     , it is pushed onto the call stack, and when the work for that fiber is completed, it is popped off the call stack.
+      
+      So, in summary, a fiber in React Fiber represents a unit of work to be performed, and it corresponds to an instance of a component. It also corresponds to a 
+      stack frame, which is used by the JavaScript runtime to keep track of the call stack during the rendering process.
+}
+
+{
+    ques : React simply swaps the pointers of the workInProgress and the current tree, making the workInProgress tree the new current tree .while swaping what 
+    happens to old current tree
+    
+      answer 
+          
+          When React swaps the pointers of the workInProgress and the current tree, it makes the workInProgress tree the new current tree, and the old current 
+          tree becomes the new workInProgress tree. This means that the previous current tree is now available for reuse in the next update.
+
+          React reuses the previous current tree as the basis for the new workInProgress tree, which means that it doesn't have to create a new tree from scratch. 
+          This is a performance optimization that can significantly reduce the time it takes to update the UI, especially for complex applications with a large 
+          number of components.
+
+          When the workInProgress tree becomes the new current tree, the old current tree is no longer needed for the current update. However, it remains in 
+          memory and can be reused in the next update if necessary. If the old current tree is no longer needed at all, React will eventually release the memory 
+          used by that tree through garbage collection.
+
+          In summary, when React swaps the pointers of the workInProgress and the current tree, it reuses the old current tree as the new workInProgress tree and 
+          makes the updated workInProgress tree the new current tree. This allows React to efficiently update the UI and manage memory usage, while providing a 
+          smooth and responsive user experience.
 }
