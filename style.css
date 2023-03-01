@@ -4,26 +4,40 @@
     box-sizing: border-box;
 }
 
-.header {
-    text-align: center;
-    margin: auto;
+/***************************************************** */
+
+/* ********Header */
+
+.globalHeader {
+    width: 100%;
+    height: 80px;
+    background-color: #fff;
+    box-shadow: 0 15px 40px -20px rgb(40 44 63 / 15%);
+}
+
+.innerHeader {
     width: 80%;
-    height: 8vh;
+    height: 100%;
+    margin: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(240, 20, 20);
+}
 
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
+.links {
+    display: flex;
+    font-size: 1.2rem;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.links>li {
+    padding: 0px 20px;
 
 }
 
-.fa-digg,
-.fa-user {
-    font-size: 2.5rem;
-    margin-left: 3vw;
-
+.mainLogo {
+    height: 70%;
 }
 
 .searchBar {
@@ -31,30 +45,50 @@
     justify-content: space-between;
 }
 
-.searchBar input{
-    border: none;
-    height: 20px;
-    border-radius: 3px;
-    padding: 5px;
-}
-
-.searchBar button {
-    background-color: transparent;
-    border: none;
-     font-size: 1rem;
-     margin-left: 0.2vw;
-}
-
-
-
 .fa-user {
     font-size: 1.5rem;
-    margin-right: 3vw;
 }
-.titles {
-    display: flex ;
-    justify-content: space-between;
+
+/* end of Header */
+
+/* ************************************* */
+
+/* ********8Main */
+
+/* card */
+.restaurantList {
+    width: 80%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px 0px;
+}
+
+.card {
+    border: 1px solid black;
+    width: 20vw;
+    height:40vh;
     text-align: center;
-    margin: 4vh auto auto auto;
-    width: 70%;
+    margin: auto;
+
 }
+
+.card>img {
+    width: 100%;
+    padding: 10px;
+}
+
+/* end of Main */
+
+/* ************************************* */
+
+/* ********footer */
+.footer {
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* end of footer */
