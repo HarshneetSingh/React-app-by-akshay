@@ -1,0 +1,154 @@
+ What is the difference between Named Export, Default export and * as export?
+  
+ answer :
+ 
+      In JavaScript, there are several ways to export values from a module. The most common ways are named exports, default exports, and namespace exports (also known as
+      "export all").
+
+      Named Exports:
+      
+      Named exports allow you to export multiple values from a module by giving them a name. You can import these named exports into other modules using the same name.
+      Here's an example:
+          
+          // module.js
+          export const foo = 'foo';
+          export function bar() {
+            return 'bar';
+          }
+          
+          // main.js
+          import { foo, bar } from './module.js';
+          console.log(foo); // 'foo'
+          console.log(bar()); // 'bar'
+          
+      Default Exports:
+      
+      Default exports allow you to export a single value from a module as the default export. You can import this default export into other modules using any name you
+      want. Here's an example:
+      
+        // module.js
+        export default function() {
+          return 'default';
+        }
+        
+        // main.js
+        import myDefault from './module.js';
+        console.log(myDefault()); // 'default'
+
+      Namespace Exports:
+      
+      Namespace exports allow you to export all values from a module as properties of an object. You can import these namespace exports into other modules using any 
+      name you want. Here's an example:
+      
+          // module.js
+          export const foo = 'foo';
+          export function bar() {
+            return 'bar';
+          }
+          
+          // main.js
+          import * as myModule from './module.js';
+          console.log(myModule.foo); // 'foo'
+          console.log(myModule.bar()); // 'bar'
+          
+      So, in summary, named exports allow you to export multiple values from a module with specific names, default exports allow you to export a single value as the
+      default export, and namespace exports allow you to export all values from a module as properties of an object.
+
+ What is the importance of config,js file?
+  
+  answer :
+      
+      In a React application, a config.js file can be used to store configuration information that is specific to the application. Here are some reasons why the 
+      config.js file is important in a React application:
+  
+      Environment-Specific Settings: React applications often have different environment-specific settings such as API endpoints, database connections, and other 
+      configuration settings. By using a config.js file, you can store these settings in a centralized location and easily switch between different environments
+      (e.g., development, testing, production) without having to modify the code.
+      
+      Separation of Concerns: Separating configuration information from your React components helps to maintain a separation of concerns. This makes it easier to
+      modify or replace the configuration settings without having to modify the actual component code.
+      
+      Security: Configuration information such as API keys and passwords should not be stored in component files since they can be easily accessed by anyone who has
+      access to the code. Storing this information in a separate config.js file helps to keep it secure by limiting access to only those who need it.
+      
+      Reusability: The configuration settings stored in the config.js file can be used throughout the application. This makes it easier to reuse common configuration
+      settings across multiple components and ensures consistency across the application.
+      
+      Overall, using a config.js file in a React application is an important tool for managing configuration settings, helping to keep them centralized, separate
+      from the code, and secure, as well as promoting reusability and maintainability.
+      
+ What are React Hooks?
+  
+  answer :
+  
+    React Hooks are simple JavaScript functions that we can use to isolate the reusable part from a functional component.
+    
+    A React Hook is a function that allows functional components in React to use state and other features that were previously only available to class components.
+    React Hooks provide a way to reuse stateful logic across multiple components and simplify the management of state and lifecycle methods.
+
+    React Hooks were introduced in React 16.8 as a way to make it easier to write reusable and maintainable code in React. With Hooks, functional components can now
+    use state, manage side effects, and access context values without needing to convert to class components. Hooks are designed to work in tandem with functional
+    components, allowing developers to write simpler and more concise code.
+    
+    React Hooks follow a specific naming convention: hooks always start with the prefix "use". For example, useState is a built-in hook used to manage state in a
+    functional component. Custom Hooks can also be created to encapsulate stateful logic and reuse it across multiple components.
+    
+    Overall, React Hooks are a powerful tool that makes it easier to write maintainable and reusable code in React, while also promoting the use of functional 
+    components.
+    
+      React Hooks are named as "Hooks" because they allow functional components in React to "hook" into the React state and lifecycle systems. In other words,
+      Hooks provide a way to use state and other React features in functional components that were previously only available in class components.
+      
+ Why do we need a useState Hook?
+  
+   answer :
+    it declares a “state variable”
+    
+    The useState Hook can be used to keep track of strings, numbers, booleans, arrays, objects, and any combination of these! 
+    
+    To update a component with new data, two things need to happen:
+
+      Retain the data between renders. - this can only be done via state variable and that is created with the help of useState
+      Trigger React to render the component with new data (re-rendering).- for rendering you need a setter function for updating the state that is provide by useState
+      
+      this is why useState is need 
+      
+      for more search on google 
+      
+    
+    
+    
+    
+ What is a Hook? A Hook is a special function that lets you “hook into” React features. For example, useState is a Hook that lets you add React state to function
+  components. We’ll learn other Hooks later.
+
+ When would I use a Hook? If you write a function component and realize you need to add some state to it, previously you had to convert it to a class. Now you 
+  can use a Hook inside the existing function component. We’re going to do that right now!
+
+
+
+ when state is initiate and update what happens to virtual dom, React fiber , how diff algorithm works ? explain deeply
+
+  When a component's state is initialized or updated in React, several internal processes are triggered to update the virtual DOM and the fiber data structure.
+  Here's a high-level overview of what happens:
+  
+ 1  The component calls a Hook like useState() to initialize or update its state.
+  
+ 2 React creates or updates a memory cell associated with the Hook's state value in the fiber data structure for the component.
+  
+ 3  React marks the component as "dirty" in the fiber data structure. This means that the component needs to be re-rendered.
+   
+ 4  React begins a process called "reconciliation", which involves comparing the previous fiber tree with the new fiber tree to determine what needs to be 
+    updated in the virtual DOM.
+ 
+ 5  React uses a diffing algorithm to compare the previous and new fiber trees and determine the minimal set of changes needed to update the virtual DOM.
+    The diffing algorithm works by comparing the type and props of each component in the previous and new fiber trees, as well as any state or context that 
+    has changed.
+    
+ 6  Once the minimal set of changes has been determined, React updates the virtual DOM accordingly, making any necessary additions, removals, or updates to the 
+    DOM nodes.
+    
+ 7  Finally, React updates the fiber tree to reflect the new state of the virtual DOM and clears the "dirty" mark on the component.
+ 
+  React's reconciliation algorithm and diffing algorithm are designed to be highly efficient and performant, allowing React to update the UI quickly and efficiently in response to changes in the application state. The fiber data structure provides a flexible and adaptable framework for managing the component tree and state updates, enabling React to provide a high-performance and flexible programming model for building UIs.
+
