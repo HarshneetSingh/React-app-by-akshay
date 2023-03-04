@@ -1,0 +1,170 @@
+ > What is a Microservice?
+
+    >>>>>
+    A microservice is a software architectural style that involves building a single application as a collection of small, 
+    independently deployable services. Each microservice is designed to perform a specific business function or process and communicates
+    with other microservices through a well-defined API, using lightweight protocols such as HTTP or message queues.
+    
+ > What is Monolith architecture?
+    
+    >>>>>
+    A monolithic architecture is a software architecture pattern where all the different components of an application are tightly integrated
+    and interdependent, forming a single large application or codebase. In a monolithic architecture, all the code is deployed together
+    as a single unit, with any updates requiring the entire application to be redeployed.
+
+    In a monolithic architecture, the different components of the application, such as the user interface, application logic, and database
+    access layer, are tightly coupled and share the same codebase, often making it difficult to isolate and update individual components.
+
+    
+    Monolithic architectures are commonly used in smaller applications, where the entire codebase can be managed by a small team. They are
+    relatively easy to develop and maintain in the early stages of a project, but as the application grows larger and more complex, it 
+    becomes increasingly difficult to scale and maintain the codebase.
+
+ > What is the difference between Monolith and Microservice?
+
+    >>>>>
+    Monolithic and microservices architectures represent two different approaches to building software systems. Here are some key differences between the two:
+
+    Architecture: In a monolithic architecture, the application is designed as a single, tightly-coupled unit. In contrast, microservices
+    architecture involves building the application as a set of independent, loosely-coupled services that communicate with each other 
+    using APIs.
+
+    Scalability: Monolithic architectures can be difficult to scale because the entire application needs to be scaled together. In 
+    contrast, microservices architecture allows individual services to be scaled independently, making it easier to handle changes in
+    demand.
+
+    Maintainability: Monolithic architectures can be more challenging to maintain because all the components are tightly-coupled, making
+    it more difficult to isolate and update individual components. In contrast, microservices architecture allows for greater flexibility
+    in updating and maintaining individual services.
+
+    Deployment: In a monolithic architecture, the entire application needs to be deployed as a single unit, which can result in longer 
+    deployment times and more downtime for the application. In contrast, microservices architecture allows for more frequent and smaller 
+    deployments, resulting in less downtime for the application.
+
+    Technology diversity: Monolithic architectures are typically built using a single technology stack, while microservices architecture 
+    allows for different technologies to be used for different services.
+
+    Overall, while monolithic architecture can be simpler to build and deploy for smaller applications, microservices architecture offers
+    more scalability, flexibility, and maintainability for larger and more complex applications. However, microservices architecture 
+    also introduces additional complexity, requiring effective service discovery, communication, and orchestration to ensure the proper 
+    functioning of the overall system.   
+
+ > Why do we need a useEffect Hook?
+
+ > What is Optional Chaining?
+    >>>>>
+    Optional Chaining is a feature introduced in ECMAScript 2020 that allows developers to write more concise and less error-prone code
+    when accessing nested properties of an object.
+    
+    With Optional Chaining, we can avoid these errors by using the ?. operator to check for the existence of nested properties before 
+    accessing them
+
+ > What is Shimmer UI?
+
+ > What is the difference between JS expression and JS statement?
+
+  >>>>>
+  In JavaScript, an expression is a piece of code that produces a value. It can be a variable, a function call, a literal value, or a 
+  combination of these. For example, 5 + 3 is an expression that evaluates to the value 8.
+
+  On the other hand, a statement is a piece of code that performs an action. It can be an assignment, a loop, a conditional, or a 
+  function declaration, among others. For example, let x = 5 + 3 is a statement that assigns the value 8 to the variable x.
+
+  In summary, the main difference between expressions and statements is that expressions produce values, while statements perform 
+  actions. Expressions can be used within statements to compute values or as arguments to functions, while statements control the 
+  flow of execution and define the behavior of the program.
+
+ > What is Conditional Rendering, explain with a code example?
+    >>>>>
+    Conditional Rendering is a technique used in React to show or hide components or elements based on a certain condition. This allows
+    developers to dynamically change what is displayed on the screen based on user interactions, data changes, or other factors.
+
+    Here's an example of how to use Conditional Rendering in React:
+        {
+        import React from "react";
+
+        function App() {
+          const isLoggedIn = true;
+
+          return (
+            <div>
+              {isLoggedIn ? (
+                <h1>Welcome back!</h1>
+              ) : (
+                <button>Login</button>
+              )}
+            </div>
+          );
+        }
+
+        export default App;
+        }
+
+    In this example, we're rendering either a welcome message or a login button based on the value of the isLoggedIn variable. If isLoggedIn
+    is true, the message "Welcome back!" is displayed. If isLoggedIn is false, a login button is displayed.
+
+    We use a ternary operator to conditionally render one of the two options based on the value of isLoggedIn. The ternary operator acts
+    as a shorthand for an if-else statement and is a common way to implement Conditional Rendering in React.
+
+    Conditional Rendering can also be used with logical operators like && and ||. For example, we can use the && operator to conditionally
+    render a component if a certain condition is true:   
+        {
+        import React from "react";
+        
+        function App() {
+          const showButton = true;
+        
+          return (
+            <div>
+              {showButton && <button>Click me!</button>}
+            </div>
+          );
+        }
+        
+        export default App;
+        
+        }
+
+  In this example, the button is only displayed if the showButton variable is true. If showButton is false, the button is not displayed.
+
+ > What is CORS?
+
+  >>>>>
+  CORS (Cross-Origin Resource Sharing) is a security mechanism implemented in modern web browsers that allows a server to specify who can
+  access its resources. It is used to protect users from malicious websites that could steal their data or perform unauthorized actions 
+  on their behalf.
+
+  When a web application makes a request to a different origin (i.e., domain, protocol, or port) than the one it is currently on, the 
+  browser sends a preflight request to the server to ask if the resource is allowed to be accessed from that origin. The preflight 
+  request uses the HTTP OPTIONS method and includes additional headers that provide information about the requested resource and the 
+  origin of the request.
+
+ > What is async and await?
+
+  >>>>>
+  Async/await is a syntax feature in JavaScript used for handling asynchronous code. It allows you to write asynchronous code in a more 
+  synchronous-like style, making it easier to read and understand.
+
+  The async keyword is used to declare an asynchronous function. An asynchronous function is a function that can be paused and resumed 
+  later on while it is waiting for a promise to be resolved.
+
+  The await keyword is used inside an async function to wait for the completion of a promise. When an async function encounters an
+  await expression, it pauses the execution of the function until the promise is resolved.
+
+ > What is the use of ‘const json = await datajson(); in getRestaurants()?
+
+  >>>>>
+  The code const Json = await data.json() is used to convert the response from an HTTP request made with the Fetch API or a similar 
+  library from a JSON string to a JavaScript object.
+
+  When you make an HTTP request using the Fetch API, the response you get back from the server is usually a stream of bytes. 
+  To use the data in your JavaScript code, you need to parse this response into a usable format, such as a JavaScript object.
+
+  The json() method is a built-in method of the Fetch API that allows you to do this. It takes the response stream and returns 
+  a promise that resolves with the parsed JSON data. The await keyword is used to wait for the promise to resolve before
+   continuing with the rest of the code.
+
+  The const Json variable is assigned the parsed JSON data, which can then be used in your code as a JavaScript object.
+
+  Overall, this code is commonly used when working with APIs that return data in JSON format, allowing you to easily work 
+  with that data in your JavaScript code.

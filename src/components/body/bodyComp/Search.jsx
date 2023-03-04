@@ -1,25 +1,18 @@
 import { useState } from "react"
 
-function filterData(restaurants, input, fullRestaurantList) {
-    let result;
-    if (input === "") {
-        result = fullRestaurantList;
-        console.log(fullRestaurantList)
-    } else {
-        result = restaurants.filter((restaurant) => {
-          return   restaurant.data.data.name.toLowerCase().includes(input.toLowerCase());
-            
-        })
-    }
+function filterData(restaurants, input) {
+    let result = restaurants.filter((restaurant) => {
+        return restaurant.data.data.name.toLowerCase().includes(input.toLowerCase());
+    })
+
     return result;
 }
 
 const Search = (props) => {
-    const { restaurants, setRestaurants, fullRestaurantList } = props;
     const [input, setInput] = useState("")
-
-
+    
     return (
+
         <div>
             <input
                 type="text"
@@ -31,7 +24,7 @@ const Search = (props) => {
             />
             <button type="submit" onClick={
                 () => {
-                    setRestaurants(filterData(restaurants, input, fullRestaurantList))
+                    props.setFilteredRestaurants(filterData(props.restaurants, input))
                 }
             }>serch</button>
 
