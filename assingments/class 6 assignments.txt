@@ -51,6 +51,9 @@
 
  > Why do we need a useEffect Hook?
 
+  >>>>>
+  The useEffect Hook is a fundamental part of React and is used to manage side effects in functional components. It allows you to execute 
+  some code after every render only when certain dependencies have changed. and a single render when component is rendered first 
  > What is Optional Chaining?
     >>>>>
     Optional Chaining is a feature introduced in ECMAScript 2020 that allows developers to write more concise and less error-prone code
@@ -61,6 +64,21 @@
 
  > What is Shimmer UI?
 
+  >>>>>
+  Shimmer UI is a design pattern used in user interfaces to indicate that content is being loaded. It is a visual effect that simulates the 
+  appearance of the content while it is still loading. The shimmer effect is created by displaying a set of animated lines or shapes that move 
+  in a wave-like pattern. These lines or shapes are typically light-colored on a dark background or dark-colored on a light background, and they 
+  give the impression of the content being revealed as the lines or shapes move.
+
+  The main purpose of the shimmer UI is to improve the user experience by providing visual feedback that something is happening in the background. 
+  By indicating that content is being loaded, it helps to reduce the perception of slow loading times, which can lead to frustration and abandonment 
+  of the application.
+
+  Shimmer UI is commonly used in mobile applications and web applications. It is particularly useful in situations where there may be a delay in
+  loading the content, such as when retrieving data from an external source or when loading images or videos. By using a shimmer effect, the user 
+  can see that something is happening and can be reassured that the application has not frozen or crashed.
+
+  
  > What is the difference between JS expression and JS statement?
 
   >>>>>
