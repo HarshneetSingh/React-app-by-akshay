@@ -25,15 +25,20 @@
 }
 
 .links {
+    width: 50%;
+
+}
+
+.links>ul {
     display: flex;
     font-size: 1.2rem;
     justify-content: space-between;
-    width: 50%;
+    list-style: none;
+
 }
 
-.links>li {
-    padding: 0px 20px;
-
+.links-li  {
+    text-decoration: none;
 }
 
 .mainLogo {
@@ -67,7 +72,7 @@
 .card {
     border: 1px solid black;
     width: 20vw;
-    height:40vh;
+    height: 40vh;
     text-align: center;
     margin: auto;
 

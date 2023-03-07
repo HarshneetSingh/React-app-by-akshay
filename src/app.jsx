@@ -3,21 +3,42 @@ import ReactDOM from "react-dom/client";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import Body from "./components/body/Body";
-
-
+import { RouterProvider ,createBrowserRouter, Outlet} from "react-router-dom";
+import Search from "./components/body/Search";
+import Error from "./components/body/Error";
+// made npm formic page  
 
 const App = () => {
     return (
         <>
         <Header />
-        <Body/>
+        <Outlet/>
         <Footer />
         </>
 
     )
 }
+
+const appRouter=createBrowserRouter([
+    {
+        path: "/",
+        element:<App/>,
+        errorElement:<Error/>,
+        children:[
+            {
+                path: "/",
+                element:<Body/>
+            },
+            {
+                path: "/search",
+                element:<Search/>
+            }
+        ]
+    }
+    
+])
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<App />);
+root.render(<RouterProvider router={appRouter}/>);
 
 
