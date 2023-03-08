@@ -6,6 +6,7 @@ import Body from "./components/body/Body";
 import { RouterProvider ,createBrowserRouter, Outlet} from "react-router-dom";
 import Search from "./components/body/Search";
 import Error from "./components/body/Error";
+import Outlett from "./components/body/bodyComp/Outlett";
 // made npm formic page  
 
 const App = () => {
@@ -32,6 +33,10 @@ const appRouter=createBrowserRouter([
             {
                 path: "/search",
                 element:<Search/>
+            },
+            {
+                path: "/restaurant/:stringResid",
+                element:<Outlett/>
             }
         ]
     }

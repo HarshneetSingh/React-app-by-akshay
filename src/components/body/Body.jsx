@@ -7,6 +7,7 @@ import Shimmer from "./bodyComp/Shimmer";
     const json = await data.json();
     setRestaurants(json?.data?.cards)
     setFilteredRestaurants(json?.data?.cards)
+    
   }
 
 const Body = () => {

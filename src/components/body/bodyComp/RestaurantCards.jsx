@@ -1,10 +1,14 @@
 import Card from "./Card"
+import { Link } from "react-router-dom"
 const RestaurantCards = (props) => {
+
+
     return (
         <div className="restaurantList" >
             {
                 props.restaurants.map((restaurant) => {
-                  return  <Card {...restaurant?.data?.data} key={restaurant?.data?.data?.id}/>
+                    const restaurantData=restaurant?.data?.data;
+                  return <Link to={`/restaurant/${restaurantData?.name}-${restaurantData?.id}`}  key={restaurantData?.id}><Card {...restaurantData} /></Link> 
                 })
             }
         </div>
