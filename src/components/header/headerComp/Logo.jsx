@@ -1,4 +1,4 @@
-import swiggyLogo from "./SwiggyLogo.png";
+import swiggyLogo from "../../../assets/SwiggyLogo.png";
 
 const Logo = () => {
     return (

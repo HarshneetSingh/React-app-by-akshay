@@ -1,16 +1,55 @@
  > What are various ways to add images into our App? Explain with code examples?
 
   >>>>>
+    importing from the local file
+    using a url
+    making an file of assets to store images etc.
+
 
  >What would happen if we do console.log(useState())?
   
   >>>>>
+    after consoling the useState , you'll be getting the array . first element will be the initial value element 
+    and other element is to update the initial element's state. as 2nd element function contains power to render the component 
+    again
+
  >How will useEffect behave if we don't add a dependency array ?
  
   >>>>>
+    it will call every time when the component renders .
+
  >What is SPA?
  
   >>>>>
+    SPA stands for Single Page Application. It is a type of web application architecture where all the necessary HTML, CSS, and JavaScript code are 
+    loaded once, and the content of the application is updated dynamically without the need for full page reloads. In an SPA, the user interface is 
+    typically composed of multiple components that are managed by a framework, such as React, Angular, or Vue.js.
+
+    The main advantage of an SPA is that it provides a smoother and more responsive user experience, as the user can interact with the application 
+    without experiencing the delay caused by full page reloads. This is achieved by using AJAX (Asynchronous JavaScript and XML) requests to load 
+    data and update the content dynamically, as well as by using client-side routing to handle navigation within the application.
+
+    SPAs can be built using a variety of front-end frameworks and libraries, and they are often used for applications that require a high level of 
+    interactivity, such as social networks, e-commerce sites, and productivity tools. However, SPAs can also present challenges for SEO, as search 
+    engines may have difficulty crawling the content that is loaded dynamically. To address this issue, developers may use techniques such as server-side 
+    rendering or dynamic rendering to improve the discoverability of SPA content by search engines.
+
  >What is difference between Client Side Routing and Server Side Routing?
  
   >>>>>
+    In React, client-side routing and server-side routing refer to two different approaches for handling navigation and rendering of content in a web
+      application.
+
+    Client-side routing in React involves using a library such as React Router to handle navigation and rendering of content entirely on the client-side
+     (i.e., in the browser). This means that when a user clicks on a link or navigates to a different URL, the application does not request a new page
+      from the server. Instead, the JavaScript code running in the browser handles the routing and rendering of the new content. This approach can
+       make the application feel more responsive and reduce the need for server requests, but it requires more initial setup and can be less SEO-friendly.
+
+    Server-side routing in React involves using server-side rendering (SSR) to render the React components on the server before sending the HTML to the 
+    client. This means that when a user requests a new page or navigates to a different URL, the server handles the routing and rendering of the 
+    content before sending the HTML to the browser. This approach can improve SEO and initial page load times, but it requires more server resources
+     and can make the application feel less responsive.
+
+    In summary, client-side routing in React is a popular approach for building dynamic single-page applications, while server-side routing with SSR is
+     a more traditional approach that can provide better SEO and initial page load times. The choice between these two approaches depends on the specific
+      requirements of the application and the resources available for server-side rendering.

@@ -1,22 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
+import { RouterProvider ,createBrowserRouter, Outlet} from "react-router-dom";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import Body from "./components/body/Body";
-import { RouterProvider ,createBrowserRouter, Outlet} from "react-router-dom";
 import Search from "./components/body/Search";
 import Error from "./components/body/Error";
-import Outlett from "./components/body/bodyComp/Outlett";
+import Outlett from "./components/body/bodyComp/RestaurantMenu";
 // made npm formic page  
 
 const App = () => {
+    console.log(useState("ssd"))
     return (
         <>
         <Header />
         <Outlet/>
         <Footer />
         </>
-
     )
 }
 

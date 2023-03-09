@@ -5,8 +5,10 @@ import Shimmer from './Shimmer';
 const Outlett = () => {
     // bringing param dynamically 
     const {stringResid} =useParams();
+    // now cutting the stringResid to res id 
     let resid=stringResid.split("-");
     resid=resid[resid.length-1];
+    
     // setting restaurant state
     const [restaurant,setRestaurant]=useState(null);
 
