@@ -8,9 +8,9 @@ import Search from "./components/body/Search";
 import Error from "./components/body/Error";
 import Outlett from "./components/body/bodyComp/RestaurantMenu";
 // made npm formic page  
+// How do you create Nested Routes react-router-dom cofiguration , had to make main swiggy page with nested routing for relevant and all
 
 const App = () => {
-    console.log(useState("ssd"))
     return (
         <>
         <Header />
@@ -40,7 +40,6 @@ const appRouter=createBrowserRouter([
             }
         ]
     }
-    
 ])
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
