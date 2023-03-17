@@ -1,6 +1,7 @@
  >How do you create Nested Routes react-router-dom cofiguration
 
-    >>>>>
+    >>>>>   WILL MAKE IT 
+
 
 
  >Read abt createHashRouter, createMemoryRouter from React Router docs.
@@ -9,16 +10,60 @@
 
  >What is the order of life cycle method calls in Class Based Components
 
-    >>>>>
+    >>>>> constructor 
+         render
+            dom updation
+            componentDidMount
+               if(update===true){
+                  render()
+                  dom updation
+                  componentDidUpdate
+               }
+               if(component UNMOUNTS){
+                   componentWillUnmount
+               } 
+              
 
  >Why do we use componentDidMount?
 
     >>>>>
 
+      componentDidMount is a lifecycle method in React that is called once, immediately after a component is mounted to the DOM. It's commonly 
+      used for initializing state, setting up event listeners, making API calls, or performing other side effects that require access to the DOM.
+
+      Here are some reasons why we use componentDidMount:
+
+      Initializing state: componentDidMount is a good place to initialize state that depends on the component being mounted to the DOM. 
+      For example, you may want to fetch some data from an API and store it in the component's state, so that it can be displayed in the UI.
+
+      Setting up event listeners: componentDidMount is also a good place to set up event listeners that need to be added after the 
+      component has been mounted to the DOM. For example, you may want to listen for click events on a button, or scroll events on the 
+      window.
+
+      Manipulating the DOM: componentDidMount can also be used to manipulate the DOM directly, using methods like document.querySelector
+       or document.getElementById. For example, you may want to set the focus on an input field, or apply some styling to a specific 
+       element.
+
+      Making API calls: componentDidMount is often used to make API calls to fetch data from a server. Because the component has already
+       been mounted to the DOM, it's safe to assume that the necessary DOM elements are available for rendering the fetched data.
+
+      In general, componentDidMount is a good place to perform any side effects that need to happen after a component has been mounted
+       to the DOM. By the time componentDidMount is called, the component has access to the DOM and is ready to perform any necessary 
+       setup.
+
 
  >Why do we use componentWillUnmount? Show with example
 
-    >>>>>
+    >>>>> 
+      The componentWillUnmount method is a lifecycle method in React that is called just before a component is removed from the DOM.
+       This method is used to clean up any resources that the component may have acquired during its lifecycle, such as event listeners, 
+       timers, or subscriptions.
+    
+       Overall, the componentWillUnmount method or the useEffect cleanup function are important for preventing memory leaks and ensuring that
+        your application is properly cleaned up when components are removed from the DOM. 
+     
+      THE CODE YOU CAN SEE IN SEARCH component it has two child func and class they have intervals 
+         (this above code you can see in the class 8 complete commit)
 
 
  >(Research) Why do we use super(props) in constructor?
@@ -38,4 +83,23 @@
 
  >(Research) Why can't we have the callback function of useEffect async?
 
+    >>>>>The callback function passed to useEffect can technically be an asynchronous function, but it is not 
+      recommended because it can lead to unexpected behavior.
+
+      The reason for this is that useEffect expects the callback function to return a cleanup function, which is a 
+      synchronous function that can be used to clean up any resources or side-effects created by the effect. If the 
+      callback function is asynchronous and returns a promise, the cleanup function will not be returned until the promise
+       is resolved or rejected. This can lead to delays in the cleanup process and cause unexpected behavior in your application.
+
+
+ >React useEffect v/s useLayoutEffect Hook: Key differences?
+   
     >>>>>
+      https://talent500.co/blog/react-useeffect-v-s-uselayouteffect-hook-key-differences/
+      https://blog.logrocket.com/useeffect-vs-uselayouteffect-examples/#difference-between-useeffect-and-uselayouteffect
+
+      The main difference between the useEffect hook and the useLayoutEffect hook is that the useEffect hook serves asynchronously, 
+      whereas the useLayoutEffect hook works synchronously. In simple words, we can say that the difference between useEffect and 
+      useLayoutEffect is in the time at which these functions are invoked.
+
+      he useLayoutEffect hook, on the other hand, is called after the DOM has been changed but before the screen is painted

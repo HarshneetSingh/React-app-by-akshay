@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import Searchchild from './Searchchild'
-
+import Classchild from './Classchild'
+import Funcchild from './Funcchild'
 export default class Search extends Component {
   constructor(props) {
     super(props);
     console.log("search: ");
   }
-  componentDidMount() {
+    componentDidMount() {
     console.log("search componentDidMount: ");
   }
   render() {
@@ -14,14 +14,10 @@ export default class Search extends Component {
 
     return (
       <>
-
-      
         "hello parent start"
-        <Searchchild name={"child 1"}/>
-        <Searchchild name={"child 2"}/>
-
+        <Funcchild  name={"child 1"}/>
+        <Classchild name={"child 2"}/>
         "hello parent end"
-
       </>
     )
   }
