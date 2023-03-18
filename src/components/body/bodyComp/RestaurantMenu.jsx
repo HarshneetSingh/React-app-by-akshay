@@ -1,30 +1,22 @@
-import React, { useEffect, useState } from 'react'
+
 import { useParams } from 'react-router-dom'
+import useRestaurantMenu from '../../../utils/useRestaurantMenu';
 import Shimmer from './Shimmer';
 
-const Outlett = () => {
-    // bringing param dynamically 
-    const {stringResid} =useParams();
-    // now cutting the stringResid to res id 
-    let resid=stringResid.split("-");
-    resid=resid[resid.length-1];
-    
-    // setting restaurant state
-    const [restaurant,setRestaurant]=useState(null);
-
-    useEffect(() =>{
-        getRestaurant();
-    },[])
-    async function getRestaurant(){
-        const data = await fetch(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.5649034&lng=77.2403317&restaurantId=${resid}&submitAction=ENTER`);
-        const json=await data.json();
-        setRestaurant(json?.data?.cards?.[0]?.card?.card?.info)
-    }
+const RestaurantMenu = () => {
+  // !bringing param dynamically 
+  const { stringResid } = useParams();
+  // !now cutting the stringResid to res id 
+  let resid = stringResid.split("-");
+  resid = resid[resid.length - 1];
+  //!RESTATUANT HOOK TO GET THE RESTATUANTmenu
+  const restaurantMenu = useRestaurantMenu(resid);
 
 
-  return restaurant===null?<Shimmer/>:(
-    <div>{restaurant?.name}</div>
+  return restaurantMenu === null ? <Shimmer /> : (
+    // Restaurant UI
+    <div>{restaurantMenu?.name}</div>
   )
 }
 
-export default Outlett
+export default RestaurantMenu;
