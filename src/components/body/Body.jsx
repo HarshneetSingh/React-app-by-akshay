@@ -2,25 +2,39 @@ import useRestaurant from "../../utils/useRestaurant";
 import RestaurantCards from "./bodyComp/RestaurantCards";
 import Search from "./bodyComp/Search";
 import Shimmer from "./bodyComp/Shimmer";
-
+import useIsOnline from "../../utils/useIsOnline";
 
 
 const Body = () => {
-  const [restaurants, filteredRestaurants, setFilteredRestaurants] = useRestaurant(null)
+  const [allRestaurants, filteredRestaurants, setFilteredRestaurants] = useRestaurant(null)
 
-  return (
-    <div className="body">
-      {/* Search UI */}
-      <Search restaurants={restaurants} setFilteredRestaurants={setFilteredRestaurants} />
+  const isOnline = useIsOnline()
 
-      {
-        //  Restaurant UI 
+  
+  // *early returns
+
+  // for returning offlne of website 
+  if (!isOnline) return "You're offline "
+
+
+
+
+  // *body Return
+  return (allRestaurants?.length === 0) ?
+    <Shimmer /> :
+    (
+      <div className="body">
+        {/* Search UI */}
+        <Search restaurants={allRestaurants} setFilteredRestaurants={setFilteredRestaurants} />
+
+        {
+          //  Restaurant UI 
           (filteredRestaurants?.length === 0) ?
-          <Shimmer /> :
-          <RestaurantCards restaurants={filteredRestaurants} />
-      }
-    </div>
-  )
+            "no data" :
+            <RestaurantCards restaurants={filteredRestaurants} />
+        }
+      </div>
+    )
 }
 
 export default Body;
