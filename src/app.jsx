@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider ,createBrowserRouter, Outlet} from "react-router-dom";
 import Header from "./components/header/Header";
@@ -7,9 +7,15 @@ import Body from "./components/body/Body";
 import Search from "./components/body/Search";
 import Error from "./components/body/Error";
 import RestaurantMenu from "./components/body/bodyComp/RestaurantMenu";
+import Shimmer from "./components/body/bodyComp/Shimmer";
+
+
+
 // made npm formic page  
 // How do you create Nested Routes react-router-dom cofiguration , had to make main swiggy page with nested routing for relevant and all
 
+
+const Cart=lazy(()=>import("./components/body/Cart"))
 const App = () => {
     return (
         <>
@@ -37,6 +43,11 @@ const appRouter=createBrowserRouter([
             {
                 path: "/restaurant/:stringResid",
                 element:<RestaurantMenu/>
+            },
+            {
+                path:"/cart",
+                element: <Suspense fallback={<Shimmer/>}><Cart/></Suspense>
+               
             }
         ]
     }

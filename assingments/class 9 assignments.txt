@@ -1,0 +1,120 @@
+before jumping to assihnments read below 
+
+    In a SPA, the application loads the initial HTML, CSS, and JavaScript assets when the page is first loaded, and then dynamically updates
+     the content of the page in response to user interactions, without requiring a full page refresh or reload. This typically involves making
+      asynchronous HTTP requests to retrieve data or perform actions on the server, and then using JavaScript to update the DOM and display
+       the new content to the user.
+
+    So if your application uses this architecture and dynamically updates content without requiring a full page refresh, then it could be 
+    considered a SPA, regardless of whether or not you use the lazy() function to load components asynchronously.
+
+    //  It's important to note that lazy() can only be used with default exports, and not with named exports 
+    
+    //  React.lazy takes a function that must call a dynamic import(). 
+         This must return a Promise which resolves to a module with a default export containing a React component.
+
+    >When and why do we need lazy()?
+ 
+        >>>>> 
+
+            >>when do we need lazy()?
+
+        The lazy() function in React is typically used when an application has a large number of components or features that may not be needed
+         immediately, or when a particular component is very large and could slow down the initial load time of the application. In general,
+         lazy() is most useful in applications that have a lot of dynamic content or that are expected to be used on slower networks or 
+         devices.
+
+            >>why do we need lazy()?
+        
+        The lazy() function in React is used to dynamically load a component when it is actually needed, rather than loading it upfront with 
+         the rest of the application. There are several reasons why using lazy() can be beneficial:
+
+        Improved performance: By loading components lazily, only the necessary code is downloaded and parsed by the browser, which can help
+         to reduce the initial load time of the application and improve the perceived performance.
+
+        Reduced memory footprint: Loading components lazily can help to reduce the amount of memory used by the application, especially if 
+         the components are large or rarely used.
+
+        Faster updates: Since only the relevant code is loaded when a component is needed, updates to the application can be faster and more 
+         efficient, since only the updated code needs to be downloaded and parsed.
+
+        Easier maintenance: By breaking up the application into smaller, more manageable chunks, developers can improve the maintainability
+         of the codebase and make it easier to add, update, or remove features as needed.
+
+        Better user experience: By reducing the load time of the application and improving performance, using lazy() can help to provide a
+         better overall user experience and increase user engagement.
+
+        Overall, using lazy() can help to improve the performance, efficiency, and maintainability of React applications, while also
+         providing a better user experience for the end user.
+
+
+    >What is suspense?
+        >>>>>
+            In React, Suspense is a component that allows you to handle components that are loading asynchronously, such as components 
+            that are loaded using lazy(). Suspense enables you to define a fallback component that is displayed while the async component is being loaded.
+
+    >Why we got this error : A component suspended while responding to synchronous input. This will cause the UI to be replaced with a loading
+    indicator. To fix, updates that suspend should be wrapped with startTransition? How does suspense fix this error?
+        >>>>>
+
+    >Advantages and disadvantages of using this code splitting pattern?
+        >>>>>
+            Advantages:
+
+                Faster page load times: Code splitting reduces the initial loading time of the application by loading only the necessary code for a given page, rather than l
+                -oading the entire application code upfront.
+
+                Improved user experience: Code splitting can provide a smoother and more responsive user experience, especially for larger applications, by reducing the amou
+                -nt of time users have to wait for the page to load.
+
+                Lower bandwidth usage: By loading only the necessary code for a given page, code splitting can reduce the amount of data that needs to be transferred over th
+                -e network, leading to lower bandwidth usage and faster loading times.
+
+                More efficient resource usage: Code splitting allows the application to only load the necessary code when it is needed, reducing the amount of memory and CPU
+                - usage required by the application.
+
+            Disadvantages:
+
+                Increased complexity: Code splitting can add complexity to the application, as it requires developers to manage and coordinate multiple code chunks, which ca
+                -n make debugging and troubleshooting more challenging.
+
+                Requires careful planning: Code splitting requires careful planning and implementation to ensure that the correct code chunks are loaded at the right time, a
+                -nd that the application continues to function correctly.
+
+                Network issues: Code splitting relies on network connectivity to load the necessary code chunks, which can be a problem if the network is slow or unreliable.
+                -
+
+                May not work well with certain frameworks or libraries: Code splitting may not work well with certain frameworks or libraries, which may assume that all code
+                - is loaded upfront, leading to compatibility issues.
+
+
+    >When do we and why do we need suspense?
+
+        >>>>>
+
+            When a component is wrapped in a Suspense component, React will check if the component being rendered has any unresolved promises or asynchronous operations that it 
+            needs to wait for before it can render. If there are any unresolved promises or asynchronous operations, React will suspend the rendering of the component and 
+            display a fallback content until the promise or operation is resolved.
+
+            The Suspense component has a fallback prop that defines what content should be displayed while the component is being loaded. This can be any valid React component,
+             such as a loading spinner, a placeholder component, or a message that tells the user that content is being loaded.
+
+            Once the promise or asynchronous operation is resolved, React will resume rendering the component and display its content. If the promise or operation fails, the 
+            Suspense component will catch the error and display an error message instead of the component's content.
+
+             summary, the Suspense component allows React to manage the loading and rendering of components that require asynchronous data, by suspending the rendering of 
+             the component and displaying fallback content until the data is available.
+
+    >diff between import statement and import() in react 
+
+        >>>>>
+            In React, there is a difference between using the import statement and the import() function, also known as dynamic imports.
+
+
+            The import statement is a static import that is evaluated at the time the module is parsed by the browser. It allows you to import modules, variables,
+            or functions from other modules into your own module. When using the import statement, the imported module is immediately loaded and added to the 
+             module's dependency graph.
+
+             On the other hand, the import() function is a dynamic import that is evaluated at runtime. It allows you to load a module on demand, rather than
+               at the time the module is parsed. The import() function returns a Promise that resolves to the module object. This can be useful when you want 
+                to load a module conditionally or lazily, such as when it's only needed under certain conditions.
