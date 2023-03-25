@@ -1,10 +1,10 @@
 import Card from "./Card"
 import { Link } from "react-router-dom"
-const RestaurantCards = (props) => {
+const restaurantList = (props) => {
 
 
     return (
-        <div className="restaurantList" >
+        <div className="w-4/5 m-auto flex justify-between flex-wrap gap-8 " >
             {
                 props.restaurants.map((restaurant) => {
                     const restaurantData=restaurant?.data?.data;
@@ -15,4 +15,4 @@ const RestaurantCards = (props) => {
     )
 }
 
-export default RestaurantCards
+export default restaurantList

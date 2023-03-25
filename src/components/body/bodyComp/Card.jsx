@@ -5,9 +5,9 @@ const Card =({cloudinaryImageId,name,cuisines,deliveryTime})=>{
 
 
     return (
-        <div className="card" >
+        <div className="border m-auto text-center w-60 h-80" >
+            <img src={`${ImgApi}` + `${cloudinaryImageId}`}  className="p-3" alt="" />
 
-            <img src={`${ImgApi}` + `${cloudinaryImageId}`} alt="" />
             <div className="name">{name}</div>
             <div className="cuisines">{cuisines.join(", ")}</div>
             <div className="dt">{deliveryTime}</div>

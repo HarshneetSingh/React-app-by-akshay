@@ -2,12 +2,12 @@ import { useState } from "react"
 import { filterData } from "../../../utils/helper"
 
 
-const Search = (props) => {
+const SearchEngine = (props) => {
     const [input, setInput] = useState("")
 
     return (
 
-        <div>
+        <div className=" bg-red-300 py-10 my-6">
             <input
                 type="text"
                 placeholder="kfc"
@@ -29,4 +29,4 @@ const Search = (props) => {
     )
 }
 
-export default Search
+export default SearchEngine

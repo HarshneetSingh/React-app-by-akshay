@@ -2,7 +2,7 @@ import swiggyLogo from "../../../assets/SwiggyLogo.png";
 
 const Logo = () => {
     return (
-    <img src={swiggyLogo} className="mainLogo" alt="Logo.png" />
+    <img src={swiggyLogo} className="h-3/4" alt="Logo.png" />
 )
 };
 

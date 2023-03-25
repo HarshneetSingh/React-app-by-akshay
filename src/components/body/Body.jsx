@@ -1,8 +1,8 @@
 import useRestaurant from "../../utils/useRestaurant";
-import RestaurantCards from "./bodyComp/RestaurantCards";
-import Search from "./bodyComp/Search";
+import RestaurantList from "./bodyComp/RestaurantList";
 import Shimmer from "./bodyComp/Shimmer";
 import useIsOnline from "../../utils/useIsOnline";
+import SearchEngine from "./bodyComp/SearchEngine";
 
 
 const Body = () => {
@@ -25,13 +25,13 @@ const Body = () => {
     (
       <div className="body">
         {/* Search UI */}
-        <Search restaurants={allRestaurants} setFilteredRestaurants={setFilteredRestaurants} />
+        <SearchEngine restaurants={allRestaurants} setFilteredRestaurants={setFilteredRestaurants} />
 
         {
           //  Restaurant UI 
           (filteredRestaurants?.length === 0) ?
             "no data" :
-            <RestaurantCards restaurants={filteredRestaurants} />
+            <RestaurantList restaurants={filteredRestaurants} />
         }
       </div>
     )
