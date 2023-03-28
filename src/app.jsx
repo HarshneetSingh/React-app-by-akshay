@@ -8,6 +8,7 @@ import Search from "./components/body/Search";
 import Error from "./components/body/Error";
 import RestaurantMenu from "./components/body/bodyComp/RestaurantMenu";
 import Shimmer from "./components/body/bodyComp/Shimmer";
+import  Help  from "./components/body/Help";
 
 
 
@@ -48,6 +49,10 @@ const appRouter=createBrowserRouter([
                 path:"/cart",
                 element: <Suspense fallback={<Shimmer/>}><Cart/></Suspense>
                
+            },
+            {
+                path:"/help",
+                element:<Help/>
             }
         ]
     }
