@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+sddsd    
+</body>
+<script>
+    async function yo(){
+        const json =await fetch("https://api.nytimes.com/svc/search/v2/articlesearch.json?q=election&api-key=zHtIRsmiTjJLZ5cy2PLxbLHAvso7ZAJJ")
+        const data =await json.json();
+        console.log(data)
+
+    }
+    yo()
+</script>
+</html>

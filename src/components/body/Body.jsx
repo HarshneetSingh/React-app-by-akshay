@@ -3,6 +3,7 @@ import RestaurantList from "./bodyComp/RestaurantList";
 import Shimmer from "./bodyComp/Shimmer";
 import useIsOnline from "../../utils/useIsOnline";
 import SearchEngine from "./bodyComp/SearchEngine";
+import userContext from "../../utils/userContext";
 
 
 const Body = () => {
@@ -10,12 +11,11 @@ const Body = () => {
 
   const isOnline = useIsOnline()
 
-  
+
   // *early returns
 
   // for returning offlne of website 
   if (!isOnline) return "You're offline "
-
 
 
 
@@ -25,7 +25,9 @@ const Body = () => {
     (
       <div className="body">
         {/* Search UI */}
-        <SearchEngine restaurants={allRestaurants} setFilteredRestaurants={setFilteredRestaurants} />
+        <userContext.Provider value={{allRestaurants ,setFilteredRestaurants}}>
+        <SearchEngine />
+        </userContext.Provider>
 
         {
           //  Restaurant UI 
