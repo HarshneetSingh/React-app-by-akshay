@@ -12,6 +12,10 @@
 
     >What is Context Provider and Context Consumer?
     >>>>>
+        The Context Provider is a higher-order component that creates a context object, which holds the data that needs to be   shared across the component tree. It provides this data to its children through a special prop called "value". The value  can be an object, function, or any other data type.
+
+        Once the Context Provider is defined, we can use the Context Consumer to access the data provided by the Context Provider. The Context Consumer is a component that subscribes to the context provided by the Context Provider and accesses the "value" prop passed down through the component tree.
 
     >If you don't pass a value to the provider does it take the default value?
-    >>>>>
+
+    >>>>> yes

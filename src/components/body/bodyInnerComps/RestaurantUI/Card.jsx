@@ -1,4 +1,4 @@
-import { ImgApi } from "../../../config";
+import { ImgApi } from "../../../../config";
 
 
 const Card =({cloudinaryImageId,name,cuisines,deliveryTime})=>{

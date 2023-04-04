@@ -1,7 +1,7 @@
 
 import { useParams } from 'react-router-dom'
-import useRestaurantMenu from '../../../utils/useRestaurantMenu';
-import Shimmer from './Shimmer';
+import useRestaurantMenu from '../../../../utils/useRestaurantMenu';
+import Shimmer from '..//RestaurantUI/Shimmer';
 
 const RestaurantMenu = () => {
   // !bringing param dynamically 
