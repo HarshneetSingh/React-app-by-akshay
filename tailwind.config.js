@@ -4,7 +4,14 @@ module.exports = {
     "./src/**/*.{html,jsx,}",
   ],
   theme: {
-    extend: {},
+
+    extend: {
+      colors: {
+        'headerHoverColor': '#fc8019',
+        'sortByBtnColor':'#686b78',
+        'sortByBtnHoverColor':'#3d4152'
+      },
+    },
   },
   plugins: [],
 }

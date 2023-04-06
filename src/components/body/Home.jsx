@@ -3,6 +3,7 @@ import RestaurantList from "./bodyInnerComps/RestaurantUI/RestaurantList";
 import useIsOnline from "../../utils/useIsOnline";
 import Shimmer from "./bodyInnerComps/RestaurantUI/Shimmer";
 import OfferColumn from "./bodyInnerComps/RestaurantOffersUI/OfferColumn";
+import SortByBtn from "./bodyInnerComps/RestaurantUI/SortByBtn";
 // import SearchEngine from "./bodyComp/RestaurantUI/SearchEngine";
 // import userContext from "../../utils/userContext";
 
@@ -27,7 +28,10 @@ const Body = () => {
 
         {/* RestaurantOfferUI */}
         {/* <OfferColumn/> */}
-        
+
+
+        {/* Button selection for Restaurant UI */}
+        <SortByBtn/>
 
         {/* Restaurant UI  */}
         {
