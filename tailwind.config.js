@@ -9,7 +9,8 @@ module.exports = {
       colors: {
         'headerHoverColor': '#fc8019',
         'sortByBtnColor':'#686b78',
-        'sortByBtnHoverColor':'#3d4152'
+        'sortByBtnHoverColor':'#3d4152',
+        'ttlRestroHeading':'#282c3f'
       },
     },
   },

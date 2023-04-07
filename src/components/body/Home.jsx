@@ -1,15 +1,17 @@
 import useRestaurant from "../../utils/useRestaurant";
-import RestaurantList from "./bodyInnerComps/RestaurantUI/RestaurantList";
 import useIsOnline from "../../utils/useIsOnline";
 import Shimmer from "./bodyInnerComps/RestaurantUI/Shimmer";
 import OfferColumn from "./bodyInnerComps/RestaurantOffersUI/OfferColumn";
-import SortByBtn from "./bodyInnerComps/RestaurantUI/SortByBtn";
-// import SearchEngine from "./bodyComp/RestaurantUI/SearchEngine";
-// import userContext from "../../utils/userContext";
+import allRestroContext from "../../utils/allRestroContext";
+import { useState } from "react";
+import RestaurantUi from "./bodyInnerComps/RestaurantUI/RestaurantUi";
+
 
 
 const Body = () => {
-  const [allRestaurants, filteredRestaurants, setFilteredRestaurants] = useRestaurant(null)
+  const [sortByRestro,setRequiredRestaurants]=useState(null)
+
+  const allRestaurants = useRestaurant(sortByRestro)
 
   const isOnline = useIsOnline()
 
@@ -30,15 +32,10 @@ const Body = () => {
         {/* <OfferColumn/> */}
 
 
-        {/* Button selection for Restaurant UI */}
-        <SortByBtn/>
-
         {/* Restaurant UI  */}
-        {
-          (filteredRestaurants?.length === 0) ?
-            "no data" :
-            <RestaurantList restaurants={filteredRestaurants} />
-        }
+        <allRestroContext.Provider value={allRestaurants} >
+          <RestaurantUi/>
+        </allRestroContext.Provider >
       </div>
     )
 }
@@ -52,9 +49,3 @@ export default Body;
 
 // if (props.restaurants.length==0)
 // return <h1>no restro founds</h1>
-
-
-{/* Search UI */ }
-{/* <userContext.Provider value={{ allRestaurants, setFilteredRestaurants }}>
-          <SearchEngine />
-        </userContext.Provider> */}

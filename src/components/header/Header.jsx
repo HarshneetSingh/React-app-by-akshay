@@ -15,29 +15,24 @@ const linkLogoStyle = `flex  h-full items-center justify-around  relative text-[
 const linkObj = [{
     name: "Search",
     logo: searchLogo,
-    className: `${linkLogoStyle}`
 }, {
     name: "Offers",
     logo: offerLogo,
-    className: `${linkLogoStyle}`,
     className2: `${" after:content-['NEW'] after:absolute after:text-amber-500 after:font-bold after:top-7 after:-right-5 after:text-[9px]"}`
 }, {
     name: "Help",
     logo: helpLogo,
-    className: `${linkLogoStyle}`
 
 }, {
     name: "Sign In",
     logo: signInLogo,
-    className: `${linkLogoStyle}`
 }, {
     name: "Cart",
     logo: cartLogo,
-    className: `${linkLogoStyle}`
 }]
 const Header = () => {
     return (
-        <div className="w-full h-20 bg-white shadow-[0_15px_40px_-20px_rgba(40,44,63,.15)] fixed top-0 left-0 ">
+        <div className="w-full h-20 bg-white shadow-[0_15px_40px_-20px_rgba(40,44,63,.15)] fixed top-0 left-0 z-50 ">
             <div className="w-4/5 h-full m-auto ">
                 <div className="flex items-center justify-between w-full  h-full ">
 
@@ -58,12 +53,12 @@ const Header = () => {
 
                     {/* Links */}
 
-                    <ul className="flex h-full items-center w-2/4  justify-between   text-[15px] font-semibold  [&>*:nth-child(5)]:stroke-[#282c3f] [&>*:nth-child(5)]:stroke-2  [&>*:nth-child(5)]:hover:stroke-headerHoverColor">
+                    <ul className="flex h-full items-center w-2/4  justify-between   text-[15px] font-semibold  [&>*:nth-child(5)]:stroke-ttlRestroHeading [&>*:nth-child(5)]:stroke-2  [&>*:nth-child(5)]:hover:stroke-headerHoverColor">
                         {
                             linkObj.map((link) => {
                                 return (
                                     <Link to={`/${link.name}`} key={link.name} className=" h-full  flex justify-center items-center " >
-                                        <li className={link.className + link?.className2}>
+                                        <li className={linkLogoStyle + link?.className2}>
                                             {link.logo}{`${link.name}`}
                                         </li>
                                     </Link>

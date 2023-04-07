@@ -1,15 +1,16 @@
 import React, { lazy, Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
-import { RouterProvider ,createBrowserRouter, Outlet} from "react-router-dom";
+import { RouterProvider, createBrowserRouter, Outlet } from "react-router-dom";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import Home from "./components/body/Home";
 import Search from "./components/body/Search";
 import Error from "./components/body/Error";
 import RestaurantMenu from "./components/body/bodyInnerComps/RestaurantUI/Shimmer";
-import  Help  from "./components/body/Help";
+import Help from "./components/body/Help";
 import Offers from "./components/body/Offers";
 import Shimmer from "./components/body/bodyInnerComps/RestaurantUI/Shimmer";
+import RestaurantList from "./components/body/bodyInnerComps/RestaurantUI/RestaurantList"
 
 
 
@@ -17,55 +18,65 @@ import Shimmer from "./components/body/bodyInnerComps/RestaurantUI/Shimmer";
 // How do you create Nested Routes react-router-dom cofiguration , had to make main swiggy page with nested routing for relevant and all
 
 
-const Cart=lazy(()=>import("./components/body/Cart"))
+const Cart = lazy(() => import("./components/body/Cart"))
 const App = () => {
     return (
         <div className="global flex-col ">
-        <Header />
-        <div className="pt-20">
-        <Outlet/>
-        </div>
-        <Footer />
+            <Header />
+            <div className="pt-20">
+                <Outlet />
+            </div>
+            <Footer />
         </div>
     )
 }
 
-const appRouter=createBrowserRouter([
+const appRouter = createBrowserRouter([
     {
         path: "/",
-        element:<App/>,
-        errorElement:<Error/>,
-        children:[
+        element: <App />,
+        errorElement: <Error />,
+        children: [ 
             {
                 path: "/",
-                element:<Home/>
+                element: <Home />,
+                children: [
+                    {
+                        path: "/" ,
+                        element:<RestaurantList/>
+                    },
+                    {
+                        path: "/?sortBy=:res",
+                        element:<RestaurantList/>
+                    }
+                ]
             },
             {
                 path: "/search",
-                element:<Search/>
+                element: <Search />
             },
             {
                 path: "/offers",
-                element:<Offers />
+                element: <Offers />
             },
             {
-                path:"/cart",
-                element: <Suspense fallback={<Shimmer/>}><Cart/></Suspense>
-               
+                path: "/cart",
+                element: <Suspense fallback={<Shimmer />}><Cart /></Suspense>
+
             },
             {
-                path:"/help",
-                element:<Help/>
+                path: "/help",
+                element: <Help />
             },
             {
                 path: "/restaurant/:stringResid",
-                element:<RestaurantMenu/>
+                element: <RestaurantMenu />
             },
         ]
     }
 ])
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<RouterProvider router={appRouter}/>);
+root.render(<RouterProvider router={appRouter} />);
 
 
