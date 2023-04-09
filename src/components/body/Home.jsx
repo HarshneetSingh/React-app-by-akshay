@@ -25,7 +25,7 @@ const Body = () => {
   return (allRestaurants?.length === 0) ?
     <Shimmer /> :
     (
-      <div className="body">
+      <div className={`body `} >
 
 
         {/* RestaurantOfferUI */}

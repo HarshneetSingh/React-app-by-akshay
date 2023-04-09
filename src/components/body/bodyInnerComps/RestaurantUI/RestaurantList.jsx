@@ -5,15 +5,16 @@ import allRestroContext from "../../../../utils/allRestroContext";
 
 
 const RestaurantList = () => {
-    const restaurnts = useContext(allRestroContext)
-    return (restaurnts?.length === 0) ?
+    const restroDetails = useContext(allRestroContext)
+    const restaurants =restroDetails?.cards[2]?.data?.data?.cards
+    return (restaurants?.length === 0) ?
         "no data" : (
-                <div className="w-11/12 mt-3 m-auto flex justify-between flex-wrap gap-8 " >
+                <div className="w-5/6 mt-4  m-auto    grid grid-cols-4 gap-x-9 gap-y-10  " >
 
                     {
-                        restaurnts.map((restaurant) => {
-                            const restaurantData = restaurant?.data?.data;
-                            return <Link to={`/restaurant/${restaurantData?.name}-${restaurantData?.id}`} key={restaurantData?.id}><Card {...restaurantData} /></Link>
+                        restaurants.map((restaurant) => {
+                            const restaurantData = restaurant?.data;
+                            return <Link to={`/restaurant/${restaurantData?.name}-${restaurantData?.id}`}  key={restaurantData?.id}><Card {...restaurantData} /></Link>
                         })
                     }
                 </div>

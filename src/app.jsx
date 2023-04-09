@@ -11,6 +11,8 @@ import Help from "./components/body/Help";
 import Offers from "./components/body/Offers";
 import Shimmer from "./components/body/bodyInnerComps/RestaurantUI/Shimmer";
 import RestaurantList from "./components/body/bodyInnerComps/RestaurantUI/RestaurantList"
+import Location from "./components/header/headerComp/Location";
+import FilterBar from "./components/body/bodyInnerComps/RestaurantUI/FilterBar";
 
 
 
@@ -20,14 +22,32 @@ import RestaurantList from "./components/body/bodyInnerComps/RestaurantUI/Restau
 
 const Cart = lazy(() => import("./components/body/Cart"))
 const App = () => {
+    const [locationBarState, setLocationBar] = useState(false)
+    const [filterBarState, setFilterBar] = useState(false)
     return (
-        <div className="global flex-col ">
-            <Header />
-            <div className="pt-20">
-                <Outlet />
+        <div className="overflow-x-hidden">
+            {/* location bar  */}
+            <Location locationBarState={locationBarState} setLocationBar={setLocationBar} />
+            <FilterBar filterBarState={filterBarState} setFilterBar={setFilterBar} />
+            <div className={`  ${(locationBarState === true) ? "pointer-events-none opacity-10  overflow-hidden  " : " opacity-1"}  h-[1300px]  global   `}
+                onClick={() => {
+                    if (locationBarState === true) {
+                        setLocationBar(false)
+                    }
+                }}>
+
+                {/* Header */}
+                <Header locBarStateFunc={setLocationBar} />
+
+                {/* Body */}
+                <div className="pt-20">
+                    <Outlet context={[setFilterBar]} />
+                </div>
+                {/* footer */}
+                <Footer />
             </div>
-            <Footer />
         </div>
+
     )
 }
 
@@ -36,18 +56,18 @@ const appRouter = createBrowserRouter([
         path: "/",
         element: <App />,
         errorElement: <Error />,
-        children: [ 
+        children: [
             {
                 path: "/",
                 element: <Home />,
                 children: [
                     {
-                        path: "/" ,
-                        element:<RestaurantList/>
+                        path: "/",
+                        element: <RestaurantList />
                     },
                     {
                         path: "/?sortBy=:res",
-                        element:<RestaurantList/>
+                        element: <RestaurantList />
                     }
                 ]
             },

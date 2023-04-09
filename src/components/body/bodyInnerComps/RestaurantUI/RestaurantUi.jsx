@@ -5,10 +5,8 @@ const RestaurantUi = () => {
   return (
     <>
       {/* Button selection for Restaurant UI */}
-      <div className="border w-[85%] m-auto">
         <SortByBtn />
         <Outlet />
-      </div>
 
 
     </>
