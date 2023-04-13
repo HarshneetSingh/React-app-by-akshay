@@ -1,17 +1,13 @@
-import useRestaurant from "../../utils/useRestaurant";
+import useRestaurant from "../../utils/useRestaurant"
 import useIsOnline from "../../utils/useIsOnline";
 import Shimmer from "./bodyInnerComps/RestaurantUI/Shimmer";
 import OfferColumn from "./bodyInnerComps/RestaurantOffersUI/OfferColumn";
-import allRestroContext from "../../utils/allRestroContext";
-import { useState } from "react";
-import RestaurantUi from "./bodyInnerComps/RestaurantUI/RestaurantUi";
-
-
+import SortByBtn from './bodyInnerComps/RestaurantUI/SortByBtn'
+import RestaurantList from './bodyInnerComps/RestaurantUI/RestaurantList'
 
 const Body = () => {
-  const [sortByRestro,setRequiredRestaurants]=useState(null)
 
-  const allRestaurants = useRestaurant(sortByRestro)
+  const [allRestaurants, filteredRestaurants, setFilteredRestaurants] = useRestaurant(null)
 
   const isOnline = useIsOnline()
 
@@ -22,22 +18,26 @@ const Body = () => {
 
 
   // *body Return
-  return (allRestaurants?.length === 0) ?
-    <Shimmer /> :
-    (
-      <div className={`body `} >
+  return allRestaurants.length === 0 ? <Shimmer /> : (
+    <div className={`body `} >
 
 
-        {/* RestaurantOfferUI */}
-        {/* <OfferColumn/> */}
+      {/* RestaurantOfferUI */}
+      {/* <OfferColumn /> */}
 
 
-        {/* Restaurant UI  */}
-        <allRestroContext.Provider value={allRestaurants} >
-          <RestaurantUi/>
-        </allRestroContext.Provider >
-      </div>
-    )
+      {/* Restaurant UI  */}
+      <SortByBtn filteredRestaurants={filteredRestaurants} allRestaurants={allRestaurants} setFilteredRestaurants={setFilteredRestaurants} />
+      {
+        (filteredRestaurants?.length === 0) ?
+          <Shimmer /> :
+          (<>
+            <RestaurantList filteredRestaurants={filteredRestaurants} />
+          </>
+          )
+      }
+    </div>
+  )
 }
 
 export default Body;

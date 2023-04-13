@@ -6,7 +6,7 @@ const Card = ({ cloudinaryImageId, name, promoted, cuisines, deliveryTime, costF
     const cuisine = cuisines.join(", ")
 
     return (
-        <div className=" group p-5  pb-0 w-[295px] mr-2 border-transparent border hover:border-[#d3d5df] hover:shadow-[0_4px_7px_0_rgba(218,220,230,.6)] " >
+        <div className=" group p-5   pb-0 w-[295px] mr-2 border-transparent border hover:border-[#d3d5df] hover:shadow-[0_4px_7px_0_rgba(218,220,230,.6)] " >
             <div className="relative ">
                 <div className="w-full h-40after:content-[' hello']  after:w-full after:h-40  after:absolute after:top-0 after:left-0 after:right-0 after:bottom-0 after:bg-[#282c3f0d] after:bg-blend-overlay">
                     <img src={`${ImgApi}` + `${cloudinaryImageId}`} className="  " alt="" />
