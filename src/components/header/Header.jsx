@@ -42,7 +42,7 @@ const Header = (props) => {
                         {/* logo and location */}
 
                         <div className=" flex justify-between items-center text-[14px]  h-full leading-[17px] ">
-                            {mainLogoo}
+                            {/* {mainLogoo} */}
                             <button onClick={() => {
                                 props.locBarStateFunc((prevState) => !prevState)
                             }}>
