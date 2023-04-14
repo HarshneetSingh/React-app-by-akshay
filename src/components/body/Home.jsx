@@ -1,7 +1,7 @@
 import useRestaurant from "../../utils/useRestaurant"
 import useIsOnline from "../../utils/useIsOnline";
 import Shimmer from "./bodyInnerComps/RestaurantUI/Shimmer";
-import OfferColumn from "./bodyInnerComps/RestaurantOffersUI/OfferColumn";
+// import OfferColumn from "./bodyInnerComps/RestaurantOffersUI/OfferColumn";
 import SortByBtn from './bodyInnerComps/RestaurantUI/SortByBtn'
 import RestaurantList from './bodyInnerComps/RestaurantUI/RestaurantList'
 

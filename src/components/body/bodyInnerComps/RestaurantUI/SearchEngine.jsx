@@ -1,11 +1,8 @@
-import { useContext, useState } from "react"
-import { filterData } from "../../../../utils/helper"
-import UserContext from "../../../../utils/userContext"
-
+import { useState } from "react"
+// import { filterData } from "../../../../utils/helper"
 
 const SearchEngine = () => {
     const [input, setInput] = useState("")
-    const userContext = useContext(UserContext)
     return (
 
         <div className=" bg-red-300 py-10 my-6">
@@ -19,7 +16,7 @@ const SearchEngine = () => {
             />
             <button type="submit"
                 onClick={() => {
-                    userContext.setFilteredRestaurants(filterData(userContext.allRestaurants, input))
+                    // userContext.setFilteredRestaurants(filterData(userContext.allRestaurants, input))
                 }}
             >
                 search
