@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { searchLogo } from "../../utils/helper";
-import SwiggyLogo from "../../../assets/SwiggyLogo.png"
+import SwiggyLogo from "../../../public/assets/SwiggyLogo.png"
 
 
 const mainLogoo = <NavLink className="flex h-3/4 hover:scale-110 transition duration-200 ease-in-out" to="/"><img src={SwiggyLogo} className="h-full" alt="Logo" /></NavLink>
