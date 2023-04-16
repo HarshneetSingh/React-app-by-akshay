@@ -1,4 +1,4 @@
-import React, { lazy, Suspense,  useState } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter, Outlet } from "react-router-dom";
 import Header from "./components/header/Header";
@@ -12,8 +12,10 @@ import Shimmer from "./components/body/bodyInnerComps/RestaurantUI/Shimmer";
 import FilterBar from "./components/body/bodyInnerComps/RestaurantUI/FilterBar";
 import LocationBar from "./components/header/headerComp/LocationBar";
 import RestaurantMenu from "./components/body/bodyInnerComps/RestaurantUI/RestaurantMenu";
+import AllRestaurantsContext from "./utils/AllRestroContext";
+import LocationContext from "./utils/LocationContext";
 
-
+AllRestaurantsContext.displayName = "RestaurantContext";
 
 // made npm formic page  
 // How do you create Nested Routes react-router-dom cofiguration , had to make main swiggy page with nested routing for relevant and all
@@ -21,27 +23,38 @@ import RestaurantMenu from "./components/body/bodyInnerComps/RestaurantUI/Restau
 
 const Cart = lazy(() => import("./components/body/Cart"))
 const App = () => {
+    const [restaurantContext, setRestaurantContext] = useState(null)
     const [locationBarState, setLocationBar] = useState(false)
+    const [location,setLocation]=useState({
+        name:"select,select",
+        lat:'28.5649034',
+        lng:'77.2403317'
+    })
+
     const [filterBarState, setFilterBar] = useState(false)
     return (
-        <div className="overflow-hidden relative">
-            {/* location bar  */}
-            <LocationBar locationBarState={locationBarState} setLocationBar={setLocationBar} />
-            <FilterBar filterBarState={filterBarState} setFilterBar={setFilterBar} />
-            <div className={`  ${(locationBarState === true || filterBarState === true) ?  `pointer-events-none h-screen overflow-y-hidden ` : " opacity-1" }  `}
-               >
-                {/* Header */}
-                <Header locBarStateFunc={setLocationBar}  />
+        <AllRestaurantsContext.Provider value={[restaurantContext, setRestaurantContext]} >
+            <LocationContext.Provider value={[location,setLocation]}>
+                <div className="overflow-hidden w-screen relative">
+                    {/* location bar  */}
+                    <LocationBar locationBarState={locationBarState} setLocationBar={setLocationBar} />
+                    {/* <FilterBar filterBarState={filterBarState} setFilterBar={setFilterBar} /> */}
 
-                {/* Body */}
-                <div className="pt-20">
-                    <Outlet context={[setFilterBar]} />
+                    <div className={`  ${(locationBarState === true || filterBarState === true) ? `pointer-events-none  h-screen ` : " opacity-1 "}  `}
+                    >
+                        {/* Header */}
+                        <Header locBarStateFunc={setLocationBar} />
+
+                        {/* Body */}
+                        <div className="pt-20">
+                            <Outlet context={[setFilterBar]} />
+                        </div>
+                        {/* footer */}
+                        <Footer />
+                    </div>
                 </div>
-                {/* footer */}
-                <Footer />
-            </div>
-        </div>
-
+            </LocationContext.Provider>
+        </AllRestaurantsContext.Provider>
     )
 }
 
@@ -56,7 +69,7 @@ const appRouter = createBrowserRouter([
                 element: <Home />,
                 // children: [
                 //     {
-                        
+
                 //         path: "/",
                 //         element: <RestaurantList />
                 //     },
@@ -85,7 +98,7 @@ const appRouter = createBrowserRouter([
             },
             {
                 path: "/restaurant/:stringResid",
-                element: <RestaurantMenu/>
+                element: <RestaurantMenu />
             },
         ]
     }

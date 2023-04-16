@@ -8,9 +8,7 @@ import RestaurantList from './bodyInnerComps/RestaurantUI/RestaurantList'
 const Body = () => {
 
   const [allRestaurants, filteredRestaurants, setFilteredRestaurants] = useRestaurant(null)
-
   const isOnline = useIsOnline()
-
 
   // *early returns
   // for returning offlne of website 
@@ -21,7 +19,7 @@ const Body = () => {
   return allRestaurants.length === 0 ? <Shimmer /> : (
     <div className={`body `} >
 
-
+    
       {/* RestaurantOfferUI */}
       {/* <OfferColumn /> */}
 
@@ -36,6 +34,7 @@ const Body = () => {
           </>
           )
       }
+      
     </div>
   )
 }
