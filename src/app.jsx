@@ -26,7 +26,7 @@ const App = () => {
     const [restaurantContext, setRestaurantContext] = useState(null)
     const [locationBarState, setLocationBar] = useState(false)
     const [location,setLocation]=useState({
-        name:"select,select",
+        name:["Other","New Delhi, Delhi, India"],
         lat:'28.5649034',
         lng:'77.2403317'
     })

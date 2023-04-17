@@ -8,17 +8,35 @@ async function getAreas(input, setAreas) {
   setAreas(data?.data)
 
 }
-async function getLocation(placeId,setLocation){
+async function getLocation(placeId, setLocation) {
   const result = await fetch(`https://www.swiggy.com/dapi/misc/address-recommend?place_id=${placeId}`)
   let data = await result.json();
-  data=data?.data[0]
+  data = data?.data[0]
+  const [name1,...other]=data?.formatted_address.split(',')
+
+  console.log(name1, other)
   setLocation({
-    name:data.formatted_address,
-    lat:data?.geometry?.location?.lat,
-    lng:data?.geometry?.location?.lng
+    name: [name1, other.join(',')],
+    lat: data?.geometry?.location?.lat,
+    lng: data?.geometry?.location?.lng
   })
 }
 // input header scroll adding 
+function currentLocation(setLocation) {
+  return navigator.geolocation.getCurrentPosition(async (position) => {
+    console.log(position?.coords?.latitude)
+    const result = await fetch(`https://www.swiggy.com/dapi/misc/address-recommend?latlng=${position?.coords?.latitude}%2C${position?.coords?.longitude}`)
+    let data = await result.json();
+    data = data?.data[0]
+    let [name1,...others]=data?.address_components
+    console
+    setLocation({
+      name:[name1?.long_name,`${others?.[1].long_name} ${others?.[2].long_name}`],
+      lat: data?.geometry?.location?.lat,
+      lng: data?.geometry?.location?.lng
+    })
+  })
+}
 
 const LocationBar = (props) => {
   const [location, setLocation] = useContext(LocationContext)
@@ -26,8 +44,8 @@ const LocationBar = (props) => {
   const [areas, setAreas] = useState(null)
   useEffect(() => {
     if (input.length >= 3) {
-      getAreas(input, setAreas)
       setAreas(null)
+      getAreas(input, setAreas)
     }
 
   }, [input])
@@ -48,7 +66,11 @@ const LocationBar = (props) => {
         {
           //* if input length is greater than 3
           (input.length < 3) ? (
-            <button >
+            <button onClick={() => {
+              currentLocation(setLocation)
+              props.setLocationBar((prevState) => !prevState);
+              setInput('');
+            }} >
               <div className=' border w-2/3   flex  absolute right-10 group  '>
                 <div className='flex justify-center items-center w-12'>
                   <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-current-location ml-2 mb-4 text-ttlRestroHeading" width="18" height="18" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round" id="IconChangeColor"> <path stroke="none" d="M0 0h24v24H0z" fill="none" id="mainIconPathAttribute"></path> <circle cx="12" cy="12" r="3"></circle> <circle cx="12" cy="12" r="8"></circle> <line x1="12" y1="2" x2="12" y2="4"></line> <line x1="12" y1="20" x2="12" y2="22"></line> <line x1="20" y1="12" x2="22" y2="12"></line> <line x1="2" y1="12" x2="4" y2="12"></line> </svg>
@@ -62,7 +84,7 @@ const LocationBar = (props) => {
             </button>
           ) : (
             // *if location is null then shimmer
-            (areas===null) ? <Shimmer /> :
+            (areas === null) ? <Shimmer /> :
               // * if location length is 0
               (areas.length === 0) ? (
                 <div className='float-right w-2/3 flex flex-col items-center justify-center absolute right-10'>
@@ -76,13 +98,13 @@ const LocationBar = (props) => {
                   {
                     areas.map(place => {
                       const [name, ...location] = place?.description.split(',')
-                      const placeId=place?.place_id
+                      const placeId = place?.place_id
                       return (
                         <button className='w-2/3  my-1 ml-36  min-h-0 group' key={placeId} onClick={() => {
-                          getLocation(placeId,setLocation)
+                          getLocation(placeId, setLocation)
                           props.setLocationBar((prevState) => !prevState);
                           setInput('');
-                          
+
                         }}>
                           <div className='  flex items-center  '>
                             <svg className='w-14 mb-4' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="IconChangeColor" height="20" width="20"> <path fill="var(--ci-primary-color, currentColor)" d="M253.924,127.592a64,64,0,1,0,64,64A64.073,64.073,0,0,0,253.924,127.592Zm0,96a32,32,0,1,1,32-32A32.037,32.037,0,0,1,253.924,223.592Z" className="ci-primary" id="mainIconPathAttribute"></path> <path fill="var(--ci-primary-color, currentColor)" d="M376.906,68.515A173.922,173.922,0,0,0,108.2,286.426L229.107,472.039a29.619,29.619,0,0,0,49.635,0L399.653,286.426A173.921,173.921,0,0,0,376.906,68.515Zm-4.065,200.444L253.925,451.509,135.008,268.959C98.608,213.08,106.415,138.3,153.571,91.142a141.92,141.92,0,0,1,200.708,0C401.435,138.3,409.241,213.08,372.841,268.959Z" className="ci-primary" id="mainIconPathAttribute"></path> </svg>

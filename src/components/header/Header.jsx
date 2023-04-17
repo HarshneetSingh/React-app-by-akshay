@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { searchLogo } from "../../utils/helper";
 import SwiggyLogo from "../../../src/assets/SwiggyLogo.png"
+import LocationContext from "../../utils/LocationContext";
+
 
 
 const mainLogoo = <NavLink className="flex h-3/4 hover:scale-110 transition duration-200 ease-in-out" to="/"><img src={SwiggyLogo} className="h-full" alt="Logo" /></NavLink>
@@ -32,6 +35,8 @@ const linkObj = [{
     className2:" hover:stroke-headerHoverColor"
 }]
 const Header = (props) => {
+  const [location] = useContext(LocationContext)
+
     return (
         <>
             <div className="w-full h-20 bg-white shadow-[0_15px_40px_-20px_rgba(40,44,63,.15)] fixed top-0 left-0 z-30 " >
@@ -45,8 +50,8 @@ const Header = (props) => {
                                 props.locBarStateFunc((prevState) => !prevState)
                             }}>
                                 <div className={` flex justify-between items-center h-full [&>*:nth-child(1)]:text-sortByBtnHoverColor [&>*:nth-child(1)]:after:bg-sortByBtnHoverColor [&>*:nth-child(2)]:text-sortByBtnColor  [&>*:nth-child(3)]:text-orange-400  [&>*:nth-child(1)]:hover:text-headerHoverColor [&>*:nth-child(1)]:hover:after:bg-headerHoverColor [&>*:nth-child(2)]:hover:text-[#93959f]`}>
-                                    <p className="font-extrabold ml-6  mr-2  after:content-[' '] after:block after:mt-[2px]  after:h-[2px] after:w-full ">{"Select"}</p>
-                                    <p className="mr-2 h-5 font-light">{"Select"}</p>
+                                    <p className="font-bold ml-6  mr-2  after:content-[' '] after:block after:mt-[2px]  after:h-[2px] after:w-full ">{location?.name?.[0]}</p>
+                                    <p className="mr-2 h-5 font-normal">{location?.name?.[1]}</p>
                                     <i className="fa-sharp fa-solid fa-angle-down "></i>
                                 </div>
                             </button>

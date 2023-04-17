@@ -1,13 +1,15 @@
-import { useState, useEffect } from 'react'
-
+import { useState, useEffect ,useContext} from 'react'
+import LocationContext from "./LocationContext"
 const useRestaurantMenu = (resid) => {
     // setting restaurant state
     const [restaurant, setRestaurant] = useState(null);
+    const [location]=useContext(LocationContext)
+
     useEffect(() => {
         getRestaurant();
     }, [])
     async function getRestaurant() {
-        const data = await fetch(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.5649034&lng=77.2403317&restaurantId=${resid}&submitAction=ENTER`);
+        const data = await fetch(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${location.lat}&lng=${location.lng}&restaurantId=${resid}&submitAction=ENTER`);
         const json = await data.json();
         setRestaurant(json?.data?.cards?.[0]?.card?.card?.info)
     }

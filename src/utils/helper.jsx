@@ -1,3 +1,4 @@
+
 export const filterData = (allRestaurants, input) => {
 
     let result = allRestaurants.filter((restaurant) => {
@@ -7,8 +8,9 @@ export const filterData = (allRestaurants, input) => {
 
     return result;
 }
-export const restroSorting = async (sortKey,setFilteredRestaurants) => {
-    const data = await fetch(` https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5649034&lng=77.2403317&sortBy=${sortKey}&page_type=DESKTOP_WEB_LISTING`)
+export const restroSorting = async (sortKey,setFilteredRestaurants,location) => {
+
+    const data = await fetch(` https://www.swiggy.com/dapi/restaurants/list/v5?lat=${location.lat}&lng=${location.lng}&sortBy=${sortKey}&page_type=DESKTOP_WEB_LISTING`)
     const json = await data.json();
     setFilteredRestaurants(json?.data);
 }
