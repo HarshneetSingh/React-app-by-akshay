@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import LocationContext from '../../../utils/LocationContext'
 import Shimmer from '../../body/bodyInnerComps/RestaurantUI/Shimmer';
+import Loader from '../../../utils/Loader';
 
 async function getAreas(input, setAreas) {
   const result = await fetch(`https://www.swiggy.com/dapi/misc/place-autocomplete?input=${input}&types=`)
@@ -12,9 +13,8 @@ async function getLocation(placeId, setLocation) {
   const result = await fetch(`https://www.swiggy.com/dapi/misc/address-recommend?place_id=${placeId}`)
   let data = await result.json();
   data = data?.data[0]
-  const [name1,...other]=data?.formatted_address.split(',')
+  const [name1, ...other] = data?.formatted_address.split(',')
 
-  console.log(name1, other)
   setLocation({
     name: [name1, other.join(',')],
     lat: data?.geometry?.location?.lat,
@@ -24,14 +24,12 @@ async function getLocation(placeId, setLocation) {
 // input header scroll adding 
 function currentLocation(setLocation) {
   return navigator.geolocation.getCurrentPosition(async (position) => {
-    console.log(position?.coords?.latitude)
     const result = await fetch(`https://www.swiggy.com/dapi/misc/address-recommend?latlng=${position?.coords?.latitude}%2C${position?.coords?.longitude}`)
-    let data = await result.json();
-    data = data?.data[0]
-    let [name1,...others]=data?.address_components
-    console
+    const data = await result.json();
+    const name = data?.formatted_address.split(',')
+  
     setLocation({
-      name:[name1?.long_name,`${others?.[1].long_name} ${others?.[2].long_name}`],
+      name: [name[2], name.join(',')],
       lat: data?.geometry?.location?.lat,
       lng: data?.geometry?.location?.lng
     })
@@ -49,7 +47,7 @@ const LocationBar = (props) => {
     }
 
   }, [input])
-
+  
   return (
     <>
       {/* location bar */}
@@ -63,6 +61,7 @@ const LocationBar = (props) => {
             </div>
           </div>
         </div>
+        
         {
           //* if input length is greater than 3
           (input.length < 3) ? (
@@ -84,7 +83,7 @@ const LocationBar = (props) => {
             </button>
           ) : (
             // *if location is null then shimmer
-            (areas === null) ? <Shimmer /> :
+            (areas === null) ? <Loader/> :
               // * if location length is 0
               (areas.length === 0) ? (
                 <div className='float-right w-2/3 flex flex-col items-center justify-center absolute right-10'>
