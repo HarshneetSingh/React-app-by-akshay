@@ -14,6 +14,7 @@ import LocationBar from "./components/header/headerComp/LocationBar";
 import RestaurantMenu from "./components/body/bodyInnerComps/RestaurantUI/RestaurantMenu";
 import AllRestaurantsContext from "./utils/AllRestroContext";
 import LocationContext from "./utils/LocationContext";
+import Collection from "./components/body/bodyInnerComps/RestaurantUI/Collection";
 
 AllRestaurantsContext.displayName = "RestaurantContext";
 
@@ -67,17 +68,6 @@ const appRouter = createBrowserRouter([
             {
                 path: "/",
                 element: <Home />,
-                // children: [
-                //     {
-
-                //         path: "/",
-                //         element: <RestaurantList />
-                //     },
-                //     {
-                //         path: "/?sortBy=:res",
-                //         element: <RestaurantList />
-                //     }
-                // ]
             },
             {
                 path: "/search",
@@ -100,6 +90,10 @@ const appRouter = createBrowserRouter([
                 path: "/restaurant/:stringResid",
                 element: <RestaurantMenu />
             },
+            {
+                path:"/collections/:resid",
+                element:<Collection/>
+            }
         ]
     }
 ])

@@ -1,15 +1,16 @@
 import useRestaurant from "../../utils/useRestaurant"
 import useIsOnline from "../../utils/useIsOnline";
 import Shimmer from "./bodyInnerComps/RestaurantUI/Shimmer";
-// import OfferColumn from "./bodyInnerComps/RestaurantOffersUI/OfferColumn";
-import SortByBtn from './bodyInnerComps/RestaurantUI/SortByBtn'
-import RestaurantList from './bodyInnerComps/RestaurantUI/RestaurantList'
+import OfferColumn from "./bodyInnerComps/RestaurantOffersUI/OfferColumn";
+// import SortByBtn from './bodyInnerComps/RestaurantUI/SortByBtn'
+// import RestaurantList from './bodyInnerComps/RestaurantUI/RestaurantList'
+import RestaurantUI from "./bodyInnerComps/RestaurantUI/RestaurantUI";
 
 const Body = () => {
 
   const [allRestaurants, filteredRestaurants, setFilteredRestaurants] = useRestaurant(null)
   const isOnline = useIsOnline()
-
+  const photosCards= allRestaurants?.cards?.[0]
   // *early returns
   // for returning offlne of website 
   if (!isOnline) return "You're offline "
@@ -21,19 +22,13 @@ const Body = () => {
 
     
       {/* RestaurantOfferUI */}
-      {/* <OfferColumn /> */}
+
+      {photosCards.cardType==="carousel" && <OfferColumn photos={photosCards} />}
 
 
       {/* Restaurant UI  */}
-      <SortByBtn filteredRestaurants={filteredRestaurants} allRestaurants={allRestaurants} setFilteredRestaurants={setFilteredRestaurants} />
-      {
-        (filteredRestaurants?.length === 0) ?
-          <Shimmer /> :
-          (<>
-            <RestaurantList filteredRestaurants={filteredRestaurants} />
-          </>
-          )
-      }
+      <RestaurantUI  filteredRestaurants={filteredRestaurants} allRestaurants={allRestaurants} setFilteredRestaurants={setFilteredRestaurants}/>
+
       
     </div>
   )
