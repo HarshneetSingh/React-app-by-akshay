@@ -9,19 +9,18 @@ const filterSvg = <svg className="fill-headerHoverColor " xmlns="http://www.w3.o
 const SortByBtn = (props) => {
     const { filteredRestaurants, allRestaurants, setFilteredRestaurants } = props
     const [location] = useContext(LocationContext)
-
-    let totalOpenRestaurants = null;
-
-    if (filteredRestaurants?.cards?.length > 1) {
-        totalOpenRestaurants = filteredRestaurants?.cards?.[2].data?.data?.totalOpenRestaurants
-    } else {
-        totalOpenRestaurants = filteredRestaurants?.cards?.[0].data?.data?.totalOpenRestaurants
-    }
-    console.log(totalOpenRestaurants)
     const sortbtn = allRestaurants?.sorts
-    const [setFilterBar] = useOutletContext()
+    const [setFilterBar] = useOutletContext();
     const [url, setUrl] = useSearchParams()
 
+    let totalOpenRestaurants
+  
+    if('totalSize' in filteredRestaurants ){
+        console.log(filteredRestaurants?.totalSize)
+        totalOpenRestaurants=filteredRestaurants?.totalSize
+    }else{
+        totalOpenRestaurants=(filteredRestaurants?.cards?.length > 1)? filteredRestaurants?.cards?.[2]?.data?.data?.totalOpenRestaurants:filteredRestaurants?.cards?.[0]?.data?.data?.totalOpenRestaurants
+    }
 
     return (
         <>

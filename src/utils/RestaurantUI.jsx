@@ -1,6 +1,7 @@
 import React from 'react'
-import SortByBtn from './SortByBtn'
-import RestaurantList from './RestaurantList'
+import SortByBtn from '../components/body/bodyInnerComps/RestaurantUI/SortByBtn'
+import RestaurantList from '../components/body/bodyInnerComps/RestaurantUI/RestaurantList'
+import Shimmer from '../components/body/bodyInnerComps/RestaurantUI/Shimmer'
 const RestaurantUI = (props) => {
     return (
         <>

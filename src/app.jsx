@@ -15,6 +15,7 @@ import RestaurantMenu from "./components/body/bodyInnerComps/RestaurantUI/Restau
 import AllRestaurantsContext from "./utils/AllRestroContext";
 import LocationContext from "./utils/LocationContext";
 import Collection from "./components/body/bodyInnerComps/RestaurantUI/Collection";
+import HomeMain from "./components/body/bodyInnerComps/RestaurantUI/HomeMain";
 
 AllRestaurantsContext.displayName = "RestaurantContext";
 
@@ -26,20 +27,21 @@ const Cart = lazy(() => import("./components/body/Cart"))
 const App = () => {
     const [restaurantContext, setRestaurantContext] = useState(null)
     const [locationBarState, setLocationBar] = useState(false)
-    const [location,setLocation]=useState({
-        name:["Other","New Delhi, Delhi, India"],
-        lat:'28.5649034',
-        lng:'77.2403317'
+    const [filterBarState, setFilterBar] = useState(false)
+
+    const [location, setLocation] = useState({
+        name: ["Other", "New Delhi, Delhi, India"],
+        lat: '28.5649034',
+        lng: '77.2403317'
     })
 
-    const [filterBarState, setFilterBar] = useState(false)
     return (
         <AllRestaurantsContext.Provider value={[restaurantContext, setRestaurantContext]} >
-            <LocationContext.Provider value={[location,setLocation]}>
-                <div className="overflow-hidden w-screen relative">
+            <LocationContext.Provider value={[location, setLocation]}>
+                <div className="overflow-hidden  w-screen relative">
                     {/* location bar  */}
                     <LocationBar locationBarState={locationBarState} setLocationBar={setLocationBar} />
-                    {/* <FilterBar filterBarState={filterBarState} setFilterBar={setFilterBar} /> */}
+                    <FilterBar filterBarState={filterBarState} setFilterBar={setFilterBar} />
 
                     <div className={`  ${(locationBarState === true || filterBarState === true) ? `pointer-events-none  h-screen ` : " opacity-1 "}  `}
                     >
@@ -68,6 +70,21 @@ const appRouter = createBrowserRouter([
             {
                 path: "/",
                 element: <Home />,
+                children: [
+                    {
+                        path: "/",
+                        element: <HomeMain />
+                        
+                    },
+                    {
+                        path: "/restaurant/:stringResid",
+                        element: <RestaurantMenu />
+                    },
+                    {
+                        path: "/collections/:resid",
+                        element: <Collection />
+                    }
+                ]
             },
             {
                 path: "/search",
@@ -85,14 +102,6 @@ const appRouter = createBrowserRouter([
             {
                 path: "/help",
                 element: <Help />
-            },
-            {
-                path: "/restaurant/:stringResid",
-                element: <RestaurantMenu />
-            },
-            {
-                path:"/collections/:resid",
-                element:<Collection/>
             }
         ]
     }

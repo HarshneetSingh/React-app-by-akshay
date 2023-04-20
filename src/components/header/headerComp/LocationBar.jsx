@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 import LocationContext from '../../../utils/LocationContext'
-import Shimmer from '../../body/bodyInnerComps/RestaurantUI/Shimmer';
 import Loader from '../../../utils/Loader';
 
 async function getAreas(input, setAreas) {
