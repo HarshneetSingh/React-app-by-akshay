@@ -14,7 +14,7 @@ const SortByBtn = (props) => {
     const [url, setUrl] = useSearchParams()
 
     let totalOpenRestaurants
-  
+  console.log(filteredRestaurants)
     if('totalSize' in filteredRestaurants ){
         console.log(filteredRestaurants?.totalSize)
         totalOpenRestaurants=filteredRestaurants?.totalSize

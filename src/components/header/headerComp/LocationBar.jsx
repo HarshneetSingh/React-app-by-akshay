@@ -6,7 +6,6 @@ async function getAreas(input, setAreas) {
   const result = await fetch(`https://www.swiggy.com/dapi/misc/place-autocomplete?input=${input}&types=`)
   const data = await result.json();
   setAreas(data?.data)
-
 }
 async function getLocation(placeId, setLocation) {
   const result = await fetch(`https://www.swiggy.com/dapi/misc/address-recommend?place_id=${placeId}`)
@@ -44,7 +43,6 @@ const LocationBar = (props) => {
       setAreas(null)
       getAreas(input, setAreas)
     }
-
   }, [input])
   
   return (

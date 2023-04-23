@@ -1,20 +1,15 @@
+import { Outlet,useOutletContext } from "react-router-dom";
 import useIsOnline from "../../utils/useIsOnline";
-import Shimmer from "./bodyInnerComps/RestaurantUI/Shimmer";
-import { Outlet} from "react-router-dom";
-import { useOutletContext } from "react-router-dom";
-const Body = () => {
 
+const Body = () => {
   const isOnline = useIsOnline()
   // *early returns
   // for returning offlne of website 
   if (!isOnline) return "You're offline "
 
-  
-  // *body Return
-  return  (<>
 
-    <Outlet context={useOutletContext()} />
-    </>)
+  // *body Return
+  return <Outlet context={useOutletContext()} />
 }
 
 export default Body;

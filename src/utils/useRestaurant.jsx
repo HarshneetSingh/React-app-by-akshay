@@ -3,11 +3,9 @@ import { useState, useEffect, useContext } from 'react'
 import AllRestaurantsContext from './AllRestroContext';
 import LocationContext from './LocationContext';
 
-const useRestaurant = () => {
+const useRestaurant = (location,setRestaurantContext) => {
 
     const [allRestaurants, setRestaurants] = useState([])
-    const [restaurantContext, setRestaurantContext] = useContext(AllRestaurantsContext);
-    const [location,setLocation]=useContext(LocationContext)
     const [filteredRestaurants, setFilteredRestaurants] = useState([])
     useEffect(() => {
         setRestaurants([])

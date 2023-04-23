@@ -14,8 +14,6 @@ const RestaurantList = (props) => {
                 })
             }
         </div>
-
-
     )
 }
 

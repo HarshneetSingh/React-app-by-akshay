@@ -63,7 +63,7 @@ const Header = (props) => {
                             {
                                 linkObj.map((link) => {
                                     return (
-                                        <NavLink  to={`/${link.name}`} key={link.name} className={({isActive})=>isActive? "text-headerHoverColor  fill-headerHoverColor ":"text-sortByBtnHoverColor fill-sortByBtnHoverColor "+ "h-full flex justify-center items-center"} >
+                                        <NavLink  to={`/${link.name}`} key={link.name} className={({isActive})=>isActive? "text-headerHoverColor  fill-headerHoverColor "+ "h-full flex justify-center items-center":"text-sortByBtnHoverColor fill-sortByBtnHoverColor "+ "h-full flex justify-center items-center"} >
                                             <li className={linkLogoStyle + link?.className2}>
                                                 {link.logo}{`${link.name}`}
                                             </li>

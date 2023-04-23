@@ -1,11 +1,14 @@
 import React from 'react'
+import { useOutletContext } from 'react-router-dom';
 import OfferColumn from '../RestaurantOffersUI/OfferColumn';
 import RestaurantUI from '../../../../utils/RestaurantUI';
-import useRestaurant from '../../../../utils/useRestaurant';
 import Shimmer from './Shimmer';
 
 const HomeMain = () => {
-  const [allRestaurants, filteredRestaurants, setFilteredRestaurants] = useRestaurant(null)
+  const restroDetails=useOutletContext()
+  console.log(restroDetails)
+  
+  const [allRestaurants, filteredRestaurants, setFilteredRestaurants]=restroDetails[1]
   const photosCards= allRestaurants?.cards?.[0]
     return allRestaurants.length === 0 ? <Shimmer /> : (    
         <div>

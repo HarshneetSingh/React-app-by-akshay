@@ -16,6 +16,7 @@ import AllRestaurantsContext from "./utils/AllRestroContext";
 import LocationContext from "./utils/LocationContext";
 import Collection from "./components/body/bodyInnerComps/RestaurantUI/Collection";
 import HomeMain from "./components/body/bodyInnerComps/RestaurantUI/HomeMain";
+import useRestaurant from "./utils/useRestaurant";
 
 AllRestaurantsContext.displayName = "RestaurantContext";
 
@@ -28,12 +29,12 @@ const App = () => {
     const [restaurantContext, setRestaurantContext] = useState(null)
     const [locationBarState, setLocationBar] = useState(false)
     const [filterBarState, setFilterBar] = useState(false)
-
     const [location, setLocation] = useState({
         name: ["Other", "New Delhi, Delhi, India"],
         lat: '28.5649034',
         lng: '77.2403317'
     })
+    const [allRestaurants, filteredRestaurants, setFilteredRestaurants] = useRestaurant(location,setRestaurantContext)
 
     return (
         <AllRestaurantsContext.Provider value={[restaurantContext, setRestaurantContext]} >
@@ -41,7 +42,7 @@ const App = () => {
                 <div className="overflow-hidden  w-screen relative">
                     {/* location bar  */}
                     <LocationBar locationBarState={locationBarState} setLocationBar={setLocationBar} />
-                    <FilterBar filterBarState={filterBarState} setFilterBar={setFilterBar} />
+                    {/* <FilterBar filterBarState={filterBarState} setFilterBar={setFilterBar} /> */}
 
                     <div className={`  ${(locationBarState === true || filterBarState === true) ? `pointer-events-none  h-screen ` : " opacity-1 "}  `}
                     >
@@ -50,7 +51,7 @@ const App = () => {
 
                         {/* Body */}
                         <div className="pt-20">
-                            <Outlet context={[setFilterBar]} />
+                            <Outlet context={[setFilterBar,[allRestaurants, filteredRestaurants, setFilteredRestaurants]]} />
                         </div>
                         {/* footer */}
                         <Footer />
