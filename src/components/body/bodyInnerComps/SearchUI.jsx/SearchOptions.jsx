@@ -2,19 +2,20 @@ import { useContext } from "react"
 import Shimmer from "../RestaurantUI/Shimmer"
 import LocationContext from "../../../../utils/LocationContext"
 
-async function fetchQuery(setActiveQueryData, restro,location) {
+async function fetchQuery(setActiveQueryData, restro, location, setInput) {
+    setInput(restro.text)
+    setActiveQueryData(null)
     const queryParams = new URLSearchParams(restro?.cta?.link)
     const metadata = queryParams.get("metadata")
     const marketplace = queryParams.get("marketplace")
     const result = await fetch(`https://www.swiggy.com/dapi/restaurants/search/v3?lat=${location.lat}&lng=${location.lng}&str=${restro.text}&trackingId=null&submitAction=SUGGESTION&&metaData=${metadata}&marketplace=${marketplace}`)
     const data = await result.json();
-    setActiveQueryData([data?.data,metadata,marketplace,restro.text,location])
-
+    setActiveQueryData([data?.data, metadata, marketplace, restro.text, location])
 }
 
 
 const SearchOptions = (props) => {
-    const [input, searchRestaurant, setSearchParams, setActiveQuery, setActiveQueryData] = props.prop
+    const [input, searchRestaurant, setSearchParams, setActiveQuery, setActiveQueryData, setInput] = props.prop
     const [location] = useContext(LocationContext)
 
     return (
@@ -33,7 +34,7 @@ const SearchOptions = (props) => {
                         return (
                             <button className="  h-24  w-full flex gap-x-4 items-center hover:bg-[#f2f6fc]"
                                 onClick={() => {
-                                    fetchQuery(setActiveQueryData, restro,location)
+                                    fetchQuery(setActiveQueryData, restro, location, setInput)
                                     setSearchParams({ query: restro.text })
                                     setActiveQuery(true)
                                 }}

@@ -5,7 +5,6 @@ async function getSelectedData(otherData, id, setSelectedData) {
     const [metaData, marketplaceData, RestroName, location] = otherData
     const result = await fetch(`https://www.swiggy.com/dapi/restaurants/search/v3?lat=${location.lat}&lng=${location.lng}&str=${RestroName}&trackingId=null&submitAction=SUGGESTION&&metaData=${metaData}&marketplace=${marketplaceData}&selectedPLTab=${id}`)
     const data = await result.json();
-    console.log(data);
 }
 
 
@@ -38,6 +37,7 @@ const ActiveQueryUI = (props) => {
                                 setRestaurantStatus(true)
                                 setDishStatus(false)
                                 getSelectedData(otherData, btns?.[0]?.id, setSelectedData)
+                                setDefaultRestroStatus(true)
                             }
                         }}
                     >
@@ -52,6 +52,7 @@ const ActiveQueryUI = (props) => {
                                 setDishStatus(true)
                                 setRestaurantStatus(false)
                                 getSelectedData(otherData, btns?.[1]?.id, setSelectedData)
+                                setDefaultDishStatus(true)
                             }
                         }}>
                         {btns?.[1]?.title}
