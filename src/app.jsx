@@ -31,8 +31,8 @@ const App = () => {
     const [filterBarState, setFilterBar] = useState(false)
     const [location, setLocation] = useState({
         name: ["Other", "New Delhi, Delhi, India"],
-        lat: '28.5649034',
-        lng: '77.2403317'
+        lat: '28.6139391',
+        lng: '77.2090212'
     })
     const [allRestaurants, filteredRestaurants, setFilteredRestaurants] = useRestaurant(location,setRestaurantContext)
 

@@ -8,7 +8,7 @@ async function fetchQuery(setActiveQueryData, restro, location, setInput) {
     const queryParams = new URLSearchParams(restro?.cta?.link)
     const metadata = queryParams.get("metadata")
     const marketplace = queryParams.get("marketplace")
-    const result = await fetch(`https://www.swiggy.com/dapi/restaurants/search/v3?lat=${location.lat}&lng=${location.lng}&str=${restro.text}&trackingId=null&submitAction=SUGGESTION&&metaData=${metadata}&marketplace=${marketplace}`)
+    const result = await fetch(`https://www.swiggy.com/dapi/restaurants/search/v3?lat=${location.lat}&lng=${location.lng}&str=${restro.text}&trackingId=undefined&submitAction=SUGGESTION&metaData=${metadata}`)
     const data = await result.json();
     setActiveQueryData([data?.data, metadata, marketplace, restro.text, location])
 }

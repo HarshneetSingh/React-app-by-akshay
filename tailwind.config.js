@@ -16,6 +16,12 @@ module.exports = {
         "selectedBgColor": "#3e4152",
         "selectedBorderColor": "#1B1E24"
       },
+        keyframes:{
+        rightSlash:{
+          '0%':{left:'1px'},
+          '100%':{left:'16px'},
+        }
+      }
     },
   },
   plugins: [],
