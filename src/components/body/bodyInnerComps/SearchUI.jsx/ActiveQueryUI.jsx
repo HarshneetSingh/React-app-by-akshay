@@ -4,13 +4,12 @@ import RestaurantTrue from './RestaurantTrue'
 import DishTrue from './DishTrue'
 
 async function getSelectedData(otherData, id, setSelectedData,setLoadOnChange) {
-    const [metaData, marketplaceData, RestroName, location] = otherData
+    const [metaData, RestroName, location] = otherData
     setLoadOnChange(true)
     const result = await fetch(`https://www.swiggy.com/dapi/restaurants/search/v3?lat=${location.lat}&lng=${location.lng}&str=${RestroName}&trackingId=undefined&submitAction=SUGGESTION&metaData=${metaData}&selectedPLTab=${id}`)
     const data = await result.json();
     setSelectedData(data?.data)
     setLoadOnChange(false)
-
 }
 function btnclick(condition, a, b, c, d, ep, ep1,ep2,ep3, f) {
     if (condition) {
@@ -39,6 +38,10 @@ const ActiveQueryUI = (props) => {
    
     const [loadOnChange, setLoadOnChange] = useState(false)
 
+    // Dish inner btn state 
+
+    const [facets,setFacets]=useState('')
+
     return (loadOnChange)?<Shimmer/>:(
         <div className=''>
             <div className="text-sm font-bold mb-1 ">
@@ -51,14 +54,14 @@ const ActiveQueryUI = (props) => {
                 </button >
                 <button className={`border px-3 py-2 rounded-3xl ${(dishStatus) ? "bg-selectedBgColor text-white border-selectedBorderColor" : "bg-white text-ttlRestroHeading border-neutral-300"}`}
                     onClick={() => {
-                        btnclick(defaultDishStatus,setDishStatus, setRestaurantStatus ,setDishStatus , setRestaurantStatus,otherData, btns?.[1]?.id, setDishData,setLoadOnChange, setDefaultDishStatus)
+                        btnclick(defaultDishStatus,setDishStatus, setRestaurantStatus ,setDishStatus , setRestaurantStatus,otherData, btns?.[1]?.id, setDishData,setLoadOnChange,setDefaultDishStatus)
                     }}>
                     {btns?.[1]?.title}
                 </button>
             </div>
             <div className='border  '>
                 {restaurantStatus && <RestaurantTrue data={restaurantData?.cards}/>}
-                {dishStatus && <DishTrue data={dishData?.cards} />}
+                {dishStatus && <DishTrue data={dishData?.cards} otherData={otherData} setLoadOnChange={setLoadOnChange} setDishData={setDishData}/>}
             </div>
         </div>
     )
