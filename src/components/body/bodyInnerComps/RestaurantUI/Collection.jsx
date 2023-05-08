@@ -7,8 +7,7 @@ import RestaurantUI from '../../../../utils/RestaurantUI'
 const Collection = () => {
     const { resid } = useParams()
     const [allRestaurants, filteredRestaurants, setFilteredRestaurants] = useAdvancedCards(resid)
-
-    return allRestaurants.length===0 ? <Shimmer /> : (
+    return allRestaurants===null ? <Shimmer /> : (
         <RestaurantUI filteredRestaurants={filteredRestaurants} allRestaurants={allRestaurants} setFilteredRestaurants={setFilteredRestaurants} />
 
     )

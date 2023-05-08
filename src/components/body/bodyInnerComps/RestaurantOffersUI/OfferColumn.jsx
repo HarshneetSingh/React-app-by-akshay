@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 const OfferColumn = (props) => {
   const cards = props.photos?.data?.data?.cards
-  console.log(cards)
   return (
     <div className='w-full  h-[340px] bg-[#171a29]'>
       <div className='w-4/5 m-auto h-full '>

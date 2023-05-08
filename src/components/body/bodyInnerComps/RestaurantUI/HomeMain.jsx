@@ -6,7 +6,6 @@ import Shimmer from './Shimmer';
 
 const HomeMain = () => {
   const restroDetails=useOutletContext()
-  console.log(restroDetails)
   
   const [allRestaurants, filteredRestaurants, setFilteredRestaurants]=restroDetails[1]
   const photosCards= allRestaurants?.cards?.[0]

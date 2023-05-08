@@ -80,7 +80,7 @@ const LocationBar = (props) => {
             </button>
           ) : (
             // *if location is null then shimmer
-            (areas === null) ? <Loader/> :
+            (areas === null) ? <Loader /> :
               // * if location length is 0
               (areas.length === 0) ? (
                 <div className='float-right w-2/3 flex flex-col items-center justify-center absolute right-10'>

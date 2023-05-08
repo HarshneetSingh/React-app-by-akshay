@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Shimmer from './bodyInnerComps/RestaurantOffersUI/Shimmer'
+import Loader from '../../utils/Loader';
 
 async function getIssuesOption(setIssues) {
     const result = await fetch(`https://www.swiggy.com/dapi/support?`)
@@ -15,20 +16,56 @@ async function getIssueDescription(setDescription, btnClicked) {
 const Accordian = (props) => {
     const [isVisible, setIsVisible] = useState(false);
     const { title, description, hyperLinkText, hyperLink, options } = props.element
+    const descriptionarr = description?.split('\n')
     return (
         <>
-            <div className='border p-2 m-2 '>
-                <div className='flex justify-between'>
-                    <p className="text-2xl">{title}</p>
-                    {
-                        isVisible ?
-                            <button className="underline" onClick={() => setIsVisible(false)}>Hide</button> :
-                            <button className="underline" onClick={() => setIsVisible(true)}>Show</button>
-                    }
+            <button className="group" onClick={() => setIsVisible(prev => !prev)}>
+                <div className=''>
+                    <div className='flex justify-between  py-5 '>
+                        <p className="text-[17px] text-sortByBtnHoverColor group-hover:text-headerHoverColor group-hover:duration-100 ">{title}</p>
 
-                </div>
-                {isVisible && <p>{description}</p>}
-            </div >
+
+                        <div className='text-lg text-locationError '>
+                            {
+                                isVisible ? <i className=" fa-sharp fa-solid fa-angle-up "></i> :
+                                    <i className="  fa-sharp fa-solid fa-angle-down "></i>
+                            }
+                        </div>
+                    </div>
+                    {
+                        isVisible &&
+                        <>
+                            {
+                                descriptionarr?.map((desc) => {
+                                    return <p className='text-sm text-sortByBtnColor text-left  flex flex-col'>{desc}</p>
+                                })
+                            }
+
+
+                            <div className='text-left h-auto'>
+                                <div className='mb-7 mt-2'>
+                                    <a href={`${hyperLink}`} className=' text-headerHoverColor hover:text-ttlRestroHeading text-sm font-bold' target='_blank'>{hyperLinkText}</a>
+
+                                </div>
+
+                                {
+                                    (options.length > 0) ?
+                                        <div className='mb-7'>
+                                            <a
+                                                className='text-headerHoverColor py-3 px-4 border-headerHoverColor  border font-bold text-sm'
+                                                href={`mailto:${options[0]?.emailId}?subject=${title}`}
+                                                target="_blank"> SEND AN EMAIL </a>
+                                            <p className='text-[10px] text-locationError mt-4'>{options[0]?.waitTime}</p>
+                                        </div>
+                                        : ""
+                                }
+
+                            </div>
+                        </>
+                    }
+                </div >
+                <hr />
+            </button>
         </>
     )
 }
@@ -57,16 +94,16 @@ const Help = () => {
                     </div>
 
                 </div>
-                <div className='bg-white  min-h-[658px] p-12 mt-8 '>
+                <div className='bg-white  min-h-[658px] p-12 mt-9 '>
                     <div className=' h-full w-full flex '>
-                        <div className='bg-[#edf1f7] flex flex-col  h-full w-1/5 pt-2 pl-2'>
+                        <div className='bg-[#edf1f7] flex flex-col min-h-[500px]  w-[21%] pt-5 pl-5'>
                             {
                                 (issues === null) ?
                                     <Shimmer /> :
                                     <>
                                         {
                                             issues.map((issue) => {
-                                                return <button className={`text-left ${(btnClicked === issue.type ? "bg-white" : "bg-[#37718e]")}`} onClick={() => {
+                                                return <button className={`text-left pl-14 py-6 hover:text-black text-base font-semibold ${(btnClicked === issue.type ? "bg-white text-black" : " text-[#535665]")}`} onClick={() => {
                                                     setBtnClicked(issue.type)
                                                     setHeading(issue.title)
                                                 }} key={issue.type}>{issue.title}</button>
@@ -75,23 +112,26 @@ const Help = () => {
                                     </>
                             }
                         </div>
-                        <div className='bg-white h-full w-4/5 '>
+                        <div className='bg-white pl-14 pt-8 h-full w-[77%] '>
                             {
                                 (description === null) ?
-                                    <Shimmer /> :
+                                    <div className='mt-20'>
+                                        <Loader />
+                                    </div>
+                                    :
                                     <div>
                                         {
                                             (issues === null) ?
                                                 "" :
-                                                <p>{heading}</p>
+                                                <p className='text-2xl font-bold text-ttlRestroHeading mb-1'>{heading}</p>
                                         }
-
-                                        {
-
-                                            description.map((element) => {
-                                                return <Accordian element={element} />
-                                            })
-                                        }
+                                        <div className='flex flex-col '>
+                                            {
+                                                description.map((element) => {
+                                                    return <Accordian element={element} />
+                                                })
+                                            }
+                                        </div>
                                     </div>
 
                             }
