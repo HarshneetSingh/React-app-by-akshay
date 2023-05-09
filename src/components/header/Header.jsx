@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { searchLogo } from "../../utils/helper";
-import SwiggyLogo from "../../../src/assets/SwiggyLogo.png"
+import SwiggyLogo from "../../../src/assets/SwiggyLogo.webp"
 import LocationContext from "../../utils/LocationContext";
 
 
@@ -54,7 +54,7 @@ const Header = (props) => {
                                             props.locBarStateFunc((prevState) => !prevState)
                                         }}>
                                             <div className={` flex justify-between items-center h-full [&>*:nth-child(1)]:text-sortByBtnHoverColor [&>*:nth-child(1)]:after:bg-sortByBtnHoverColor [&>*:nth-child(2)]:text-sortByBtnColor  [&>*:nth-child(3)]:text-orange-400  [&>*:nth-child(1)]:hover:text-headerHoverColor [&>*:nth-child(1)]:hover:after:bg-headerHoverColor [&>*:nth-child(2)]:hover:text-[#93959f]`}>
-                                                <p className="font-bold ml-6  mr-2  after:content-[' '] after:block after:mt-[2px]  after:h-[2px] after:w-full ">{location?.name?.[0]}</p>
+                                                <p className="font-extrabold ml-6  mr-2  after:content-[' '] after:block after:mt-[2px]  after:h-[2px] after:w-full ">{location?.name?.[0]}</p>
                                                 <p className="mr-2 h-5 font-normal">{location?.name?.[1]}</p>
                                                 <i className="fa-sharp fa-solid fa-angle-down "></i>
                                             </div>

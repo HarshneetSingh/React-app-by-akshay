@@ -2,9 +2,8 @@ import { useContext, useEffect, useState } from "react"
 import LocationContext from "../../utils/LocationContext"
 import Shimmer from "./bodyInnerComps/RestaurantUI/Shimmer"
 import { useSearchParams } from "react-router-dom"
-import SearchOptions from "./bodyInnerComps/SearchUI.jsx/SearchOptions"
-import ActiveQueryUI from "./bodyInnerComps/SearchUI.jsx/ActiveQueryUI"
-// https://www.swiggy.com/dapi/landing/PRE_SEARCH?lat=28.6139391&lng=77.2090212
+import SearchOptions from "./bodyInnerComps/SearchUI/SearchOptions"
+import ActiveQueryUI from "./bodyInnerComps/SearchUI/ActiveQueryUI"
 
 
 

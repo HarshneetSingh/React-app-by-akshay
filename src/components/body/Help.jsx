@@ -128,7 +128,7 @@ const Help = () => {
                                         <div className='flex flex-col '>
                                             {
                                                 description.map((element) => {
-                                                    return <Accordian element={element} />
+                                                    return <Accordian key={description.id} element={element} />
                                                 })
                                             }
                                         </div>
