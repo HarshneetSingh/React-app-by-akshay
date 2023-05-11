@@ -21,7 +21,6 @@ import useRestaurant from "./utils/useRestaurant";
 AllRestaurantsContext.displayName = "RestaurantContext";
 
 // made npm formic page  
-// How do you create Nested Routes react-router-dom cofiguration , had to make main swiggy page with nested routing for relevant and all
 
 
 const Cart = lazy(() => import("./components/body/Cart"))

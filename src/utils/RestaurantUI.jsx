@@ -9,6 +9,7 @@ const RestaurantUI = (props) => {
         <>
             <SortByBtn filteredRestaurants={props.filteredRestaurants} allRestaurants={props.allRestaurants} setFilteredRestaurants={props.setFilteredRestaurants} />
             {
+
                 (props.filteredRestaurants?.length === 0) ?
                     <Shimmer /> :
                     (

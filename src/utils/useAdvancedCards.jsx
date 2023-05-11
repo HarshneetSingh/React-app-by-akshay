@@ -10,8 +10,8 @@ const useAdvancedCards = (resid) => {
         getRestaurant();
     }, [])
     async function getRestaurant() {
+      console.log('getRestaurant')
       const result = await fetch(`https://www.swiggy.com/dapi/restaurants/list/v5?lat=${location.lat}&lng=${location.lng}&collection=${resid}&offset=0&pageType=COLLECTION&type=rcv2&page_type=DESKTOP_COLLECTION_LISTING`)
-  
       const data = await result.json();
       console.log(data?.data)
       setRestaurant(data?.data);

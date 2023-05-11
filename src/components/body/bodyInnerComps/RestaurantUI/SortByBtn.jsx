@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { NavLink, useOutletContext, useSearchParams } from 'react-router-dom'
 import { searchLogo, restroSorting } from '../../../../utils/helper'
 import LocationContext from '../../../../utils/LocationContext'
@@ -12,37 +12,41 @@ const SortByBtn = (props) => {
     const sortbtn = allRestaurants?.sorts
     const [setFilterBar] = useOutletContext();
     const [url, setUrl] = useSearchParams()
-
+    const [selectedBtnStyle, setSelectedBtnStyle] = useState('RELEVANCE')
     let totalOpenRestaurants
-    if('totalSize' in filteredRestaurants ){
-        totalOpenRestaurants=filteredRestaurants?.totalSize
-    }else{
-        totalOpenRestaurants=(filteredRestaurants?.cards?.length > 1)? filteredRestaurants?.cards?.[2]?.data?.data?.totalOpenRestaurants:filteredRestaurants?.cards?.[0]?.data?.data?.totalOpenRestaurants
+    if ('totalSize' in filteredRestaurants) {
+        totalOpenRestaurants = filteredRestaurants?.totalSize
+    } else {
+        totalOpenRestaurants = (filteredRestaurants?.cards?.length > 1) ? filteredRestaurants?.cards?.[2]?.data?.data?.totalOpenRestaurants : filteredRestaurants?.cards?.[0]?.data?.data?.totalOpenRestaurants
     }
 
     return (
         <>
             <div className=' flex  justify-between w-4/5 mt-10 mb-2 mx-auto  '>
                 <p className='text-[27px] font-bold text-ttlRestroHeading'>{(filteredRestaurants.length === 0) ? "Finding restaurants..." : totalOpenRestaurants + " restaurants"} </p>
-                <div className='flex justify-between items-center w-4/6'>
+                <div className='flex justify-between items-center w-4/6 '>
                     <NavLink to="/Search" className="h-full flex justify-around items-center text-[rgba(61,65,82,1)] w-20 hover:text-headerHoverColor  fill-[#686b78] hover:fill-headerHoverColor">
                         {searchLogo}
                         <p>Search</p>
                     </NavLink>
                     {(allRestaurants.length === 0) ? "yo" :
                         sortbtn.map(({ title, key }) => {
-                            return <button
-                                className={` text-sortByBtnColor hover:text-sortByBtnHoverColor  w-30`}
-                                key={key}
-                                onClick={() => {
-                                    setUrl({ sortBy: `${key}` })
-                                    setFilteredRestaurants([])
-                                    restroSorting(key, setFilteredRestaurants, location)
+                            return <>
+                                <button
+                                    className={` text-sortByBtnColor hover:text-sortByBtnHoverColor relative w-30 `}
+                                    key={key}
+                                    onClick={() => {
+                                        setUrl({ sortBy: `${key}` })
+                                        setFilteredRestaurants([])
+                                        restroSorting(key, setFilteredRestaurants, location)
+                                        setSelectedBtnStyle(key)
+                                    }}
+                                >
+                                    {title}
+                                    <div className={`${(selectedBtnStyle === key) ? "w-full h-[2px]  bg-ttlRestroHeading absolute -bottom-4" : ""}`}></div>
+                                </button>
 
-                                }}
-                            >
-                                {title}
-                            </button>
+                            </>
                         })
                     }
                     <button className='ml-2 flex justify-betweem w-50 items-center hover:text-headerHoverColor  ' onClick={() => setFilterBar(true)}>
@@ -54,6 +58,7 @@ const SortByBtn = (props) => {
             </div>
 
             <hr className='w-4/5 m-auto ' />
+
         </>
     )
 }

@@ -47,7 +47,7 @@ const Offers = () => {
           <button className={` text-xl hover:text-ttlRestroHeading ${(showMain) ? ' text-ttlRestroHeading font-medium  ' : "font-normal text-locationError "}`} onClick={() => setShowMain(true)}>Restaurant offers</button>
           <button className={`ml-5  text-xl hover:text-ttlRestroHeading ${!(showMain) ? ' text-ttlRestroHeading font-medium  ' : "font-normal text-locationError "}`} onClick={() => setShowMain(false)}>Payment offers/Coupons</button>
         </div>
-        <div className={`w-2 h-[1px] ease-in-out  duration-500 transition  bg-ttlRestroHeading absolute bottom-0 ${(showMain) ? " translate-x-[155px] w-40":" w-56 translate-x-[330px]"}`}></div>
+        <div className={`w-2 h-[2px] ease-in-out  duration-500 transition  bg-ttlRestroHeading absolute bottom-0 ${(showMain) ? " translate-x-[155px] w-40":" w-56 translate-x-[330px]"}`}></div>
       </div>
 
       <div>
