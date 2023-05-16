@@ -8,9 +8,9 @@ export const filterData = (allRestaurants, input) => {
 
     return result;
 }
-export const restroSorting = async (sortKey,setFilteredRestaurants,location) => {
+export const restroSorting = async (sortKey,setFilteredRestaurants,location,filter) => {
 
-    const data = await fetch(` https://www.swiggy.com/dapi/restaurants/list/v5?lat=${location.lat}&lng=${location.lng}&sortBy=${sortKey}&page_type=DESKTOP_WEB_LISTING`)
+    const data = await fetch(` https://www.swiggy.com/dapi/restaurants/list/v5?lat=${location.lat}&lng=${location.lng}&sortBy=${sortKey}${(filter===undefined)?'':"&filter="}&page_type=DESKTOP_WEB_LISTING`)
     const json = await data.json();
     setFilteredRestaurants(json?.data);
 }
@@ -21,4 +21,16 @@ export const  facet=(selectedBtnArr) =>{
     return selectedBtnArr.map((btn, index) => {
         return (index === 0 ? "%7B" : "%2C") + "%22" + btn.id + "%22%3A%5B%7B%22id%22%3A%22" + btn.infoId + "%22%2C%22operator%22%3A%22" + btn.infoOperater + "%22%2C%22label%22%3A%22" + btn.faceLabel + "%22%7D%5D"
     }).join("").replace('+', "%2B") + "%7D"
+}
+export function btn(setCopied, copied, couponCode) {
+    return <button
+        className={`border py-2 px-5 mt-2 font-bold  border-headerHoverColor hover:shadow-[0_2px_8px_#d4d5d9]  text-sm ${(copied === couponCode) ? "px-9 border-neutral-400 text-stone-600" : "  text-headerHoverColor"}`}
+        onClick={() => {
+            setCopied(couponCode)
+            navigator.clipboard.writeText(couponCode);
+        }}
+    >
+        {(copied === couponCode) ? "COPIED" : "COPY CODE"}
+    </button>
+
 }

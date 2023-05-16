@@ -36,8 +36,9 @@ const Accordian = (props) => {
                         isVisible &&
                         <>
                             {
-                                descriptionarr?.map((desc) => {
-                                    return <p className='text-sm text-sortByBtnColor text-left  flex flex-col'>{desc}</p>
+                                descriptionarr?.map((desc,index) => {
+                                    
+                                    return <p key={index} className='text-sm text-sortByBtnColor text-left  flex flex-col'>{desc}</p>
                                 })
                             }
 

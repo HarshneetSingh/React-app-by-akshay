@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import RestaurantOffers from './bodyInnerComps/OffersUI/RestaurantOffers'
 import PaymentOffers from './bodyInnerComps/OffersUI/PaymentOffers'
-import OfferIMG from '../../assets/OfferIMG.webp'
 import LocationContext from '../../utils/LocationContext'
 import Shimmer from './bodyInnerComps/RestaurantOffersUI/Shimmer'
 async function getRestaurant(location, setRestaurant) {
@@ -37,7 +36,7 @@ const Offers = () => {
             <p className='text-[21px] mt-1 opacity-80'>Explore top deals and offers exclusively for you!</p>
           </div>
           <div>
-            <img src={OfferIMG} alt="Error" className='w-[270px] h-48' />
+            <img src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/KHu24Gqw_md3ham" alt="Error" className='w-[270px] h-48' />
           </div>
         </div>
       </div >

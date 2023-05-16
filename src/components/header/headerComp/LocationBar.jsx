@@ -84,7 +84,7 @@ const LocationBar = (props) => {
               // * if location length is 0
               (areas.length === 0) ? (
                 <div className='float-right w-2/3 flex flex-col items-center justify-center absolute right-10'>
-                  <img className='mx-20 mt-10 ' src={require('../../../assets/locationError.png')} width="200" height="200" alt="LocationError" />
+                  <img className='mx-20 mt-10 ' src=	"https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_404,h_400/empty_location_unserviceable_3x_dt3civ" width="200" height="200" alt="LocationError" />
                   <p className='font-semibold text-xl text-ttlRestroHeading my-5'>No results</p>
                   <p className=" text-sm text-locationError">Are you sure you entered the right location?</p>
                 </div>

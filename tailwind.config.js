@@ -14,7 +14,8 @@ module.exports = {
         'cardHover': '#3a3c41',
         'locationError': '#93959f',
         "selectedBgColor": "#3e4152",
-        "selectedBorderColor": "#1B1E24"
+        "selectedBorderColor": "#1B1E24",
+        "lightColor": "#535665"
       },
         keyframes:{
         rightSlash:{

@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react'
 import { NavLink, useOutletContext, useSearchParams } from 'react-router-dom'
 import { searchLogo, restroSorting } from '../../../../utils/helper'
+import SortFilterContext from '../../../../utils/SortFilterContext'
+
 import LocationContext from '../../../../utils/LocationContext'
 
 const filterSvg = <svg className="fill-headerHoverColor " xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"><path d="M22.906 2.841c1.104-2.412-7.833-2.841-10.907-2.841-2.934 0-12.01.429-10.906 2.841.508 1.11 8.907 12.916 8.907 12.916v5.246l4 2.997v-8.243s8.398-11.806 8.906-12.916zm-10.901-.902c4.243 0 8.144.575 8.144 1.226s-3.9 1.18-8.144 1.18-8.042-.528-8.042-1.18 3.799-1.226 8.042-1.226z" /></svg>
@@ -9,6 +11,7 @@ const filterSvg = <svg className="fill-headerHoverColor " xmlns="http://www.w3.o
 const SortByBtn = (props) => {
     const { filteredRestaurants, allRestaurants, setFilteredRestaurants } = props
     const [location] = useContext(LocationContext)
+    const [selectedSort, setSelectedSort] = useContext(SortFilterContext)
     const sortbtn = allRestaurants?.sorts
     const [setFilterBar] = useOutletContext();
     const [url, setUrl] = useSearchParams()
@@ -31,22 +34,25 @@ const SortByBtn = (props) => {
                     </NavLink>
                     {(allRestaurants.length === 0) ? "yo" :
                         sortbtn.map(({ title, key }) => {
-                            return <>
+                            return <div key={key}>
                                 <button
                                     className={` text-sortByBtnColor hover:text-sortByBtnHoverColor relative w-30 `}
-                                    key={key}
+
                                     onClick={() => {
                                         setUrl({ sortBy: `${key}` })
                                         setFilteredRestaurants([])
-                                        restroSorting(key, setFilteredRestaurants, location)
-                                        setSelectedBtnStyle(key)
+                                        restroSorting(key, setFilteredRestaurants, location,selectedSort.filter)
+                                        setSelectedSort({
+                                            ...selectedSort,
+                                            sort: key
+                                        })
                                     }}
                                 >
                                     {title}
-                                    <div className={`${(selectedBtnStyle === key) ? "w-full h-[2px]  bg-ttlRestroHeading absolute -bottom-4" : ""}`}></div>
+                                    <div className={`${(selectedSort.sort === key) ? "w-full h-[2px]  bg-ttlRestroHeading absolute -bottom-4" : ""}`}></div>
                                 </button>
 
-                            </>
+                            </div>
                         })
                     }
                     <button className='ml-2 flex justify-betweem w-50 items-center hover:text-headerHoverColor  ' onClick={() => setFilterBar(true)}>

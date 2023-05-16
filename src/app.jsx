@@ -13,10 +13,14 @@ import FilterBar from "./components/body/bodyInnerComps/RestaurantUI/FilterBar";
 import LocationBar from "./components/header/headerComp/LocationBar";
 import RestaurantMenu from "./components/body/bodyInnerComps/RestaurantUI/RestaurantMenu";
 import AllRestaurantsContext from "./utils/AllRestroContext";
+import OfferModalContext from "./utils/OfferModalContext";
+
 import LocationContext from "./utils/LocationContext";
 import Collection from "./components/body/bodyInnerComps/RestaurantUI/Collection";
 import HomeMain from "./components/body/bodyInnerComps/RestaurantUI/HomeMain";
 import useRestaurant from "./utils/useRestaurant";
+import OfferModalCard from "./components/body/bodyInnerComps/OffersUI/OfferModalCard";
+import SortFilterContext from "./utils/SortFilterContext";
 
 AllRestaurantsContext.displayName = "RestaurantContext";
 
@@ -27,35 +31,57 @@ const Cart = lazy(() => import("./components/body/Cart"))
 const App = () => {
     const [restaurantContext, setRestaurantContext] = useState(null)
     const [locationBarState, setLocationBar] = useState(false)
+
     const [filterBarState, setFilterBar] = useState(false)
+    const [filterArr, setFilterArr] = useState({
+        CUISINES: [],
+        SHOW_RESTAURANTS_WITH: []
+    })
+    const [selectedSort, setSelectedSort] = useState({
+        sort: "RELEVANCE",
+        filter: undefined
+    })
+
+    const [offerModalState, setOfferModalState] = useState(false)
+    const [offerModalData, setOfferModalData] = useState(null)
+    const [copied, setCopied] = useState("")
+
     const [location, setLocation] = useState({
         name: ["Other", "New Delhi, Delhi, India"],
         lat: '28.6139391',
         lng: '77.2090212'
     })
-    const [allRestaurants, filteredRestaurants, setFilteredRestaurants] = useRestaurant(location,setRestaurantContext)
+    const [allRestaurants, filteredRestaurants, setFilteredRestaurants] = useRestaurant(location, setRestaurantContext)
 
     return (
         <AllRestaurantsContext.Provider value={[restaurantContext, setRestaurantContext]} >
             <LocationContext.Provider value={[location, setLocation]}>
-                <div className="overflow-hidden  w-screen relative">
-                    {/* location bar  */}
-                    <LocationBar locationBarState={locationBarState} setLocationBar={setLocationBar} />
-                    {/* <FilterBar filterBarState={filterBarState} setFilterBar={setFilterBar} /> */}
+                <OfferModalContext.Provider value={{ offerModalData, setOfferModalData, offerModalState, setOfferModalState, copied, setCopied }}>
+                    <SortFilterContext.Provider value={[selectedSort, setSelectedSort]}>
+                        <div className="overflow-hidden  w-screen relative">
+                            {/* location bar  */}
+                            <LocationBar locationBarState={locationBarState} setLocationBar={setLocationBar} />
+                            <FilterBar location={location} filterBarState={filterBarState} setFilterBar={setFilterBar} filterArr={[filterArr, setFilterArr]} setFilteredRestaurants={setFilteredRestaurants} />
+                            <OfferModalCard offerModalState={offerModalState} copied={copied} setCopied={setCopied} />
+                            <div className={`  ${(locationBarState === true || filterBarState === true || offerModalState === true) ? `pointer-events-none  h-screen ` : " opacity-1 "}  `}
+                            >
+                                {/* Header */}
+                                <Header locBarStateFunc={setLocationBar} />
 
-                    <div className={`  ${(locationBarState === true || filterBarState === true) ? `pointer-events-none  h-screen ` : " opacity-1 "}  `}
-                    >
-                        {/* Header */}
-                        <Header locBarStateFunc={setLocationBar} />
+                                {/* Body */}
+                                <div className="pt-20">
 
-                        {/* Body */}
-                        <div className="pt-20">
-                            <Outlet context={[setFilterBar,[allRestaurants, filteredRestaurants, setFilteredRestaurants]]} />
+                                    <Outlet context={[setFilterBar, [allRestaurants, filteredRestaurants, setFilteredRestaurants], [filterArr, setFilterArr]]} />
+                                </div>
+                                {/* footer */}
+                                <Footer />
+                            </div>
+
+
                         </div>
-                        {/* footer */}
-                        <Footer />
-                    </div>
-                </div>
+                    </SortFilterContext.Provider>
+                </OfferModalContext.Provider>
+
             </LocationContext.Provider>
         </AllRestaurantsContext.Provider>
     )
@@ -74,7 +100,7 @@ const appRouter = createBrowserRouter([
                     {
                         path: "/",
                         element: <HomeMain />
-                        
+
                     },
                     {
                         path: "/restaurant/:stringResid",
@@ -104,7 +130,7 @@ const appRouter = createBrowserRouter([
                 element: <Help />
             }
         ]
-    }   
+    }
 ])
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

@@ -8,6 +8,7 @@ const HomeMain = () => {
   const restroDetails=useOutletContext()
   
   const [allRestaurants, filteredRestaurants, setFilteredRestaurants]=restroDetails[1]
+  const filterArr=restroDetails[2]
   const photosCards= allRestaurants?.cards?.[0]
     return allRestaurants.length === 0 ? <Shimmer /> : (    
         <div>
@@ -20,7 +21,7 @@ const HomeMain = () => {
 
 
                 {/* Restaurant UI  */}
-                <RestaurantUI filteredRestaurants={filteredRestaurants} allRestaurants={allRestaurants} setFilteredRestaurants={setFilteredRestaurants} />
+                <RestaurantUI filteredRestaurants={filteredRestaurants} allRestaurants={allRestaurants} setFilteredRestaurants={setFilteredRestaurants} filterArr={filterArr}/>
 
 
             </div>
