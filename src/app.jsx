@@ -33,15 +33,16 @@ const App = () => {
     const [locationBarState, setLocationBar] = useState(false)
 
     const [filterBarState, setFilterBar] = useState(false)
-    const [filterArr, setFilterArr] = useState({
-        CUISINES: [],
-        SHOW_RESTAURANTS_WITH: []
-    })
+    const [filterArr, setFilterArr] = useState(
+        [
+            { CUISINES: [] },
+            { SHOW_RESTAURANTS_WITH: [] }
+        ]
+    )
     const [selectedSort, setSelectedSort] = useState({
         sort: "RELEVANCE",
         filter: undefined
     })
-
     const [offerModalState, setOfferModalState] = useState(false)
     const [offerModalData, setOfferModalData] = useState(null)
     const [copied, setCopied] = useState("")
@@ -76,12 +77,9 @@ const App = () => {
                                 {/* footer */}
                                 <Footer />
                             </div>
-
-
                         </div>
                     </SortFilterContext.Provider>
                 </OfferModalContext.Provider>
-
             </LocationContext.Provider>
         </AllRestaurantsContext.Provider>
     )

@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 
 const FilterBarBtn = (props) => {
     const [clickUnclick, setClickUnclick] = useState(true)
-    const {filterName,index,filterArr,setFilterArr,filter}=props
+    const { filterName, index, filterArr, setFilterArr, filter } = props
+const ind=index
     return (
         <button
             className='text-left mb-2 mr-2'
@@ -13,18 +14,18 @@ const FilterBarBtn = (props) => {
                     if (clickUnclick === true) {
                         if (filterName.key === "CUISINES") {
                             setFilterArr(
-                                {
-                                    CUISINES: [...filterArr.CUISINES, filter?.option],
-                                    SHOW_RESTAURANTS_WITH: filterArr.SHOW_RESTAURANTS_WITH
-                                }
+                                [
+                                    { CUISINES: [...filterArr[0].CUISINES, filter?.option] },
+                                    { SHOW_RESTAURANTS_WITH: filterArr[1].SHOW_RESTAURANTS_WITH }
+                                ]
                             )
 
                         } else {
                             setFilterArr(
-                                {
-                                    CUISINES: filterArr.CUISINES,
-                                    SHOW_RESTAURANTS_WITH: [...filterArr.SHOW_RESTAURANTS_WITH, filter?.option]
-                                }
+                                [
+                                    { CUISINES: filterArr[0].CUISINES },
+                                    { SHOW_RESTAURANTS_WITH: [...filterArr[1].SHOW_RESTAURANTS_WITH, filter?.option] }
+                                ]
                             )
 
                         }
@@ -32,18 +33,19 @@ const FilterBarBtn = (props) => {
                     } else {
                         if (filterName.key === "CUISINES") {
                             setFilterArr(
-                                {
-                                    CUISINES:filterArr.CUISINES.slice(index+1),
-                                    SHOW_RESTAURANTS_WITH: filterArr.SHOW_RESTAURANTS_WITH
-                                }
+                                [
+                                    { CUISINES: filterArr[0].CUISINES.filter((cuisine)=>cuisine!==filter?.option) },
+                                    { SHOW_RESTAURANTS_WITH: filterArr[1].SHOW_RESTAURANTS_WITH }
+                                ]
+                                
                             )
 
                         } else {
                             setFilterArr(
-                                {
-                                    CUISINES: filterArr.CUISINES,
-                                    SHOW_RESTAURANTS_WITH: filterArr.SHOW_RESTAURANTS_WITH.slice(index+1)
-                                }
+                                [
+                                    { CUISINES: filterArr[0].CUISINES },
+                                    { SHOW_RESTAURANTS_WITH: filterArr[1].SHOW_RESTAURANTS_WITH.filter((cuisine)=>cuisine!==filter?.option) }
+                                ]
                             )
 
                         }
