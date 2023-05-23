@@ -1,4 +1,7 @@
-import { useOutletContext } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useOutletContext, useSearchParams } from "react-router-dom";
+import LocationContext from "./LocationContext";
+import SortFilterContext from "./SortFilterContext";
 
 export const filterData = (allRestaurants, input) => {
 
@@ -36,23 +39,32 @@ export function btn(setCopied, copied, couponCode) {
 
 }
 export function FilterSelectedBtn(props) {
+
     const yo = useOutletContext()
-    const { filterArr, setFilterArr } = yo[2]
-    console.log(filterArr)
-    return <div className="w-4/5 m-auto">
+    const [location] = useContext(LocationContext)
+    const [url, setUrl] = useSearchParams();
+    const [selectedSort, setSelectedSort] = useContext(SortFilterContext)
+    const [filterArr, setFilterArr] = yo[2]
+    const [hello,sethello]=useState(false)
+    useEffect(()=>{
+        if(hello===true){
+        }
+    },[sethello])
+        return <div className="w-4/5 m-auto">
         {
             props.filters?.map((category) => {
-                console.log(category)
                 return category?.options.map((filterName) => {
                     return (filterName?.selected === 1) ? <button
-                    onClick={() => {
-                        setFilterArr(
-                            [
-                                { CUISINES: filterArr[0].CUISINES.filter((cuisine)=>cuisine!==filterName?.option) },
-                                { SHOW_RESTAURANTS_WITH: filterArr[1].SHOW_RESTAURANTS_WITH }
-                            ]
-                        )
-                    }}
+                        onClick={async () => {
+                            setFilterArr(
+                                [
+                                    { CUISINES: filterArr[0].CUISINES.filter((cuisine) => cuisine !== filterName?.option) },
+                                    { SHOW_RESTAURANTS_WITH: filterArr[1].SHOW_RESTAURANTS_WITH }
+                                ]
+                            )
+                             updateRestroByfiltering(filterArr, props.setFilteredRestaurants, setUrl, location, selectedSort, setSelectedSort)
+
+                        }}
                         className="mr-2">{filterName?.option}</button> : ""
                 })
             })
@@ -60,5 +72,38 @@ export function FilterSelectedBtn(props) {
     </div>
 
 }
+export function updateRestroByfiltering(filterArr, setFilteredRestaurants, setUrl, location, selectedSort, setSelectedSort) {
 
+    let urlString = filterArr.map((condition, index) => {
+        const conditionName = Object.keys(condition);
+        const conditionValue = Object.values(condition);
+        return conditionValue[0].length === 0
+            ? ""
+            : (index === 0 ? "%7B" : "%2C") +
+            "%22" +
+            conditionName +
+            "%22%3A" +
+            conditionValue[0]
+                .map((child, indx) => {
+                    return (
+                        (indx === 0 ? "%5B" : "%2C") + "%22" + child + "%22"
+                    );
+                })
+                .join("") +
+            "%5D";
+    });
+    urlString = urlString.join("").replace(" ", "%20") + "%7D";
+    updatingFilter(urlString, setFilteredRestaurants, setUrl, location, selectedSort, setSelectedSort)
+}
 
+function updatingFilter(urlString, setFilteredRestaurants, setUrl, location, selectedSort, setSelectedSort) {
+    
+    setUrl({ filter: `${urlString}` })
+    setFilteredRestaurants([])
+    console.log(urlString)
+    restroSorting(selectedSort.sort, setFilteredRestaurants, location, urlString)
+    setSelectedSort({
+        ...selectedSort,
+        filter: urlString
+    })
+}

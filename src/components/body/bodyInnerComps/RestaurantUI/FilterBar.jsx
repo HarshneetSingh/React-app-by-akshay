@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import AllRestaurantsContext from "../../../../utils/AllRestroContext";
 import SortFilterContext from "../../../../utils/SortFilterContext";
-import { restroSorting } from "../../../../utils/helper";
+import {updateRestroByfiltering} from "../../../../utils/helper";
 import FilterBarBtn from "./filterBarBtn";
 import { useSearchParams } from "react-router-dom";
 
@@ -64,32 +64,7 @@ const FilterBar = (props) => {
                     </button>
                     <button
                         onClick={() => {
-                            let urlString = filterArr.map((condition, index) => {
-                                const conditionName = Object.keys(condition);
-                                const conditionValue = Object.values(condition);
-                                return conditionValue[0].length === 0
-                                    ? ""
-                                    : (index === 0 ? "%7B" : "%2C") +
-                                    "%22" +
-                                    conditionName +
-                                    "%22%3A" +
-                                    conditionValue[0]
-                                        .map((child, indx) => {
-                                            return (
-                                                (indx === 0 ? "%5B" : "%2C") + "%22" + child + "%22"
-                                            );
-                                        })
-                                        .join("") +
-                                    "%5D";
-                            });
-                            urlString = urlString.join("").replace(" ", "%20") + "%7D";
-                            setUrl({ filter: `${urlString}` })
-                            props.setFilteredRestaurants([])
-                            restroSorting(selectedSort.sort, props.setFilteredRestaurants, props.location, urlString)
-                            setSelectedSort({
-                                ...selectedSort,
-                                filter: urlString
-                            })
+                            updateRestroByfiltering(filterArr, props.setFilteredRestaurants,setUrl,props.location,selectedSort,setSelectedSort)
                         }}
                         className="h-[50px] px-10 text-white bg-headerHoverColor  border-headerHoverColor shadow-[0_1px_3px_0_rgba(0,0,0,.12)] hover:shadow-[0_2px_8px_#d4d5d9] border"
                     >
