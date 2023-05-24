@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useOutletContext, useSearchParams } from "react-router-dom";
+import { useOutletContext, useSearchParams,useLocation, useHistory } from "react-router-dom";
 import LocationContext from "./LocationContext";
 import SortFilterContext from "./SortFilterContext";
 
@@ -46,23 +46,27 @@ export function FilterSelectedBtn(props) {
     const [selectedSort, setSelectedSort] = useContext(SortFilterContext)
     const [filterArr, setFilterArr] = yo[2]
     const [hello,sethello]=useState(false)
+  
     useEffect(()=>{
+        console.log("hiii")
         if(hello===true){
+            updateRestroByfiltering(filterArr, props.setFilteredRestaurants, setUrl,url, location, selectedSort, setSelectedSort)
+            sethello(false);
         }
-    },[sethello])
+    },[hello])
         return <div className="w-4/5 m-auto">
         {
             props.filters?.map((category) => {
                 return category?.options.map((filterName) => {
                     return (filterName?.selected === 1) ? <button
-                        onClick={async () => {
+                        onClick={ () => {
                             setFilterArr(
                                 [
                                     { CUISINES: filterArr[0].CUISINES.filter((cuisine) => cuisine !== filterName?.option) },
                                     { SHOW_RESTAURANTS_WITH: filterArr[1].SHOW_RESTAURANTS_WITH }
                                 ]
                             )
-                             updateRestroByfiltering(filterArr, props.setFilteredRestaurants, setUrl, location, selectedSort, setSelectedSort)
+                            sethello(true);
 
                         }}
                         className="mr-2">{filterName?.option}</button> : ""
@@ -72,7 +76,7 @@ export function FilterSelectedBtn(props) {
     </div>
 
 }
-export function updateRestroByfiltering(filterArr, setFilteredRestaurants, setUrl, location, selectedSort, setSelectedSort) {
+export function updateRestroByfiltering(filterArr, setFilteredRestaurants, setUrl,url, location, selectedSort, setSelectedSort) {
 
     let urlString = filterArr.map((condition, index) => {
         const conditionName = Object.keys(condition);
@@ -93,17 +97,26 @@ export function updateRestroByfiltering(filterArr, setFilteredRestaurants, setUr
             "%5D";
     });
     urlString = urlString.join("").replace(" ", "%20") + "%7D";
-    updatingFilter(urlString, setFilteredRestaurants, setUrl, location, selectedSort, setSelectedSort)
+    updatingFilter(urlString, setFilteredRestaurants, setUrl,url, location, selectedSort, setSelectedSort)
 }
 
-function updatingFilter(urlString, setFilteredRestaurants, setUrl, location, selectedSort, setSelectedSort) {
+function updatingFilter(urlString, setFilteredRestaurants, setUrl,url, location, selectedSort, setSelectedSort) {
+    if(urlString.includes("3A")){
+        setUrl({ filter: `${urlString}` })
+        setSelectedSort({
+            ...selectedSort,
+            filter: urlString
+        })
+    }else{
+        urlString=undefined
+        setUrl(url.delete('filter'))
+        setSelectedSort({
+            ...selectedSort,
+            filter: undefined
+        })
+    }
     
-    setUrl({ filter: `${urlString}` })
     setFilteredRestaurants([])
-    console.log(urlString)
     restroSorting(selectedSort.sort, setFilteredRestaurants, location, urlString)
-    setSelectedSort({
-        ...selectedSort,
-        filter: urlString
-    })
+   
 }

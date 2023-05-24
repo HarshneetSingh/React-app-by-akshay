@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import AllRestaurantsContext from "../../../../utils/AllRestroContext";
 import SortFilterContext from "../../../../utils/SortFilterContext";
 import {updateRestroByfiltering} from "../../../../utils/helper";
-import FilterBarBtn from "./filterBarBtn";
+import FilterBarBttn from "./FilterBarBttn";
 import { useSearchParams } from "react-router-dom";
 
 const FilterBar = (props) => {
@@ -37,7 +37,7 @@ const FilterBar = (props) => {
                                 <div className="w-full  grid grid-cols-2">
                                     {filterName?.options.map((filter, index) => {
                                         return (
-                                            <FilterBarBtn
+                                            <FilterBarBttn
                                                 key={index}
                                                 index={index}
                                                 filterName={filterName}
@@ -64,7 +64,10 @@ const FilterBar = (props) => {
                     </button>
                     <button
                         onClick={() => {
-                            updateRestroByfiltering(filterArr, props.setFilteredRestaurants,setUrl,props.location,selectedSort,setSelectedSort)
+                            updateRestroByfiltering(filterArr, props.setFilteredRestaurants,setUrl,url,props.location,selectedSort,setSelectedSort)
+                            props.setFilterBar((prevState) => {
+                                if (prevState === true) return false;
+                            })
                         }}
                         className="h-[50px] px-10 text-white bg-headerHoverColor  border-headerHoverColor shadow-[0_1px_3px_0_rgba(0,0,0,.12)] hover:shadow-[0_2px_8px_#d4d5d9] border"
                     >
@@ -90,10 +93,3 @@ const FilterBar = (props) => {
 
 export default FilterBar;
 
-// %7B%22CUISINES%22%3A%5B%22Andhra%22%2C%22Afghani%22%2C%22American%22%5D%2C%22SHOW_RESTAURANTS_WITH%22%3A%5B%22Pure%20Veg%22%5D%7D
-
-// %7B%22CUISINES%22%3A%5B%22American%22%5D%7D
-// %7B%22CUISINES%22%3A%5B%22American%22%2C%22Arabian%22%5D%7D
-
-// %7B%22CUISINES%22%3A%5B%22Afghani%22%5D%2C%22SHOW_RESTAURANTS_WITH%22%3A%5B%22Pure%20Veg%22%5D%7D
-// %7B%22CUISINES%22%3A%5B%22Andhra%22%2C%22Afghani%22%2C%22American%22%5D%2C%22SHOW_RESTAURANTS_WITH%22%3A%5B%22Pure%20Veg%22%5D%7D
