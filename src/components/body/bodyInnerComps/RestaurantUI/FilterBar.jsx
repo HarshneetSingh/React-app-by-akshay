@@ -53,7 +53,7 @@ const FilterBar = (props) => {
                     })}
                 </div>
                 {/* Filter footer */}
-                <div className=" pl-10 sticky bottom-0 font-bold bg-white text-sm w-full py-5 shadow-[0_-2px_4px_0_#e9e9eb] left-0  ">
+                <div className=" pl-10 absolute bottom-0 font-bold bg-white text-sm w-full py-5 shadow-[0_-2px_4px_0_#e9e9eb] left-0  ">
                     <button
                         className="h-[50px]  border border-lightColor px-7 mr-4   text-lightColor opacity-50"
                         onClick={() => {

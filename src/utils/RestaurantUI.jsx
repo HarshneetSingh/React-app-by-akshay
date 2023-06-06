@@ -4,7 +4,10 @@ import RestaurantList from '../components/body/bodyInnerComps/RestaurantUI/Resta
 import Shimmer from '../components/body/bodyInnerComps/RestaurantUI/Shimmer'
 import { FilterSelectedBtn } from './helper'
 const RestaurantUI = (props) => {
+    console.log(props.filteredRestaurants)
+ 
     const restaurants = (props.filteredRestaurants?.cards?.length > 1) ? props.filteredRestaurants?.cards?.[2].data?.data?.cards : props.filteredRestaurants?.cards?.[0].data?.data?.cards
+    console.log(restaurants)
     return (
         <>
             <SortByBtn filteredRestaurants={props.filteredRestaurants} allRestaurants={props.allRestaurants} setFilteredRestaurants={props.setFilteredRestaurants} />

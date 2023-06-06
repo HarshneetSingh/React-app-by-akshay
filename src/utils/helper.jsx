@@ -48,7 +48,7 @@ export function FilterSelectedBtn(props) {
     const [hello, sethello] = useState(false)
 
     useEffect(() => {
-        console.log("hiii")
+        
         if (hello === true) {
             updateRestroByfiltering(filterArr, props.setFilteredRestaurants, setUrl, url, location, selectedSort, setSelectedSort)
             sethello(false);
@@ -91,42 +91,22 @@ export function FilterSelectedBtn(props) {
         }
     </div>
 
-
-
-    // filterData?.map((filterName, index) => {
-    //     return (
-    //         <div key={index}>
-    //             <div>{filterName.title}</div>
-    //             <div className="w-full  grid grid-cols-2">
-    //                 {filterName?.options.map((filter, index) => {
-    //                     return (
-    //                         <FilterBarBttn
-    //                             key={index}
-    //                             index={index}
-    //                             filterName={filterName}
-    //                             filterArr={filterArr}
-    //                             setFilterArr={setFilterArr}
-    //                             filter={filter}
-    //                         />
-    //                     );
-    //                 })}
-    //             </div>
-    //         </div>
-    //     );
-    // })
-
-
-
-
 }
 export function updateRestroByfiltering(filterArr, setFilteredRestaurants, setUrl, url, location, selectedSort, setSelectedSort) {
 
+    const filterArrValue = filterArr.map((maal)=>Object.values(maal));
+    console.log(filterArrValue)
+    console.log(filterArrValue[0])
+    console.log(filterArrValue[1])
+    
+console.log(filterArrValue[0][0].length)
     let urlString = filterArr.map((condition, index) => {
+    
         const conditionName = Object.keys(condition);
         const conditionValue = Object.values(condition);
-        return conditionValue[0].length === 0
+        return (conditionValue[0].length === 0)
             ? ""
-            : (index === 0 ? "%7B" : "%2C") +
+            : ((index === 0 ||filterArrValue[0][0].length ===0) ? "%7B" : "%2C") +
             "%22" +
             conditionName +
             "%22%3A" +
@@ -163,3 +143,10 @@ function updatingFilter(urlString, setFilteredRestaurants, setUrl, url, location
     restroSorting(selectedSort.sort, setFilteredRestaurants, location, urlString)
 
 }
+
+
+
+
+// https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6139391&lng=77.2090212&sortBy=RELEVANCE&filters=%7B%22SHOW_RESTAURANTS_WITH%22%3A%5B%22Pure%20Veg%22%5D%7D&page_type=DESKTOP_WEB_LISTING
+
+// https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6139391&lng=77.2090212&sortBy=RELEVANCE&filters=%2C%22SHOW_RESTAURANTS_WITH%22%3A%5B%22Pure%20Veg%22%5D%7D&page_type=DESKTOP_WEB_LISTING
