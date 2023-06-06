@@ -8,7 +8,7 @@ const HomeMain = () => {
   const restroDetails=useOutletContext()
   const [allRestaurants, filteredRestaurants, setFilteredRestaurants]=restroDetails[1]
   const photosCards= allRestaurants?.cards?.[0]
-    return allRestaurants.length === 0 ? <Shimmer /> : (    
+    return( allRestaurants.length === 0 && filteredRestaurants.length===0) ? <Shimmer /> : (    
         <div>
             <div className={`body `} >
 

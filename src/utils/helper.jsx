@@ -95,10 +95,7 @@ export function FilterSelectedBtn(props) {
 export function updateRestroByfiltering(filterArr, setFilteredRestaurants, setUrl, url, location, selectedSort, setSelectedSort) {
 
     const filterArrValue = filterArr.map((maal)=>Object.values(maal));
-    console.log(filterArrValue)
-    console.log(filterArrValue[0])
-    console.log(filterArrValue[1])
-    
+
 console.log(filterArrValue[0][0].length)
     let urlString = filterArr.map((condition, index) => {
     

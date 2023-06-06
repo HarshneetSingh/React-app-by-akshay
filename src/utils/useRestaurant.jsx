@@ -7,7 +7,6 @@ const useRestaurant = (location,setRestaurantContext) => {
 
     const [allRestaurants, setRestaurants] = useState([])
     const [filteredRestaurants, setFilteredRestaurants] = useState([])
-    const [filterSelected,setFilterSelected] = useState([])
     useEffect(() => {
         setRestaurants([])
         getRestaurants()
