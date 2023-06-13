@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require('tailwindcss/plugin')
 module.exports = {
   content: [
     "./src/**/*.{html,jsx,}",
@@ -15,7 +16,9 @@ module.exports = {
         'locationError': '#93959f',
         "selectedBgColor": "#3e4152",
         "selectedBorderColor": "#1B1E24",
-        "lightColor": "#535665"
+        "lightColor": "#535665",
+        "restroCardBorder":"#e9e9eb",
+        "darkOrange":"#e46d47"
       },
         keyframes:{
         rightSlash:{
@@ -25,5 +28,20 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function({ addUtilities, addComponents, e, prefix, config }) {
+      const newUtilities = {
+        '.horizontal-tb': {
+          writingMode: 'horizontal-tb',
+        },
+        '.vertical-rl': {
+          writingMode: 'vertical-rl'
+        },
+        '.vertical-lr': {
+          writingMode: 'vertical-lr'
+        }
+      }
+      addUtilities(newUtilities)
+    })
+  ],
 }

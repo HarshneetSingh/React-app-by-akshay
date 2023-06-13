@@ -7,11 +7,13 @@
         font-family: 'Figtree', sans-serif;
         line-height: 1.2;
         letter-spacing: 0;
-        
     }
 
     body::-webkit-scrollbar {
         display: none;
+    }
+    ::-webkit-scrollbar{
+      display: none;
     }
 }
  /* ,
