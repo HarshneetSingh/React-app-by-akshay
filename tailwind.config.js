@@ -18,13 +18,23 @@ module.exports = {
         "selectedBorderColor": "#1B1E24",
         "lightColor": "#535665",
         "restroCardBorder":"#e9e9eb",
-        "darkOrange":"#e46d47"
+        "darkOrange":"#e46d47",
+        "lightGray":"#f1f1f6"
       },
         keyframes:{
         rightSlash:{
           '0%':{left:'1px'},
           '100%':{left:'16px'},
         }
+      },
+      height:{
+        'fourteenpx':"14px",
+        'sevenpx':"7px"
+      },
+      width:{
+        'fourteenpx':"14px",
+        'sevenpx':"7px"
+
       }
     },
   },

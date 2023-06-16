@@ -43,7 +43,7 @@ const RestaurantMenu = () => {
     return restaurantMenu === null ? <Shimmer /> : (
 
         <div className='w-full h-full mt-1'>
-            <div className='w-2/4 m-auto '>
+            <div className='w-[51%] m-auto flex flex-col '>
                 {/* home link and search */}
                 <div className='flex justify-between font-medium text-locationError my-8'>
                     <p className='text-[10px] mr-2'><span className='hover:text-lightColor'><Link to='/'>Home </Link></span> <span className='mx-1'>/</span> <span className='text-lightColor '> {restaurantInfo?.name}</span></p>
@@ -67,7 +67,7 @@ const RestaurantMenu = () => {
                             const Title = dishes?.card?.card?.title
                             let itemCards = (dishes?.card?.card?.hasOwnProperty('categories')) ? dishes?.card?.card?.categories : dishes?.card?.card?.itemCards
                             return (
-                                (dishes?.card?.card?.hasOwnProperty('categories')) ? <ShowingCategoryWise Title={Title} itemCards={itemCards} /> : <ShowingRecommendedWise Title={Title} itemCards={itemCards} />
+                                (dishes?.card?.card?.hasOwnProperty('categories')) ? <ShowingCategoryWise Title={Title} itemCards={itemCards} index={index}/> : <ShowingRecommendedWise Title={Title} itemCards={itemCards} index={index}/>
                             )
                         })
                     }

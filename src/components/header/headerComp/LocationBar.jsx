@@ -3,7 +3,8 @@ import LocationContext from '../../../utils/LocationContext'
 import Loader from '../../../utils/Loader';
 
 async function getAreas(input, setAreas) {
-  const result = await fetch(`/api/place-autocomplete?input=${input}`)
+  const result = await fetch(`
+  https://www.swiggy.com/dapi/misc/place-autocomplete?input=${input}&types=`)
   const data = await result.json();
   setAreas(data?.data)
 }
@@ -15,7 +16,7 @@ async function getLocation(placeId, setLocation) {
 
   setLocation({
     name: [name1, other.join(',')],
-    lat: data?.geometry?.lctn?.lat,
+    lat: data?.geometry?.location?.lat,
     lng: data?.geometry?.location?.lng
   })
 }
