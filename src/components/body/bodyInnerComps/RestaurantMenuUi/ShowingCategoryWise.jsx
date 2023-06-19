@@ -1,19 +1,20 @@
 import React, { useState } from 'react'
+import MenuCard from './MenuCard'
 
 const ShowingCategoryWise = (props) => {
     const { Title, itemCards } = props
-    const [isVisible, setIsVisible] = useState(false)
+    const [isVisible, setIsVisible] = useState(true)
 
     return (
-        <div>
-            <p className='w-full' >{Title}</p>
-            <div>
+        <div className='w-[97%] m-auto'>
+            <p className='text-lg text-selectedBgColor  font-extrabold mt-5' >{Title}</p>
+            <div >
                 {
                     itemCards.map((card) => {
                         const title = card?.title
                         const itemCards = card?.itemCards
                         return (
-                            <button className='w-full' onClick={() => setIsVisible(prev => !prev)}>
+                            <div  className='w-full' onClick={() => setIsVisible(prev => !prev)}>
                                 <div className='flex justify-between  py-5 '>
                                     <p className="text-[17px] text-sortByBtnHoverColor group-hover:text-headerHoverColor group-hover:duration-100 ">{title}</p>
 
@@ -28,10 +29,11 @@ const ShowingCategoryWise = (props) => {
 
                                 <div>
                                     {(isVisible)?
-                                        itemCards.map((item) => {
+                                        itemCards.map((card) => {
+                                            const item = card?.card?.info
                                             return (
                                                 <div>
-                                                    kidda
+                                                   <MenuCard item={item}/>
                                                 </div>
                                             )
                                         })
@@ -39,7 +41,8 @@ const ShowingCategoryWise = (props) => {
                                         ""
                                     }
                                 </div>
-                            </button>
+                                <hr className='my-2' />
+                            </div>
                         )
                     })
                 }

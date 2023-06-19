@@ -67,7 +67,7 @@ const RestaurantMenu = () => {
                             const Title = dishes?.card?.card?.title
                             let itemCards = (dishes?.card?.card?.hasOwnProperty('categories')) ? dishes?.card?.card?.categories : dishes?.card?.card?.itemCards
                             return (
-                                (dishes?.card?.card?.hasOwnProperty('categories')) ? <ShowingCategoryWise Title={Title} itemCards={itemCards} index={index}/> : <ShowingRecommendedWise Title={Title} itemCards={itemCards} index={index}/>
+                                (dishes?.card?.card?.hasOwnProperty('categories')) ? <ShowingCategoryWise Title={Title} itemCards={itemCards} index={index} key={index} topPicks={topPicks}/> : <ShowingRecommendedWise topPicks={topPicks} Title={Title} key={index} itemCards={itemCards} index={index}/>
                             )
                         })
                     }
