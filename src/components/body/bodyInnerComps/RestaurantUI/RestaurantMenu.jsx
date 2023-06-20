@@ -24,6 +24,10 @@ const RestaurantMenu = () => {
     const restaurantInfo = restaurantMenu?.cards?.[0]?.card?.card?.info
     const offersOnRestaurant = restaurantMenu?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle?.offers
     const restroitems = restaurantMenu?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards
+    let address=[]
+    address.push(restroitems?.pop())
+    address.push(restroitems?.pop())
+    console.log(address)
     let [isVeg, topPicks, restroDishes] = [false, false, false]
 
     if (restroitems !== undefined) {
@@ -67,12 +71,33 @@ const RestaurantMenu = () => {
                             const Title = dishes?.card?.card?.title
                             let itemCards = (dishes?.card?.card?.hasOwnProperty('categories')) ? dishes?.card?.card?.categories : dishes?.card?.card?.itemCards
                             return (
-                                (dishes?.card?.card?.hasOwnProperty('categories')) ? <ShowingCategoryWise Title={Title} itemCards={itemCards} index={index} key={index} topPicks={topPicks}/> : <ShowingRecommendedWise topPicks={topPicks} Title={Title} key={index} itemCards={itemCards} index={index}/>
+                                <>
+                                {
+                                    (dishes?.card?.card?.hasOwnProperty('categories')) ? <ShowingCategoryWise Title={Title} itemCards={itemCards} index={index} key={index} topPicks={topPicks} /> : <ShowingRecommendedWise topPicks={topPicks} Title={Title} key={index} itemCards={itemCards} index={index} />
+                                }
+                                    <hr className={`  border-t-[14px] border-lightGray`} />
+
+                                </>
                             )
                         })
                     }
                 </div>
+                {/* licensing and address */}
+               { (address?.length!==0)?
+               <div className='bg-lightGray  w-full text-locationError px-3 h-60'>
+                    <div className='flex pb-5  gap-4    items-center'>
+                        <img src={`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_60,h_30/${address[1]?.card?.card?.imageId}`} alt="" />
+                        <p className='text-sm'>{address[1]?.card?.card?.text}</p>
+                    </div>
+                    <hr className='bg-slate-400 h-[2px]'/>
+                    <div className='py-2'>
+                        <p className='text-sm font-bold'>{address[0]?.card?.card?.name}</p>
+                        <p className='text-sm '>(Outlet:{address[0]?.card?.card?.area})</p>
+                        <p className='text-xs py-3'> <i class="fa-sharp fa-solid fa-location-dot mr-2" ></i>{address[0]?.card?.card?.completeAddress}</p>
+                       
+                    </div>
 
+                </div>:""}
             </div>
         </div>
     )

@@ -5,7 +5,7 @@ const MenuCard = (props) => {
     return (
         <>
 
-            <div className=' flex justify-between' key={item?.id}>
+            <div className=' flex justify-between relative' key={item?.id}>
                 <div>
                     <div className='flex mb-2 gap-x-2'>
                         <div className={` ${(item?.hasOwnProperty('isVeg') && item?.isVeg === 1) ? 'border-[#0f8a65]' : 'border-[#e43b4f]'} flex  border-2 w-[15px] h-[15px]  justify-center items-center`}>
@@ -32,19 +32,23 @@ const MenuCard = (props) => {
                     </div>
                     <p className='text-locationError font-light text-sm my-3'>{item?.description}</p>
                 </div>
-                <div className='ml-4 relative '>
-                    <button className='rounded-md w-32  gap-x-9 h-24 '>
-                        <div className='after:content-[""] after:absolute after:bg-[rgba(40,44,63,.05)] after:top-0 after:left-0 after:right-0 after:bottom-0 after:rounded-md after:h-24  after:bg-blend-overlay   '>
-                            <img src={`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/${item?.imageId}`} className='rounded-md w-32  object-cover h-24 ' alt="" />
-                        </div>
+                <div className='ml-4 relative min-w-[128px] h-24'>
+                    {
+                        (item.hasOwnProperty('imageId')) ?
+                            <button className='rounded-md w-32 relative  gap-x-9 h-24 '>
+                                <div className='after:content-[""] after:absolute after:bg-[rgba(40,44,63,.05)] after:top-0 after:left-0 after:right-0 after:bottom-0 after:rounded-md after:h-24  after:bg-blend-overlay   '>
+                                    <img src={`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/${item?.imageId}`} className='rounded-md w-32  object-cover h-24 ' alt="" />
+                                </div>
 
-                    </button>
-                    <button className='absolute -bottom-2 left-50% z-40 bg-white py-[10px] px-9  text-orange-600 font-bold border rounded-md text-xs -translate-x-2/4 shadow-[0px_3px_8px_#e9e9eb] border-[#d4d5d9] hover:shadow-[0_2px_8px_#d4d5d9]'>
+                            </button> : ""
+                    }
+
+                    <button className={`absolute ${(item.hasOwnProperty('imageId')) ?'-bottom-2':'top-0'} left-2/4 -translate-x-2/4  bg-white py-[10px] px-9  text-orange-600 font-bold border rounded-md text-xs  shadow-[0px_3px_8px_#e9e9eb] border-[#d4d5d9] hover:shadow-[0_2px_8px_#d4d5d9]`}>
                         {
                             (item.hasOwnProperty('addons')) ? <p className=' absolute right-2 top-0'>+</p> : ""
                         }
                         ADD
-                        </button>
+                    </button>
                     {
                         (item.hasOwnProperty('addons')) ? <p className='text-[10px] text-[#7e808c] text-center bg-white z-50 mt-[7px]'>Customisable</p> : ""
                     }

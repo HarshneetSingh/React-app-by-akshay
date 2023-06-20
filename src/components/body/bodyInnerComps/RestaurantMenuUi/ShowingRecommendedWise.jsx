@@ -14,7 +14,7 @@ const ShowingRecommendedWise = (props) => {
                         <p className="text-lg text-selectedBgColor group-hover:text-headerHoverColor group-hover:duration-100 font-extrabold ">{Title + ` (${itemCards.length})`}</p>
 
 
-                        <div className='text-lg text-selectedBgColor '>
+                        <div className='text-lg text-selectedBgColor mr-2'>
                             {
                                 isVisible ? <i className=" fa-sharp fa-solid fa-angle-up "></i> :
                                     <i className="  fa-sharp fa-solid fa-angle-down "></i>
@@ -42,7 +42,6 @@ const ShowingRecommendedWise = (props) => {
 
 
             </div>
-            <hr className={`  border-t-[14px] border-lightGray`} />
 
         </>
     )

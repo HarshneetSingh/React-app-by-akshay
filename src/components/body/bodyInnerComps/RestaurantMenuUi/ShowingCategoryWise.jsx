@@ -7,19 +7,19 @@ const ShowingCategoryWise = (props) => {
 
     return (
         <div className='w-[97%] m-auto'>
-            <p className='text-lg text-selectedBgColor  font-extrabold mt-5' >{Title}</p>
+            <p className='text-lg text-selectedBgColor  font-extrabold mt-5 mb-2' >{Title}</p>
             <div >
                 {
                     itemCards.map((card) => {
                         const title = card?.title
                         const itemCards = card?.itemCards
                         return (
-                            <div  className='w-full' onClick={() => setIsVisible(prev => !prev)}>
-                                <div className='flex justify-between  py-5 '>
-                                    <p className="text-[17px] text-sortByBtnHoverColor group-hover:text-headerHoverColor group-hover:duration-100 ">{title}</p>
+                            <div className='w-full' onClick={() => setIsVisible(prev => !prev)}>
+                                <div className='flex justify-between  py-3 '>
+                                    <p className="text-base text-ttlRestroHeading font-medium group-hover:text-headerHoverColor group-hover:duration-100 ">{title + ` (${itemCards.length})`}</p>
 
 
-                                    <div className='text-lg text-locationError '>
+                                    <div className='text-lg text-ttlRestroHeading mr-3   '>
                                         {
                                             isVisible ? <i className=" fa-sharp fa-solid fa-angle-up "></i> :
                                                 <i className="  fa-sharp fa-solid fa-angle-down "></i>
@@ -28,12 +28,14 @@ const ShowingCategoryWise = (props) => {
                                 </div>
 
                                 <div>
-                                    {(isVisible)?
+                                    {(isVisible) ?
                                         itemCards.map((card) => {
                                             const item = card?.card?.info
                                             return (
                                                 <div>
-                                                   <MenuCard item={item}/>
+                                                    <MenuCard item={item} />
+                                                    <hr className='my-5 mt-10' />
+
                                                 </div>
                                             )
                                         })
@@ -41,7 +43,8 @@ const ShowingCategoryWise = (props) => {
                                         ""
                                     }
                                 </div>
-                                <hr className='my-2' />
+                                <hr className='bg-black h-[0px]' />
+
                             </div>
                         )
                     })
