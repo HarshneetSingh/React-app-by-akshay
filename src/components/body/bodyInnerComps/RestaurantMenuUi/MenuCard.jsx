@@ -25,8 +25,10 @@ const MenuCard = (props) => {
                     <p className='font-semibold'>{item?.name}</p>
                     <div className='flex text-center gap-x-3 mt-1'>
                         <p className='text-xs font-normal'><i className="fa-solid  fa-indian-rupee-sign mr-1"></i><span className='text-sm'>{item?.price / 100}</span> </p>
+                     
                         {
-                            (item.hasOwnProperty('offerTags')) ? <p className={` p-1 bg-[${item?.offerTags[0]?.backgroundColor}] border-l-darkOrange text-[#DB6742] font-light border-l text-[10px] `}><span className="font-bold">{item?.offerTags[0]?.title}</span><span className=''> | {item?.offerTags[0]?.subTitle}</span></p> : ""
+                        
+                            (item?.hasOwnProperty('offerTags') && item?.offerTags.length>0) ? <p className={` p-1 bg-[#FAE8E3] border-l-darkOrange text-[#DB6742] font-light border-l text-[10px] `}><span className="font-bold">{item?.offerTags[0]?.title}</span><span className=''> | {item?.offerTags[0]?.subTitle}</span></p> : ""
                         }
 
                     </div>

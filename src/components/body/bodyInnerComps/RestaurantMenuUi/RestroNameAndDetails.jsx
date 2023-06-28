@@ -1,7 +1,7 @@
 import React from 'react'
 
 const RestroNameAndDetails = (props) => {
-    const {offersOnRestaurant,restaurantInfo}=props
+    const { offersOnRestaurant, restaurantInfo } = props
     return (
         <>
             <div className='flex justify-between '>
@@ -29,31 +29,34 @@ const RestroNameAndDetails = (props) => {
             </div>
 
             {/* offers */}
-            <div className='flex flex-nowrap overflow-x-scroll yo gap-x-3'>
+            <div className='flex flex-nowrap overflow-x-scroll yo gap-x-3 mb-10'>
                 {
-                    offersOnRestaurant.map((offer) => {
+                    offersOnRestaurant.map((offer,index) => {
                         return (
-                            <div key={offer?.info?.couponCode} className='flex border rounded-md border-restroCardBorder p-[10px]   shadow-[0_1px_2px_[rgba(0,0,0,.04)]'>
-                                {
-                                    (offer?.info.hasOwnProperty('offerTag'))
-                                        ?
-                                        <p className='vertical-lr rotate-180 border-l pl-1 mr-2 text-darkOrange font-bold text-[8px] border-inherit'>{offer?.info?.offerTag}</p>
-                                        : ""
-                                }
+                            <div key={index} >{
+                                (offer?.info.hasOwnProperty('couponCode')) ? <div key={offer?.info?.couponCode}
+                                    className='flex border rounded-md border-restroCardBorder p-[10px]   shadow-[0_1px_2px_[rgba(0,0,0,.04)]'>
+                                    {
+                                        (offer?.info.hasOwnProperty('offerTag'))
+                                            ?
+                                            <p className='vertical-lr rotate-180 border-l pl-1 mr-2 text-darkOrange font-bold text-[8px] border-inherit'>{offer?.info?.offerTag}</p>
+                                            : ""
+                                    }
 
-                                <div className='mr-5 whitespace-nowrap '>
-                                    <div className='flex text-sm font-bold text-sortByBtnColor gap-x-2 mb-1'>
-                                        <img src={`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_20,h_20/${offer?.info?.offerLogo}`} alt="img" />
-                                        <p >{offer?.info?.header}</p>
+                                    <div className='mr-5 whitespace-nowrap '>
+                                        <div className='flex text-sm font-bold text-sortByBtnColor gap-x-2 mb-1'>
+                                            <img src={`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_20,h_20/${offer?.info?.offerLogo}`} alt="img" />
+                                            <p >{offer?.info?.header}</p>
+                                        </div>
+
+                                        <div className='flex text-locationError font-bold text-xs whitespace-nowrap'>
+                                            <p>{offer?.info?.couponCode}</p>
+                                            <hr />
+                                            <p className='before:content-["|"] before:mx-1'>{offer?.info?.description}</p>
+                                        </div>
+
                                     </div>
-
-                                    <div className='flex text-locationError font-bold text-xs whitespace-nowrap'>
-                                        <p>{offer?.info?.couponCode}</p>
-                                        <hr />
-                                        <p className='before:content-["|"] before:mx-1'>{offer?.info?.description}</p>
-                                    </div>
-
-                                </div>
+                                </div> : ""}
                             </div>
                         )
                     })
