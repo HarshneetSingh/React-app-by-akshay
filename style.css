@@ -3,20 +3,28 @@
 @tailwind utilities;
 
 @layer global {
-    * {
-        font-family: 'Figtree', sans-serif;
-        line-height: 1.2;
-        letter-spacing: 0;
-    }
+  * {
+    font-family: 'Figtree', sans-serif;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
 
-    body::-webkit-scrollbar {
-        display: none;
-    }
-    ::-webkit-scrollbar{
-      display: none;
-    }
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
 }
- /* ,
+
+/* ,
    "browserslist": [
      "defaults"
    ] */
+
+.border-gradient {
+ 
+  border-image: linear-gradient(180deg, rgb(0, 0, 0), rgb(66, 228, 250)) 1;
+}

@@ -2,7 +2,43 @@ import { useContext, useEffect, useState } from "react";
 import { useOutletContext, useSearchParams, useLocation, useHistory } from "react-router-dom";
 import LocationContext from "./LocationContext";
 import SortFilterContext from "./SortFilterContext";
+import MenuCard from "../components/body/bodyInnerComps/RestaurantMenuUi/MenuCard";
 
+export const  SideCardShimmer=(props) =>{
+    return (
+        <>
+            <div className={`w-full flex justify-start items-center h-20 ${(props.index===0)? 'bg-shimmerColor':'bg-white'} `}>
+                <div className={` ${(props.index===0)? 'bg-white':'bg-shimmerColor'} w-10 ml-[10%] mr-5 h-10  rounded-full `}></div>
+                <div className={` ${(props.index===0)? 'bg-white':'bg-shimmerColor'} w-20 h-tenpx mr-4  `}></div>
+
+            </div>
+        </>
+    )
+}
+export const CardShimmer = () => {
+    return (
+        <>
+            <div className="w-64">
+                <div className="w-full mb-5 h-40 bg-shimmerColor" ></div>
+                <div className="w-2/4 my-3 h-tenpx bg-shimmerColor"></div>
+                <div className="w-2/5  h-tenpx bg-shimmerColor"></div>
+
+            </div>
+
+        </>
+    )
+}
+export const loadMenu = (card) => {
+    const item = card?.card?.info
+    return (
+        <>
+            <MenuCard item={item} />
+            <hr className='my-5 mt-10' />
+
+        </>
+
+    )
+}
 export const filterData = (allRestaurants, input) => {
 
     let result = allRestaurants.filter((restaurant) => {
@@ -48,7 +84,7 @@ export function FilterSelectedBtn(props) {
     const [hello, sethello] = useState(false)
 
     useEffect(() => {
-        
+
         if (hello === true) {
             updateRestroByfiltering(filterArr, props.setFilteredRestaurants, setUrl, url, location, selectedSort, setSelectedSort)
             sethello(false);
@@ -94,16 +130,16 @@ export function FilterSelectedBtn(props) {
 }
 export function updateRestroByfiltering(filterArr, setFilteredRestaurants, setUrl, url, location, selectedSort, setSelectedSort) {
 
-    const filterArrValue = filterArr.map((maal)=>Object.values(maal));
+    const filterArrValue = filterArr.map((maal) => Object.values(maal));
 
-console.log(filterArrValue[0][0].length)
+    console.log(filterArrValue[0][0].length)
     let urlString = filterArr.map((condition, index) => {
-    
+
         const conditionName = Object.keys(condition);
         const conditionValue = Object.values(condition);
         return (conditionValue[0].length === 0)
             ? ""
-            : ((index === 0 ||filterArrValue[0][0].length ===0) ? "%7B" : "%2C") +
+            : ((index === 0 || filterArrValue[0][0].length === 0) ? "%7B" : "%2C") +
             "%22" +
             conditionName +
             "%22%3A" +

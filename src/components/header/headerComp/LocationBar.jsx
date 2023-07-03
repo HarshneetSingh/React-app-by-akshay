@@ -26,7 +26,7 @@ function currentLocation(setLocation) {
     const result = await fetch(`https://www.swiggy.com/dapi/misc/address-recommend?latlng=${position?.coords?.latitude}%2C${position?.coords?.longitude}`)
     const data = await result.json();
     const name = data?.formatted_address.split(',')
-  
+
     setLocation({
       name: [name[2], name.join(',')],
       lat: data?.geometry?.location?.lat,
@@ -39,13 +39,14 @@ const LocationBar = (props) => {
   const [location, setLocation] = useContext(LocationContext)
   const [input, setInput] = useState('');
   const [areas, setAreas] = useState(null)
+  const [setFilteredRestaurants, setRestaurants] = props.useRestaurant
   useEffect(() => {
     if (input.length >= 3) {
       setAreas(null)
       getAreas(input, setAreas)
     }
   }, [input])
-  
+
   return (
     <>
       {/* location bar */}
@@ -59,11 +60,13 @@ const LocationBar = (props) => {
             </div>
           </div>
         </div>
-        
+
         {
           //* if input length is greater than 3
           (input.length < 3) ? (
             <button onClick={() => {
+              setFilteredRestaurants([])
+              setRestaurants([])
               currentLocation(setLocation)
               props.setLocationBar((prevState) => !prevState);
               setInput('');
@@ -85,7 +88,7 @@ const LocationBar = (props) => {
               // * if location length is 0
               (areas.length === 0) ? (
                 <div className='float-right w-2/3 flex flex-col items-center justify-center absolute right-10'>
-                  <img className='mx-20 mt-10 ' src=	"https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_404,h_400/empty_location_unserviceable_3x_dt3civ" width="200" height="200" alt="LocationError" />
+                  <img className='mx-20 mt-10 ' src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_404,h_400/empty_location_unserviceable_3x_dt3civ" width="200" height="200" alt="LocationError" />
                   <p className='font-semibold text-xl text-ttlRestroHeading my-5'>No results</p>
                   <p className=" text-sm text-locationError">Are you sure you entered the right location?</p>
                 </div>
@@ -98,6 +101,8 @@ const LocationBar = (props) => {
                       const placeId = place?.place_id
                       return (
                         <button className='w-2/3  my-1 ml-36  min-h-0 group' key={placeId} onClick={() => {
+                          setFilteredRestaurants([])
+                          setRestaurants([])
                           getLocation(placeId, setLocation)
                           props.setLocationBar((prevState) => !prevState);
                           setInput('');

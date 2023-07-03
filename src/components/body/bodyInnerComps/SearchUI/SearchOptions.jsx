@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import Shimmer from "../RestaurantUI/Shimmer"
+import Shimmer from "../RestaurantUI/HomeMainShimmer"
 import LocationContext from "../../../../utils/LocationContext"
 
 async function fetchQuery(setActiveQueryData, restro, location, setInput) {

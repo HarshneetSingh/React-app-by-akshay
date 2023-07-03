@@ -1,5 +1,5 @@
 import React, { useState ,useEffect} from 'react'
-import Shimmer from '../RestaurantUI/Shimmer'
+import Shimmer from '../RestaurantUI/HomeMainShimmer'
 import RestaurantTrue from './RestaurantTrue'
 import DishTrue from './DishTrue'
 import { facet } from '../../../../utils/helper'

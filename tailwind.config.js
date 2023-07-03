@@ -19,21 +19,29 @@ module.exports = {
         "lightColor": "#535665",
         "restroCardBorder":"#e9e9eb",
         "darkOrange":"#e46d47",
-        "lightGray":"#f1f1f6"
+        "lightGray":"#f1f1f6",
+        "shimmerColor":"#eef0f5"
       },
         keyframes:{
         rightSlash:{
           '0%':{left:'1px'},
           '100%':{left:'16px'},
+        },
+        fadeIn:{
+          '0%':{opacity:'0'},
+          '100%':{opacity:'1.0'},
         }
       },
       height:{
         'fourteenpx':"14px",
-        'sevenpx':"7px"
+        'sevenpx':"7px",
+        'tenpx':'10px'
       },
       width:{
         'fourteenpx':"14px",
-        'sevenpx':"7px"
+        'sevenpx':"7px",
+        
+        'tenpx':'10px'
 
       }
     },

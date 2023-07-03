@@ -8,7 +8,7 @@ import Search from "./components/body/Search";
 import Error from "./components/body/Error";
 import Help from "./components/body/Help";
 import Offers from "./components/body/Offers";
-import Shimmer from "./components/body/bodyInnerComps/RestaurantUI/Shimmer";
+import Shimmer from "./components/body/bodyInnerComps/RestaurantUI/HomeMainShimmer";
 import FilterBar from "./components/body/bodyInnerComps/RestaurantUI/FilterBar";
 import LocationBar from "./components/header/headerComp/LocationBar";
 import RestaurantMenu from "./components/body/bodyInnerComps/RestaurantUI/RestaurantMenu";
@@ -52,7 +52,7 @@ const App = () => {
         lat: '28.6139391',
         lng: '77.2090212'
     })
-    const [allRestaurants, filteredRestaurants, setFilteredRestaurants] = useRestaurant(location, setRestaurantContext)
+    const [allRestaurants, filteredRestaurants, setFilteredRestaurants,setRestaurants] = useRestaurant(location, setRestaurantContext)
 
     return (
         <AllRestaurantsContext.Provider value={[restaurantContext, setRestaurantContext]} >
@@ -61,7 +61,7 @@ const App = () => {
                     <SortFilterContext.Provider value={[selectedSort, setSelectedSort]}>
                         <div className="overflow-hidden  w-screen relative">
                             {/* location bar  */}
-                            <LocationBar locationBarState={locationBarState} setLocationBar={setLocationBar} />
+                            <LocationBar locationBarState={locationBarState} setLocationBar={setLocationBar} useRestaurant={[setFilteredRestaurants, setRestaurants]} />
                             <FilterBar location={location} filterBarState={filterBarState} setFilterBar={setFilterBar} filterArr={[filterArr, setFilterArr]} setFilteredRestaurants={setFilteredRestaurants} />
                             <OfferModalCard offerModalState={offerModalState} copied={copied} setCopied={setCopied} />
                             <div className={`  ${(locationBarState === true || filterBarState === true || offerModalState === true) ? `pointer-events-none  h-screen ` : " opacity-1 "}  `}

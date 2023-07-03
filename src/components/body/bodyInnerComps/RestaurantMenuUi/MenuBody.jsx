@@ -9,10 +9,9 @@ const MenuBody = (props) => {
     const restaurantInfo = restaurantMenu?.cards?.[0]?.card?.card?.info
     const offersOnRestaurant = restaurantMenu?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle?.offers
     const restroitems = restaurantMenu?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards
-    const [showVeg, setShowVeg] = useState(false)
     let address = []
-    address.push(restroitems?.pop())
-    address.push(restroitems?.pop())
+    address.push(restroitems[restroitems.length-1])
+    address.push(restroitems[restroitems.length-2])
 
     let [isVeg, topPicks, restroDishes] = [false, false, []]
 
@@ -27,6 +26,7 @@ const MenuBody = (props) => {
     }
     isVeg = isVeg?.card?.card?.hasOwnProperty('isPureVeg')
     isVeg = isVeg === true
+    const [showVeg, setShowVeg] = useState(false)
     return (
 
         <div className='w-full h-full mt-1'>
@@ -36,14 +36,14 @@ const MenuBody = (props) => {
                     <p className='text-[10px] mr-2'><span className='hover:text-lightColor'><Link to='/'>Home </Link></span> <span className='mx-1'>/</span> <span className='text-lightColor '> {restaurantInfo?.name}</span></p>
                     <button className='fill-lightColor   '>{searchLogo}</button>
                 </div>
-
+                
 
                 {/* name and its details */}
                 <div className='w-[99%] float-right'>
                     <RestroNameAndDetails restaurantInfo={restaurantInfo} offersOnRestaurant={offersOnRestaurant} />
                     {/* veg option */}
-                    <div className='flex gap-x-3'>
-                        <p className=' font-bold text-sortByBtnHoverColor text-sm'>Veg Only </p>
+                    <div className='flex gap-x-3 mb-6'>
+                        <p className=' font-extrabold text-sortByBtnHoverColor text-sm'>Veg Only </p>
 
 
                         <button onClick={() => {

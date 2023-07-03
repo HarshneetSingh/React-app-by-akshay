@@ -1,13 +1,11 @@
 import React from 'react'
 import SortByBtn from '../components/body/bodyInnerComps/RestaurantUI/SortByBtn'
 import RestaurantList from '../components/body/bodyInnerComps/RestaurantUI/RestaurantList'
-import Shimmer from '../components/body/bodyInnerComps/RestaurantUI/Shimmer'
+import Shimmer from '../components/body/bodyInnerComps/RestaurantUI/HomeMainShimmer'
 import { FilterSelectedBtn } from './helper'
 const RestaurantUI = (props) => {
-    console.log(props.filteredRestaurants.length)
 
     let restaurants = []
-    console.log(restaurants)
     if (props.filteredRestaurants?.cards?.length === 0 || props.filteredRestaurants?.length === 0) {
         restaurants = []
     } else {

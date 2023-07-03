@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom'
 import useAdvancedCards from '../../../../utils/useAdvancedCards';
-import Shimmer from './Shimmer';
+import Shimmer from './HomeMainShimmer';
 import RestaurantUI from '../../../../utils/RestaurantUI'
 
 

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import OfferModalContext from '../../../../utils/OfferModalContext'
-import { btn } from '../../../../utils/helper'
+
 const OfferModalCard = (props) => {
   if (props.offerModalState === false) {
     return false

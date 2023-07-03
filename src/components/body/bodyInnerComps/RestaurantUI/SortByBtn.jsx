@@ -15,15 +15,14 @@ const SortByBtn = (props) => {
     const sortbtn = allRestaurants?.sorts
     const [setFilterBar] = useOutletContext();
     const [url, setUrl] = useSearchParams()
-    const [selectedBtnStyle, setSelectedBtnStyle] = useState('RELEVANCE')
-    let totalOpenRestaurants
+    let totalOpenRestaurants;
     if ('totalSize' in filteredRestaurants) {
         totalOpenRestaurants = filteredRestaurants?.totalSize
     } else {
         totalOpenRestaurants = (filteredRestaurants?.cards?.length > 1) ? filteredRestaurants?.cards?.[2]?.data?.data?.totalOpenRestaurants : filteredRestaurants?.cards?.[0]?.data?.data?.totalOpenRestaurants
     }
 
-    return (
+    return  (
         <>
             <div className=' flex  justify-between w-4/5 mt-10 mb-2 mx-auto  '>
                 <p className='text-[27px] font-bold text-ttlRestroHeading'>{(filteredRestaurants.length === 0) ? "Finding restaurants..." : totalOpenRestaurants + " restaurants"} </p>
@@ -32,7 +31,7 @@ const SortByBtn = (props) => {
                         {searchLogo}
                         <p>Search</p>
                     </NavLink>
-                    {(allRestaurants.length === 0) ? "yo" :
+                    {(allRestaurants.length === 0) ? "" :
                         sortbtn.map(({ title, key }) => {
                             return <div key={key}>
                                 <button

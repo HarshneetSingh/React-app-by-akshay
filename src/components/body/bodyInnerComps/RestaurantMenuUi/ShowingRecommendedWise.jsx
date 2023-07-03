@@ -1,16 +1,6 @@
 import React, { useState } from 'react'
-import MenuCard from './MenuCard'
+import { loadMenu } from '../../../../utils/helper'
 
-function loadMenu(card) {
-    const item = card?.card?.info
-    return (
-        <>
-            <MenuCard item={item} />
-            <hr className='my-5 mt-10' />
-        </>
-
-    )
-}
 const ShowingRecommendedWise = (props) => {
     const { topPicks, Title, itemCards, index, showVeg } = props
     const [isVisible, setIsVisible] = useState(true)
@@ -37,9 +27,9 @@ const ShowingRecommendedWise = (props) => {
                 <div>
                     {
                         (isVisible)
-                            ? (showVeg) ? VegCard.map((card,index) => {
+                            ? (showVeg) ? VegCard.map((card) => {
                               return <div key={card?.card?.info?.id}>{ loadMenu(card)}</div>
-                            }) : itemCards.map((card,index) => {
+                            }) : itemCards.map((card) => {
                                return <div key={card?.card?.info?.id}>{ loadMenu(card)}</div>
                             })
                             :

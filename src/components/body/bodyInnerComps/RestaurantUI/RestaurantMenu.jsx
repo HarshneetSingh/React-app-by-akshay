@@ -1,7 +1,7 @@
 
 import { Link, useParams } from 'react-router-dom'
 import useRestaurantMenu from '../../../../utils/useRestaurantMenu';
-import Shimmer from '../RestaurantUI/Shimmer';
+import Shimmer from './HomeMainShimmer';
 
 import MenuBody from '../RestaurantMenuUi/MenuBody';
 

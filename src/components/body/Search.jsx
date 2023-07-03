@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import LocationContext from "../../utils/LocationContext"
-import Shimmer from "./bodyInnerComps/RestaurantUI/Shimmer"
+import Shimmer from "./bodyInnerComps/RestaurantUI/HomeMainShimmer"
 import { useSearchParams } from "react-router-dom"
 import SearchOptions from "./bodyInnerComps/SearchUI/SearchOptions"
 import ActiveQueryUI from "./bodyInnerComps/SearchUI/ActiveQueryUI"

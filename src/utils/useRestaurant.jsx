@@ -1,7 +1,5 @@
 // for search purpose 
 import { useState, useEffect, useContext } from 'react'
-import AllRestaurantsContext from './AllRestroContext';
-import LocationContext from './LocationContext';
 
 const useRestaurant = (location,setRestaurantContext) => {
 
@@ -20,7 +18,7 @@ const useRestaurant = (location,setRestaurantContext) => {
         setFilteredRestaurants(json?.data)
         setRestaurantContext(json?.data)
     }
-    return [allRestaurants, filteredRestaurants, setFilteredRestaurants]
+    return [allRestaurants, filteredRestaurants, setFilteredRestaurants,setRestaurants]
 }
 
 export default useRestaurant;
