@@ -1,8 +1,8 @@
 import React, { useState ,useEffect} from 'react'
-import Shimmer from '../RestaurantUI/HomeMainShimmer'
 import RestaurantTrue from './RestaurantTrue'
 import DishTrue from './DishTrue'
 import { facet } from '../../../../utils/helper'
+import SearchActiveQueryShimmer from './SearchActiveQueryShimmer.jsx'
 
 async function getSelectedData(otherData, id, setSelectedData,setLoadOnChange,selectedBtnArr) {
     const [metaData, RestroName, location] = otherData
@@ -45,14 +45,16 @@ const ActiveQueryUI = (props) => {
         arrFace: [],
         sortKey: ""
     })
+    const [extraCallPreventer,setExtraCallPreventer]=useState(0)
+
     useEffect(() => {
-        if (selectedBtnArr.arrFace.length > 0 || selectedBtnArr.sortKey !== "") {
+        if (extraCallPreventer!==0) {
             // console.log(selectedBtnArr)
             getSelectedData(otherData, "DISH",setDishData, setLoadOnChange, selectedBtnArr)
         }
     }, [selectedBtnArr])
 
-    return (loadOnChange)?<Shimmer/>:(
+    return (loadOnChange)?<SearchActiveQueryShimmer/>:(
         <div className=''>
             <div className="text-sm font-bold mb-1 ">
                 <button className={`border mr-2 px-3 py-2 rounded-3xl ${(restaurantStatus) ? "bg-selectedBgColor text-white border-selectedBorderColor" : "bg-white text-ttlRestroHeading border-neutral-300"}`}
@@ -71,7 +73,7 @@ const ActiveQueryUI = (props) => {
             </div>
             <div className='border  '>
                 {restaurantStatus && <RestaurantTrue data={restaurantData?.cards}/>}
-                {dishStatus && <DishTrue data={dishData?.cards} otherData={otherData} setLoadOnChange={setLoadOnChange} loadOnChange={loadOnChange} setDishData={setDishData} selectedBtnArr={selectedBtnArr} setSelectedBtnArr={setSelectedBtnArr}/>}
+                {dishStatus && <DishTrue data={dishData?.cards} otherData={otherData} setLoadOnChange={setLoadOnChange} setExtraCallPreventer={setExtraCallPreventer} loadOnChange={loadOnChange} setDishData={setDishData} selectedBtnArr={selectedBtnArr} setSelectedBtnArr={setSelectedBtnArr}/>}
             </div>
         </div>
     )

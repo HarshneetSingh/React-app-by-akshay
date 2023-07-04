@@ -14,20 +14,54 @@ async function fetchQuery(setActiveQueryData, restro, location, setInput) {
 
 
 const SearchOptions = (props) => {
-    const [input, searchRestaurant, setSearchParams, setActiveQuery, setActiveQueryData, setInput] = props.prop
+    const [input, searchRestaurant, setSearchParams, setActiveQuery, setActiveQueryData, setInput, preSearch] = props.prop
+    let popularCuisine = preSearch?.filter((card) => card?.card?.card?.hasOwnProperty('header') && card?.card?.card?.header?.hasOwnProperty('title'))
+    popularCuisine = popularCuisine[0]?.card?.card
     const [location] = useContext(LocationContext)
-
     return (
-        // if pre seacrh is true then check if  input length is less than 2 then show span 
+        // *if pre seacrh is true then check if  input length is less than 2 then show span 
         (input.length < 2) ?
-            <span></span> :
-            // if input length is greater than 2 then check if searchRestaurant is null then show shimmer 
+            <div className="w-full overflow-hidden">
+                <p className="font-extrabold text-xl text-sortByBtnHoverColor">{popularCuisine?.header?.title}</p>
+                <div className="flex  w-full mt-3 snap-x   gap-x-3 h-full overflow-x-scroll items-center">
+                    {
+                        popularCuisine?.imageGridCards?.info.map((category) => {
+                            return <div>
+                                <button onClick={() => {
+                                    const categoryName = category?.action?.link?.split('=')
+                                    setInput(categoryName[1])
+                                }} className=" whitespace-nowrap  w-20 h-28">
+                                    <img src={`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/${category?.imageId}`} alt="" />
+                                </button>
+                            </div>
+                        })
+                    }
+                </div>
+            </div> :
+            //*if input length is greater than 2 then check if searchRestaurant is null then show shimmer 
             (searchRestaurant === null) ?
-                <Shimmer /> :
-                // if searchRestaurant is not null then check if searchRestaurant length ==0 then show no restro 
+                <div className="flex flex-col">
+                    {
+                        [...Array(6)].map(() => {
+                            return (
+                                <div className=" h-24  w-full flex gap-x-4 items-center" >
+                                    {/* innerShimmer */}
+                                    <div className="bg-shimmerColor h-16 w-16"></div>
+                                    <div>
+                                        <p className="bg-shimmerColor h-tenpx w-40 mb-2"></p>
+                                        <p className="bg-shimmerColor h-tenpx w-28"></p>
+                                    </div>
+                                </div>
+                            )
+                        })
+
+                    }
+                </div>
+                :
+                // *if searchRestaurant is not null then check if searchRestaurant length ==0 then show no restro 
                 (searchRestaurant.length === 0) ?
-                    "no restro" :
-                    // if searchRestaur length is not 0 then return 
+                    <p className="text-sm text-ttlRestroHeading font-bold">{`No match found for "${input}"`}</p> :
+                    // *if searchRestaur length is not 0 then return 
                     searchRestaurant.map((restro) => {
 
                         return (

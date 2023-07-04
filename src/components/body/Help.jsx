@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Shimmer from './bodyInnerComps/RestaurantOffersUI/Shimmer'
+import OfferPageShimmer from './bodyInnerComps/RestaurantOffersUI/OfferPageShimmer'
 import Loader from '../../utils/Loader';
 
 async function getIssuesOption(setIssues) {
@@ -100,7 +100,7 @@ const Help = () => {
                         <div className='bg-[#edf1f7] flex flex-col min-h-[500px]  w-[21%] pt-5 pl-5'>
                             {
                                 (issues === null) ?
-                                    <Shimmer /> :
+                                    <OfferPageShimmer /> :
                                     <>
                                         {
                                             issues.map((issue) => {

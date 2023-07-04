@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import Card from "./Card";
-
+import HomeMainShimmer from "./HomeMainShimmer";
 
 const RestaurantList = (props) => {
 
@@ -21,7 +21,7 @@ const RestaurantList = (props) => {
 
     return (
         <div className="w-5/6 mt-4  m-auto  grid grid-cols-4 gap-x-9 gap-y-10  " >
-            {(servicable?.length === 0) ? "no data " :
+            {(servicable?.length === 0) ? "no data" :
                 servicable.map((restaurant) => {
                     return (
                         <Link to={`/restaurant/${restaurant?.name}-${restaurant?.id}`} key={restaurant?.id}>

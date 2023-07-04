@@ -1,8 +1,7 @@
 import React from 'react'
 import SortByBtn from '../components/body/bodyInnerComps/RestaurantUI/SortByBtn'
 import RestaurantList from '../components/body/bodyInnerComps/RestaurantUI/RestaurantList'
-import Shimmer from '../components/body/bodyInnerComps/RestaurantUI/HomeMainShimmer'
-import { FilterSelectedBtn } from './helper'
+import { CardShimmer, FilterSelectedBtn } from './helper'
 const RestaurantUI = (props) => {
 
     let restaurants = []
@@ -19,7 +18,17 @@ const RestaurantUI = (props) => {
             {
 
                 (restaurants.length === 0) ?
-               <Shimmer /> 
+                    <div className="w-5/6  m-auto  h-full  flex">
+                        <div className="  mt-9 ml-5 "  >
+                            <div className="flex justify-between flex-wrap-reverse gap-x-9 gap-y-16 pb-20  ">
+                                {
+                                    [...Array(12)].map((i, j) => {
+                                        return <CardShimmer />
+                                    })
+                                }
+                            </div>
+                        </div>
+                    </div>
                     :
                     (
                         <RestaurantList restaurants={restaurants} />

@@ -176,10 +176,3 @@ function updatingFilter(urlString, setFilteredRestaurants, setUrl, url, location
     restroSorting(selectedSort.sort, setFilteredRestaurants, location, urlString)
 
 }
-
-
-
-
-// https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6139391&lng=77.2090212&sortBy=RELEVANCE&filters=%7B%22SHOW_RESTAURANTS_WITH%22%3A%5B%22Pure%20Veg%22%5D%7D&page_type=DESKTOP_WEB_LISTING
-
-// https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6139391&lng=77.2090212&sortBy=RELEVANCE&filters=%2C%22SHOW_RESTAURANTS_WITH%22%3A%5B%22Pure%20Veg%22%5D%7D&page_type=DESKTOP_WEB_LISTING

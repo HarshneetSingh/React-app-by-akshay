@@ -20,7 +20,8 @@ module.exports = {
         "restroCardBorder":"#e9e9eb",
         "darkOrange":"#e46d47",
         "lightGray":"#f1f1f6",
-        "shimmerColor":"#eef0f5"
+        "shimmerColor":"#eef0f5",
+        "lightShimmer":"#f5f6f8"
       },
         keyframes:{
         rightSlash:{

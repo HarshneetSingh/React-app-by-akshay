@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import RestaurantOffers from './bodyInnerComps/OffersUI/RestaurantOffers'
 import PaymentOffers from './bodyInnerComps/OffersUI/PaymentOffers'
 import LocationContext from '../../utils/LocationContext'
-import Shimmer from './bodyInnerComps/RestaurantOffersUI/Shimmer'
+import OfferPageShimmer from './bodyInnerComps/RestaurantOffersUI/OfferPageShimmer'
 async function getRestaurant(location, setRestaurant) {
   const result = await fetch(`https://www.swiggy.com/dapi/offers/restaurant?lat=${location.lat}&lng=${location.lng}&offset=0`)
   const data = await result.json()
@@ -26,7 +26,7 @@ const Offers = () => {
     getOffers(location, setOffers)
   }, [])
 
-  return (restaurant === null || offers === null) ? <Shimmer /> : (
+  return (
     <div className=' w-full'>
       {/* offerfront section */}
       <div className='h-[300px] bg-[#005062]  '>
@@ -41,19 +41,26 @@ const Offers = () => {
         </div>
       </div >
       {/* data section */}
-      <div className='border-b-[1px] border-neutral-300 relative '>
-        <div className=' h-16 w-4/5 m-auto flex '>
-          <button className={` text-xl hover:text-ttlRestroHeading ${(showMain) ? ' text-ttlRestroHeading font-medium  ' : "font-normal text-locationError "}`} onClick={() => setShowMain(true)}>Restaurant offers</button>
-          <button className={`ml-5  text-xl hover:text-ttlRestroHeading ${!(showMain) ? ' text-ttlRestroHeading font-medium  ' : "font-normal text-locationError "}`} onClick={() => setShowMain(false)}>Payment offers/Coupons</button>
-        </div>
-        <div className={`w-2 h-[2px] ease-in-out  duration-500 transition  bg-ttlRestroHeading absolute bottom-0 ${(showMain) ? " translate-x-[155px] w-40":" w-56 translate-x-[330px]"}`}></div>
-      </div>
+      {
+        (restaurant === null || offers === null) ? <OfferPageShimmer /> : <>
+        
+          <div className='border-b-[1px] border-neutral-300 relative '>
+            <div className=' h-16 w-4/5 m-auto flex '>
+              <button className={` text-xl hover:text-ttlRestroHeading ${(showMain) ? ' text-ttlRestroHeading font-medium  ' : "font-normal text-locationError "}`} onClick={() => setShowMain(true)}>Restaurant offers</button>
+              <button className={`ml-5  text-xl hover:text-ttlRestroHeading ${!(showMain) ? ' text-ttlRestroHeading font-medium  ' : "font-normal text-locationError "}`} onClick={() => setShowMain(false)}>Payment offers/Coupons</button>
+            </div>
+            <div className={`w-2 h-[2px] ease-in-out  duration-500 transition  bg-ttlRestroHeading absolute bottom-0 ${(showMain) ? " translate-x-[155px] w-40" : " w-56 translate-x-[330px]"}`}></div>
+          </div>
 
-      <div>
-        {
-          (showMain) ? <RestaurantOffers restaurants={restaurant} /> : <PaymentOffers offers={offers} />
-        }
-      </div>
+
+          <div>
+            {
+              (showMain) ? <RestaurantOffers restaurants={restaurant} /> : <PaymentOffers offers={offers} />
+            }
+          </div>
+        </>
+      }
+
     </div>
   )
 }

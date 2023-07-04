@@ -1,7 +1,7 @@
 import { CardShimmer ,SideCardShimmer} from "../../../../utils/helper";
 
 
-const Shimmer = () => {
+const HomeMainShimmer = () => {
     return (
         <>
             {/* offer */}
@@ -42,7 +42,7 @@ const Shimmer = () => {
     )
 };
 
-export default Shimmer;
+export default HomeMainShimmer;
 
 
 
