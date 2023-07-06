@@ -49,11 +49,10 @@ const Search = () => {
 
     return (
         <div className="  w-full min-h-screen   ">
-            <div className=" w-full flex h-28 flex-col mt-20 pt-7 bg-white justify-center fixed top-0 z-50  items-center " >
+            <div className=" w-full flex h-28 flex-col mt-20 pt-7 bg-white justify-center fixed top-0 z-30  items-center " >
                 <div className=" relative   w-[56%]  text-sortByBtnHoverColor">
-                    <input className={` w-full p-[15px] border z-50 rounded border-teal-400 caret-locationError focus:outline-none font-semibold ${activeQuery ? "pl-11" : "pl-[auto]"} `} type="text" placeholder="Search for restaurants and food" value={input} onChange={(e) => {
+                    <input className={` w-full p-[15px] border rounded border-teal-400 caret-locationError focus:outline-none font-semibold ${activeQuery ? "pl-11" : "pl-[auto]"} `} type="text" placeholder="Search for restaurants and food" value={input} onChange={(e) => {
                         setInput(e.target.value)
-
                     }} />
                     {
                         (input.length < 1) ?

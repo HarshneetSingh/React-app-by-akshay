@@ -71,7 +71,7 @@ const ActiveQueryUI = (props) => {
                     {btns?.[1]?.title}
                 </button>
             </div>
-            <div className='border  '>
+            <div >
                 {restaurantStatus && <RestaurantTrue data={restaurantData?.cards}/>}
                 {dishStatus && <DishTrue data={dishData?.cards} otherData={otherData} setLoadOnChange={setLoadOnChange} setExtraCallPreventer={setExtraCallPreventer} loadOnChange={loadOnChange} setDishData={setDishData} selectedBtnArr={selectedBtnArr} setSelectedBtnArr={setSelectedBtnArr}/>}
             </div>

@@ -4,7 +4,6 @@ const DishTrue = (props) => {
     cards = (cards?.length === 2) ? cards[1] : cards[0]
     const groupedCard = cards?.groupedCard?.cardGroupMap?.DISH?.cards?.[0]?.card?.card
     const { selectedBtnArr, setSelectedBtnArr ,setExtraCallPreventer } = props
-    console.log(selectedBtnArr)
     return (
         <>
             <div className=' flex py-2 whitespace-nowrap   '>
