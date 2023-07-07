@@ -10,8 +10,9 @@ const MenuBody = (props) => {
     const offersOnRestaurant = restaurantMenu?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle?.offers
     const restroitems = restaurantMenu?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards
     let address = []
-    address.push(restroitems[restroitems.length-1])
-    address.push(restroitems[restroitems.length-2])
+    console.log(restroitems)
+    address.push(restroitems[restroitems?.length-1])
+    address.push(restroitems[restroitems?.length-2])
 
     let [isVeg, topPicks, restroDishes] = [false, false, []]
 
@@ -39,7 +40,7 @@ const MenuBody = (props) => {
                 
 
                 {/* name and its details */}
-                <div className='w-[99%] float-right'>
+                <div className='? float-right'>
                     <RestroNameAndDetails restaurantInfo={restaurantInfo} offersOnRestaurant={offersOnRestaurant} />
                     {/* veg option */}
                     <div className='flex gap-x-3 mb-6'>

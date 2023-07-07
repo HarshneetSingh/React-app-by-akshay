@@ -1,9 +1,8 @@
 
-import { Link, useParams } from 'react-router-dom'
+import {  useParams } from 'react-router-dom'
 import useRestaurantMenu from '../../../../utils/useRestaurantMenu';
-import Shimmer from './HomeMainShimmer';
-
 import MenuBody from '../RestaurantMenuUi/MenuBody';
+import RestaurantMenuShimmer from '../RestaurantMenuUi/RestaurantMenuShimmer';
 
 
 const RestaurantMenu = () => {
@@ -22,7 +21,7 @@ const RestaurantMenu = () => {
 
 
 
-    return restaurantMenu === null ? <Shimmer /> : (
+    return restaurantMenu === null ? <RestaurantMenuShimmer /> : (
 
         <MenuBody restaurantMenu={restaurantMenu}/>
     )

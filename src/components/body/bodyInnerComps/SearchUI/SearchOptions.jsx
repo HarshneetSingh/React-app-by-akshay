@@ -1,5 +1,4 @@
 import { useContext } from "react"
-import Shimmer from "../RestaurantUI/HomeMainShimmer"
 import LocationContext from "../../../../utils/LocationContext"
 
 async function fetchQuery(setActiveQueryData, restro, location, setInput) {
@@ -30,7 +29,6 @@ const SearchOptions = (props) => {
                                 <button onClick={() => {
                                     const categoryName = category?.action?.link?.split('=')
                                     setInput(categoryName[1])
-                                  
                                 }} className=" whitespace-nowrap  w-20 h-28">
                                     <img src={`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/${category?.imageId}`} alt="" />
                                 </button>

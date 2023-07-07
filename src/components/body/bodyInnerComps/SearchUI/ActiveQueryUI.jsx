@@ -49,14 +49,13 @@ const ActiveQueryUI = (props) => {
 
     useEffect(() => {
         if (extraCallPreventer!==0) {
-            // console.log(selectedBtnArr)
             getSelectedData(otherData, "DISH",setDishData, setLoadOnChange, selectedBtnArr)
         }
     }, [selectedBtnArr])
 
     return (loadOnChange)?<SearchActiveQueryShimmer/>:(
-        <div className=''>
-            <div className="text-sm font-bold mb-1 ">
+        <div className=' relative '>
+            <div className="text-sm font-bold fixed bg-white  z-20 w-[56%]   pb-1  ">
                 <button className={`border mr-2 px-3 py-2 rounded-3xl ${(restaurantStatus) ? "bg-selectedBgColor text-white border-selectedBorderColor" : "bg-white text-ttlRestroHeading border-neutral-300"}`}
                     onClick={() => {
                         btnclick(defaultRestroStatus, setRestaurantStatus, setDishStatus, setRestaurantStatus, setDishStatus,otherData, btns?.[0]?.id, setRestaurantData,setLoadOnChange, selectedBtnArr,setDefaultRestroStatus)
@@ -71,7 +70,7 @@ const ActiveQueryUI = (props) => {
                     {btns?.[1]?.title}
                 </button>
             </div>
-            <div >
+            <div className='  relative top-10 pb-10'>
                 {restaurantStatus && <RestaurantTrue data={restaurantData?.cards}/>}
                 {dishStatus && <DishTrue data={dishData?.cards} otherData={otherData} setLoadOnChange={setLoadOnChange} setExtraCallPreventer={setExtraCallPreventer} loadOnChange={loadOnChange} setDishData={setDishData} selectedBtnArr={selectedBtnArr} setSelectedBtnArr={setSelectedBtnArr}/>}
             </div>
